@@ -6,6 +6,10 @@ __pycache__/
 .ruff_cache/
 *.egg-info/
 
+# Local databases
+*.db
+*.db-journal
+
 # Env / secrets
 .env
 .env.*

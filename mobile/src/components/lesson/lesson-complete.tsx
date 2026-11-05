@@ -1,18 +1,21 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp, ZoomIn } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import type { Reward } from '@/api/types';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
-import type { LessonReward } from '@/store/progress';
+import { useAuth } from '@/store/auth';
 
-type Props = { reward: LessonReward; elapsedMs: number; onDone: () => void };
+type Props = { reward: Reward; elapsedMs: number; onDone: () => void };
 
 export function LessonComplete({ reward, elapsedMs, onDone }: Props) {
   const theme = useTheme();
+  const isGuest = useAuth((s) => s.user?.is_guest ?? false);
   const perfect = reward.accuracy === 1;
   const seconds = Math.round(elapsedMs / 1000);
   const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
@@ -39,17 +42,17 @@ export function LessonComplete({ reward, elapsedMs, onDone }: Props) {
         </View>
 
         <Animated.View entering={FadeInUp.delay(300)} style={styles.stats}>
-          <Stat icon="flash" tone="xp" value={`+${reward.xpEarned}`} label="XP earned" />
+          <Stat icon="flash" tone="xp" value={`+${reward.xp_earned}`} label="XP earned" />
           <Stat icon="locate" tone="accent" value={`${Math.round(reward.accuracy * 100)}%`} label="First-try accuracy" />
           <Stat icon="time-outline" tone="primary" value={time} label="Time" />
         </Animated.View>
 
-        {reward.perfectBonus > 0 && (
+        {reward.perfect_bonus > 0 && (
           <Text tone="xp" variant="bodyBold" style={styles.center}>
-            Includes +{reward.perfectBonus} XP perfect-lesson bonus
+            Includes +{reward.perfect_bonus} XP perfect-lesson bonus
           </Text>
         )}
-        {reward.streakExtended && (
+        {reward.streak_extended && (
           <Animated.View
             entering={FadeInUp.delay(450)}
             style={[styles.streak, { backgroundColor: theme.surface, borderColor: theme.border }]}>
@@ -61,6 +64,14 @@ export function LessonComplete({ reward, elapsedMs, onDone }: Props) {
         )}
 
         <Button title="Continue" onPress={onDone} style={styles.button} />
+        {isGuest && (
+          <Button
+            title="Save my progress"
+            variant="ghost"
+            icon="cloud-upload-outline"
+            onPress={() => router.replace('/auth/sign-up')}
+          />
+        )}
       </View>
     </SafeAreaView>
   );

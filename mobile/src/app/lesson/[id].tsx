@@ -1,21 +1,28 @@
 /**
  * The lesson player.
  *
- * Questions are served without answers, and every attempt is graded by the API.
- * A missed question goes to the back of the queue, so the lesson ends only after every
- * question has been answered correctly at least once. First-try accuracy is what counts
- * toward the score and the perfect-lesson bonus.
+ * Opening a lesson starts a session on the server. Questions arrive without answers, and
+ * every attempt is graded and recorded by the API. A missed question goes to the back of
+ * the queue, so the lesson ends only after every question has been answered correctly at
+ * least once. The server then works out first-try accuracy, XP and streak from its own
+ * records. The app never reports a score.
  */
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import Animated, { FadeIn, FadeInRight } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { useCheckAnswer, useLesson } from '@/api/hooks';
-import type { CheckResponse, LessonDetail } from '@/api/types';
+import { ApiError } from '@/api/client';
+import {
+  useCheckAnswer,
+  useCompleteLesson,
+  useLesson,
+  useStartLessonSession,
+} from '@/api/hooks';
+import type { CheckResponse, LessonDetail, Reward } from '@/api/types';
 import { ChoiceList } from '@/components/lesson/choice-list';
 import { FeedbackPanel } from '@/components/lesson/feedback-panel';
 import { LessonComplete } from '@/components/lesson/lesson-complete';
@@ -28,7 +35,6 @@ import { Text } from '@/components/ui/text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { haptics } from '@/lib/haptics';
-import { useProgress, type LessonReward } from '@/store/progress';
 
 function closeLesson() {
   if (router.canGoBack()) router.back();
@@ -48,25 +54,35 @@ export default function LessonScreen() {
       {isPending ? (
         <LoadingState label="Preparing your lesson…" />
       ) : (
-        <ErrorState message={error?.message ?? 'Lesson not found.'} onRetry={() => void refetch()} />
+        <ErrorState
+          message={error?.message ?? 'Lesson not found.'}
+          // A locked lesson won't open by retrying.
+          onRetry={error instanceof ApiError && error.status === 403 ? undefined : () => void refetch()}
+        />
       )}
     </SafeAreaView>
   );
 }
 
-type Phase = 'answering' | 'feedback' | 'complete';
+type Phase = 'answering' | 'feedback' | 'finishing' | 'complete';
 
 function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   const theme = useTheme();
-  const completeLesson = useProgress((s) => s.completeLesson);
   const check = useCheckAnswer();
+  const complete = useCompleteLesson();
+  const { mutate: startSession, error: sessionError, reset: resetSession } = useStartLessonSession();
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [sessionAttempt, setSessionAttempt] = useState(0);
+
+  useEffect(() => {
+    startSession(lesson.id, { onSuccess: (session) => setSessionId(session.session_id) });
+  }, [lesson.id, sessionAttempt, startSession]);
 
   const questionsById = useMemo(() => new Map(lesson.questions.map((q) => [q.id, q])), [lesson]);
   const total = lesson.questions.length;
 
   const [queue, setQueue] = useState(() => lesson.questions.map((q) => q.id));
   const [position, setPosition] = useState(0);
-  const [missed, setMissed] = useState<ReadonlySet<string>>(() => new Set());
   const [solved, setSolved] = useState(0);
   const [phase, setPhase] = useState<Phase>('answering');
 
@@ -78,19 +94,20 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
 
   const [startedAt] = useState(() => Date.now());
   const [elapsedMs, setElapsedMs] = useState(0);
-  const [reward, setReward] = useState<LessonReward | null>(null);
+  const [reward, setReward] = useState<Reward | null>(null);
 
   const question = questionsById.get(queue[position])!;
   const isRetry = position >= total;
-  const canCheck =
+  const hasAnswer =
     question.type === 'multiple_choice' ? choice !== null : mathAnswer.trim().length > 0;
+  const canCheck = hasAnswer && sessionId !== null;
 
   function submit() {
     if (!canCheck || check.isPending || phase !== 'answering') return;
     setInputMessage(null);
     const answer = question.type === 'multiple_choice' ? choice! : mathAnswer;
     check.mutate(
-      { lessonId: lesson.id, questionId: question.id, answer },
+      { lessonId: lesson.id, questionId: question.id, sessionId: sessionId!, answer },
       {
         onSuccess: (result) => {
           if (result.result === 'invalid') {
@@ -105,7 +122,6 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
             setSolved((n) => n + 1);
           } else {
             haptics.error();
-            setMissed((prev) => new Set(prev).add(question.id));
             setQueue((q) => [...q, question.id]);
           }
         },
@@ -114,20 +130,25 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
     );
   }
 
+  function finish() {
+    setPhase('finishing');
+    complete.mutate(
+      { lessonId: lesson.id, sessionId: sessionId! },
+      {
+        onSuccess: (result) => {
+          setReward(result);
+          setElapsedMs(Date.now() - startedAt);
+          setPhase('complete');
+          haptics.success();
+        },
+      },
+    );
+  }
+
   function next() {
     const nextPosition = position + 1;
     if (nextPosition >= queue.length) {
-      setReward(
-        completeLesson({
-          lessonId: lesson.id,
-          baseXp: lesson.xp,
-          totalQuestions: total,
-          firstTryCorrect: total - missed.size,
-        }),
-      );
-      setElapsedMs(Date.now() - startedAt);
-      setPhase('complete');
-      haptics.success();
+      finish();
       return;
     }
     setPosition(nextPosition);
@@ -141,6 +162,30 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
 
   if (phase === 'complete' && reward) {
     return <LessonComplete reward={reward} elapsedMs={elapsedMs} onDone={closeLesson} />;
+  }
+
+  if (phase === 'finishing' || sessionError) {
+    const failure = complete.error ?? sessionError;
+    return (
+      <SafeAreaView style={[styles.screen, { backgroundColor: theme.background }]}>
+        <CloseButton />
+        {failure ? (
+          <ErrorState
+            message={failure.message}
+            onRetry={() => {
+              if (sessionError) {
+                resetSession();
+                setSessionAttempt((n) => n + 1);
+              } else {
+                finish();
+              }
+            }}
+          />
+        ) : (
+          <LoadingState label="Saving your progress…" />
+        )}
+      </SafeAreaView>
+    );
   }
 
   const answering = phase === 'answering';

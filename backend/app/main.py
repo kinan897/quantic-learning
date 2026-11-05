@@ -2,6 +2,7 @@
 
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,7 +10,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import __version__
 from app.config import get_settings
 from app.content.loader import get_catalog
-from app.routers import courses, lessons
+from app.routers import auth, courses, lessons, me
+
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+
+
+def run_migrations() -> None:
+    from alembic import command
+    from alembic.config import Config
+
+    config = Config(str(BACKEND_DIR / "alembic.ini"))
+    config.set_main_option("script_location", str(BACKEND_DIR / "migrations"))
+    command.upgrade(config, "head")
 
 
 @asynccontextmanager
@@ -17,6 +29,8 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     # Load and validate all course content at startup. Broken content fails the deploy,
     # not a student's lesson.
     get_catalog()
+    if get_settings().auto_migrate:
+        run_migrations()
     yield
 
 
@@ -25,7 +39,7 @@ settings = get_settings()
 app = FastAPI(
     title=settings.app_name,
     version=__version__,
-    description="Lessons, questions and answer grading for Quantic Learning.",
+    description="Lessons, answer grading, accounts and progress for Quantic Learning.",
     lifespan=lifespan,
 )
 
@@ -36,8 +50,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(courses.router, prefix="/api/v1")
-app.include_router(lessons.router, prefix="/api/v1")
+for router in (auth.router, me.router, courses.router, lessons.router):
+    app.include_router(router, prefix="/api/v1")
 
 
 @app.get("/health", tags=["meta"])

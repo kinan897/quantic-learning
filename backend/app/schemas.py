@@ -6,9 +6,11 @@ not what we send. Lesson payloads never include answers. The server grades each 
 
 from __future__ import annotations
 
+import uuid
+from datetime import date, datetime
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 from app.content.models import Course, Lesson, MathInputQuestion, MultipleChoiceQuestion, Unit
 
@@ -127,6 +129,8 @@ class LessonDetail(BaseModel):
 class CheckRequest(BaseModel):
     # A choice index for multiple choice, or the typed expression for math input.
     answer: int | str = Field(examples=["2x + 5", 0])
+    # When set, the attempt is recorded against this lesson session (needed to earn XP).
+    session_id: uuid.UUID | None = None
 
 
 class CheckResponse(BaseModel):
@@ -137,3 +141,88 @@ class CheckResponse(BaseModel):
     correct_answer: str | None = None
     correct_choice: int | None = None
     explanation: str | None = None
+
+
+# --- Accounts -----------------------------------------------------------------------------
+
+
+class GuestRequest(BaseModel):
+    timezone: str | None = Field(default=None, max_length=64, examples=["America/Toronto"])
+
+
+class RegisterRequest(BaseModel):
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=128)
+    display_name: str = Field(min_length=1, max_length=40)
+    timezone: str | None = Field(default=None, max_length=64)
+
+    @field_validator("display_name")
+    @classmethod
+    def _clean_name(cls, value: str) -> str:
+        value = " ".join(value.split())
+        if not value or not value.isprintable():
+            raise ValueError("Enter a name using letters, numbers and spaces.")
+        return value
+
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str = Field(min_length=1, max_length=128)
+
+
+class RefreshRequest(BaseModel):
+    refresh_token: str = Field(min_length=1, max_length=200)
+
+
+class UserOut(BaseModel):
+    id: uuid.UUID
+    email: str | None
+    display_name: str | None
+    is_guest: bool
+    timezone: str
+    created_at: datetime
+
+
+class AuthResponse(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: Literal["bearer"] = "bearer"
+    expires_in: int
+    user: UserOut
+
+
+# --- Progress -----------------------------------------------------------------------------
+
+
+class DayXp(BaseModel):
+    date: date
+    xp: int
+
+
+class LessonProgressOut(BaseModel):
+    times_completed: int
+    best_accuracy: float
+    last_completed_at: datetime
+
+
+class ProgressOut(BaseModel):
+    total_xp: int
+    streak: int
+    today: date
+    week: list[DayXp]
+    lessons: dict[str, LessonProgressOut]
+
+
+class SessionOut(BaseModel):
+    session_id: uuid.UUID
+    lesson_id: str
+
+
+class RewardOut(BaseModel):
+    xp_earned: int
+    perfect_bonus: int
+    accuracy: float
+    streak: int
+    streak_extended: bool
+    first_completion: bool
+    total_xp: int
