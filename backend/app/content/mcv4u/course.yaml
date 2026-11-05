@@ -1,0 +1,13 @@
+id: mcv4u
+code: MCV4U
+title: Calculus and Vectors
+subject: math
+level: high_school
+grade: 12
+description: >-
+  Ontario Grade 12 university preparation. Build intuition for rates of change, master
+  derivatives and their applications, and work with vectors, lines and planes in 3D.
+prerequisites:
+  - MHF4U
+units:
+  - unit-01-rates-of-change.yaml

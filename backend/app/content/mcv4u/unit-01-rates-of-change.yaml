@@ -1,0 +1,366 @@
+# MCV4U — Strand A: Rate of Change
+# Covers A1 (rates of change and limits) and A2 (the derivative from first principles).
+
+id: mcv4u-u1
+title: Rates of Change and Limits
+description: >-
+  From the slope of a secant line to the slope of a tangent line. Learn how limits turn an
+  average rate of change into an instantaneous one.
+
+lessons:
+  # ---------------------------------------------------------------------------------------
+  - id: mcv4u-u1-l1
+    title: Average vs. Instantaneous Rate of Change
+    description: Secant slopes, difference quotients, and zooming in on a single moment.
+    xp: 10
+    questions:
+      - id: q1
+        type: multiple_choice
+        prompt: |-
+          A ball is thrown upward. Its height after $t$ seconds is
+          $h(t) = -5t^2 + 20t + 2$ metres.
+
+          What is the **average rate of change** of its height from $t = 1$ to $t = 3$?
+        choices:
+          - '$0$ m/s'
+          - '$10$ m/s'
+          - '$17$ m/s'
+          - '$-10$ m/s'
+        answer: 0
+        hint: Compute $h(1)$ and $h(3)$, then find $\dfrac{\Delta h}{\Delta t}$.
+        explanation: |-
+          $h(1) = -5 + 20 + 2 = 17$ and $h(3) = -45 + 60 + 2 = 17$.
+
+          $$\frac{h(3) - h(1)}{3 - 1} = \frac{17 - 17}{2} = 0 \text{ m/s}$$
+
+          The ball rises and then falls back to the same height, so on average its height
+          didn't change, even though it was moving the whole time.
+
+      - id: q2
+        type: math_input
+        prompt: |-
+          Find the average rate of change of $f(x) = x^3 - 2x$ on the interval $[1, 4]$.
+        answer: '19'
+        variables: []
+        placeholder: Enter a number
+        hint: 'Average rate of change $= \dfrac{f(4) - f(1)}{4 - 1}$.'
+        explanation: |-
+          $f(4) = 64 - 8 = 56$ and $f(1) = 1 - 2 = -1$.
+
+          $$\frac{f(4) - f(1)}{4 - 1} = \frac{56 - (-1)}{3} = \frac{57}{3} = 19$$
+
+      - id: q3
+        type: multiple_choice
+        prompt: |-
+          Which expression gives the slope of the **secant line** through the points
+          $(a, f(a))$ and $(a + h, f(a + h))$?
+        choices:
+          - '$\dfrac{f(a+h) - f(a)}{h}$'
+          - '$\dfrac{f(a+h) - f(a)}{a}$'
+          - '$\dfrac{f(a) - f(h)}{a - h}$'
+          - '$f(a+h) - f(a)$'
+        answer: 0
+        hint: Slope is rise over run. What is the run between $x = a$ and $x = a + h$?
+        explanation: |-
+          Slope $= \dfrac{\text{rise}}{\text{run}}$. The rise is $f(a+h) - f(a)$ and the run
+          is $(a + h) - a = h$. This is the **difference quotient**, and it's the building
+          block of the derivative.
+
+      - id: q4
+        type: math_input
+        prompt: |-
+          Let $f(x) = x^2$. Simplify the difference quotient
+
+          $$\frac{f(3 + h) - f(3)}{h}, \quad h \neq 0$$
+
+          Give your answer in terms of $h$.
+        answer: 6 + h
+        display_answer: '$6 + h$'
+        variables: [h]
+        placeholder: e.g. 2h + 1
+        hint: 'Expand $(3 + h)^2$ first.'
+        explanation: |-
+          $$\frac{(3+h)^2 - 9}{h} = \frac{9 + 6h + h^2 - 9}{h} = \frac{h(6 + h)}{h} = 6 + h$$
+
+      - id: q5
+        type: multiple_choice
+        prompt: |-
+          You just found that for $f(x) = x^2$,
+          $\dfrac{f(3+h) - f(3)}{h} = 6 + h$.
+
+          What is the **instantaneous** rate of change of $f$ at $x = 3$?
+        choices:
+          - '$6$'
+          - '$9$'
+          - '$3$'
+          - '$6 + h$'
+        answer: 0
+        hint: The instantaneous rate is what the secant slope approaches as $h$ shrinks to $0$.
+        explanation: |-
+          As $h \to 0$, the secant line becomes the tangent line, and $6 + h \to 6$.
+          So the instantaneous rate of change at $x = 3$ is $6$.
+
+          $6 + h$ is still an *average* rate over an interval of width $h$.
+
+      - id: q6
+        type: math_input
+        prompt: |-
+          Water drains from a tank so that the volume after $t$ minutes is
+          $V(t) = 200 - 4t^2$ litres.
+
+          Find the instantaneous rate of change of the volume at $t = 5$, in L/min.
+        answer: '-40'
+        variables: []
+        placeholder: Enter a number
+        hint: 'Simplify $\dfrac{V(5+h) - V(5)}{h}$, then let $h \to 0$.'
+        explanation: |-
+          $$\frac{V(5+h) - V(5)}{h} = \frac{\left(200 - 4(25 + 10h + h^2)\right) - 100}{h}
+          = \frac{-40h - 4h^2}{h} = -40 - 4h$$
+
+          As $h \to 0$, this approaches $-40$. The tank is losing $40$ L/min at that moment.
+          The negative sign means the volume is *decreasing*.
+
+      - id: q7
+        type: multiple_choice
+        prompt: 'Which statement about $f(x) = 3x + 7$ is true?'
+        choices:
+          - 'Its rate of change is $3$ at every value of $x$.'
+          - 'Its rate of change is $7$ at every value of $x$.'
+          - 'Its rate of change increases as $x$ increases.'
+          - 'It has no instantaneous rate of change, only an average one.'
+        answer: 0
+        hint: What does every secant line on a straight line look like?
+        explanation: |-
+          The graph is a straight line with slope $3$. Every secant line and every tangent
+          line *is* that line, so the average and instantaneous rates of change are both
+          $3$ everywhere. The $7$ is the $y$-intercept and doesn't affect the slope.
+
+  # ---------------------------------------------------------------------------------------
+  - id: mcv4u-u1-l2
+    title: Evaluating Limits
+    description: Direct substitution, factoring, rationalizing, and limits that don't exist.
+    xp: 10
+    questions:
+      - id: q1
+        type: multiple_choice
+        prompt: 'Evaluate $\displaystyle\lim_{x \to 2} \left(3x^2 - x + 1\right)$.'
+        choices:
+          - '$11$'
+          - '$13$'
+          - '$9$'
+          - 'The limit does not exist'
+        answer: 0
+        hint: Polynomials are continuous everywhere, so you can substitute directly.
+        explanation: |-
+          Polynomials have no holes or jumps, so substitute $x = 2$:
+
+          $$3(2)^2 - 2 + 1 = 12 - 2 + 1 = 11$$
+
+      - id: q2
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\lim_{x \to 3} \frac{x^2 - 9}{x - 3}$.'
+        answer: '6'
+        variables: []
+        placeholder: Enter a number
+        hint: Substituting gives $\frac{0}{0}$. Try factoring the numerator.
+        explanation: |-
+          Direct substitution gives $\frac{0}{0}$, an *indeterminate form*. That means
+          there's more work to do, not that the limit doesn't exist. Factor:
+
+          $$\lim_{x \to 3} \frac{(x - 3)(x + 3)}{x - 3} = \lim_{x \to 3} (x + 3) = 6$$
+
+      - id: q3
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\lim_{x \to 4} \frac{\sqrt{x} - 2}{x - 4}$.'
+        answer: 1/4
+        display_answer: '$\dfrac{1}{4}$'
+        variables: []
+        placeholder: Enter a number or fraction
+        hint: Multiply the numerator and denominator by the conjugate $\sqrt{x} + 2$.
+        explanation: |-
+          Rationalize by multiplying by the conjugate $\sqrt{x} + 2$:
+
+          $$\frac{\sqrt{x} - 2}{x - 4} \cdot \frac{\sqrt{x} + 2}{\sqrt{x} + 2}
+          = \frac{x - 4}{(x - 4)(\sqrt{x} + 2)} = \frac{1}{\sqrt{x} + 2}$$
+
+          Now substitute: $\dfrac{1}{\sqrt{4} + 2} = \dfrac{1}{4}$.
+
+      - id: q4
+        type: multiple_choice
+        prompt: |-
+          Let
+          $f(x) = \begin{cases} x + 1, & x < 2 \\ x^2, & x \ge 2 \end{cases}$
+
+          What is $\displaystyle\lim_{x \to 2} f(x)$?
+        choices:
+          - '$3$'
+          - '$4$'
+          - '$3.5$'
+          - 'The limit does not exist'
+        answer: 3
+        hint: Find the left-hand limit and the right-hand limit separately.
+        explanation: |-
+          - From the left: $\displaystyle\lim_{x \to 2^-} (x + 1) = 3$
+          - From the right: $\displaystyle\lim_{x \to 2^+} x^2 = 4$
+
+          The one-sided limits aren't equal ($3 \ne 4$), so the graph has a jump and
+          $\displaystyle\lim_{x \to 2} f(x)$ **does not exist**. It isn't their average.
+
+      - id: q5
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\lim_{h \to 0} \frac{(2 + h)^3 - 8}{h}$.'
+        answer: '12'
+        variables: []
+        placeholder: Enter a number
+        hint: 'Expand $(2 + h)^3 = 8 + 12h + 6h^2 + h^3$.'
+        explanation: |-
+          $$\frac{(8 + 12h + 6h^2 + h^3) - 8}{h} = \frac{h(12 + 6h + h^2)}{h} = 12 + 6h + h^2$$
+
+          As $h \to 0$, this approaches $12$.
+
+          Notice this is the slope of the tangent to $y = x^3$ at $x = 2$. You'll see this
+          pattern again in the next lesson.
+
+      - id: q6
+        type: multiple_choice
+        prompt: 'What happens to $\displaystyle\lim_{x \to 0} \frac{1}{x^2}$?'
+        choices:
+          - 'It equals $0$'
+          - 'It equals $1$'
+          - 'It does not exist, because $\frac{1}{x^2}$ grows without bound'
+          - 'It equals $-\infty$'
+        answer: 2
+        hint: 'Try $x = 0.1$, $x = 0.01$ and $x = -0.01$. What happens to $\frac{1}{x^2}$?'
+        explanation: |-
+          As $x$ gets close to $0$ from either side, $x^2$ is a tiny *positive* number, so
+          $\frac{1}{x^2}$ becomes huge: at $x = 0.01$ it's $10\,000$.
+
+          It never settles on a finite value, so the limit **does not exist**. We describe
+          this by writing $\displaystyle\lim_{x \to 0} \frac{1}{x^2} = \infty$. The graph has
+          a vertical asymptote at $x = 0$.
+
+      - id: q7
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\lim_{x \to -1} \frac{x^2 + 3x + 2}{x^2 - 1}$.'
+        answer: -1/2
+        display_answer: '$-\dfrac{1}{2}$'
+        variables: []
+        placeholder: Enter a number or fraction
+        hint: Factor both the numerator and the denominator.
+        explanation: |-
+          $$\frac{(x + 1)(x + 2)}{(x - 1)(x + 1)} = \frac{x + 2}{x - 1}, \quad x \ne -1$$
+
+          Substitute $x = -1$: $\dfrac{-1 + 2}{-1 - 1} = \dfrac{1}{-2} = -\dfrac{1}{2}$.
+
+  # ---------------------------------------------------------------------------------------
+  - id: mcv4u-u1-l3
+    title: The Derivative from First Principles
+    description: Use the limit definition to find derivatives and tangent lines.
+    xp: 15
+    questions:
+      - id: q1
+        type: multiple_choice
+        prompt: Which of these is the **first principles** definition of $f'(x)$?
+        choices:
+          - '$\displaystyle\lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$'
+          - '$\displaystyle\lim_{h \to 0} \frac{f(x+h) - f(x)}{x}$'
+          - '$\dfrac{f(x+h) - f(x)}{h}$'
+          - '$\displaystyle\lim_{h \to 0} \big(f(x+h) - f(x)\big)$'
+        answer: 0
+        hint: Start with a secant slope, then shrink the interval.
+        explanation: |-
+          The derivative is the limit of the secant slope (the difference quotient) as the
+          interval width $h$ shrinks to $0$:
+
+          $$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+
+          Without the limit, it's only an *average* rate of change.
+
+      - id: q2
+        type: math_input
+        prompt: 'Use first principles to find $f''(x)$ for $f(x) = x^2 + 5x$.'
+        answer: 2x + 5
+        display_answer: '$2x + 5$'
+        variables: [x]
+        placeholder: e.g. 3x - 1
+        hint: 'Expand $f(x + h) = (x + h)^2 + 5(x + h)$, subtract $f(x)$, and divide by $h$.'
+        explanation: |-
+          $$\begin{aligned}
+          f'(x) &= \lim_{h \to 0} \frac{(x+h)^2 + 5(x+h) - (x^2 + 5x)}{h} \\
+                &= \lim_{h \to 0} \frac{2xh + h^2 + 5h}{h} \\
+                &= \lim_{h \to 0} (2x + h + 5) = 2x + 5
+          \end{aligned}$$
+
+      - id: q3
+        type: math_input
+        prompt: 'Use first principles to find $f''(x)$ for $f(x) = \dfrac{1}{x}$.'
+        answer: -1/x^2
+        display_answer: '$-\dfrac{1}{x^2}$'
+        variables: [x]
+        placeholder: e.g. 1/x^3
+        hint: Combine $\frac{1}{x+h} - \frac{1}{x}$ into a single fraction first.
+        explanation: |-
+          $$\frac{1}{x+h} - \frac{1}{x} = \frac{x - (x + h)}{x(x+h)} = \frac{-h}{x(x+h)}$$
+
+          Divide by $h$ and take the limit:
+
+          $$f'(x) = \lim_{h \to 0} \frac{-1}{x(x+h)} = -\frac{1}{x^2}$$
+
+      - id: q4
+        type: math_input
+        prompt: 'Use first principles to find $f''(x)$ for $f(x) = \sqrt{x}$.'
+        answer: 1/(2sqrt(x))
+        display_answer: '$\dfrac{1}{2\sqrt{x}}$'
+        variables: [x]
+        placeholder: e.g. 1/sqrt(x)
+        hint: Rationalize the numerator $\sqrt{x+h} - \sqrt{x}$ using its conjugate.
+        explanation: |-
+          $$\begin{aligned}
+          f'(x) &= \lim_{h \to 0} \frac{\sqrt{x+h} - \sqrt{x}}{h} \cdot
+                    \frac{\sqrt{x+h} + \sqrt{x}}{\sqrt{x+h} + \sqrt{x}} \\
+                &= \lim_{h \to 0} \frac{h}{h\left(\sqrt{x+h} + \sqrt{x}\right)} \\
+                &= \frac{1}{2\sqrt{x}}
+          \end{aligned}$$
+
+      - id: q5
+        type: math_input
+        prompt: 'Find the slope of the tangent to $y = 2x^2 - 3x$ at $x = 2$.'
+        answer: '5'
+        variables: []
+        placeholder: Enter a number
+        hint: 'First find $\dfrac{dy}{dx}$ from first principles, then substitute $x = 2$.'
+        explanation: |-
+          From first principles, $\dfrac{dy}{dx} = 4x - 3$.
+
+          At $x = 2$: $4(2) - 3 = 5$.
+
+      - id: q6
+        type: math_input
+        prompt: |-
+          Find the equation of the tangent line to $y = 2x^2 - 3x$ at $x = 2$.
+
+          Write it in the form $y = mx + b$.
+        answer: 5x - 8
+        display_answer: '$y = 5x - 8$'
+        variables: [x]
+        placeholder: y = mx + b
+        hint: You know the slope is $5$. Find the point of tangency, then use $y - y_1 = m(x - x_1)$.
+        explanation: |-
+          The point of tangency is $(2, \; 2(2)^2 - 3(2)) = (2, 2)$, and the slope is $m = 5$.
+
+          $$y - 2 = 5(x - 2) \implies y = 5x - 8$$
+
+      - id: q7
+        type: multiple_choice
+        prompt: 'If $f''(a) = 0$, what does the tangent line to $y = f(x)$ at $x = a$ look like?'
+        choices:
+          - 'It is horizontal'
+          - 'It is vertical'
+          - 'It passes through the origin'
+          - 'There is no tangent line at $x = a$'
+        answer: 0
+        hint: The derivative at a point is the slope of the tangent line there.
+        explanation: |-
+          $f'(a)$ is the slope of the tangent at $x = a$. A slope of $0$ means a
+          **horizontal** tangent line. This often happens at a local maximum or minimum,
+          which you'll use for optimization later in the course.
