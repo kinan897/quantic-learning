@@ -4,6 +4,8 @@
 
 # Quantic Learning
 
+[![CI](https://github.com/kinan897/quantic-learning/actions/workflows/ci.yml/badge.svg)](https://github.com/kinan897/quantic-learning/actions/workflows/ci.yml)
+
 Bite-sized, game-style lessons for Ontario high school and first-year university STEM courses.
 Learners work through a path of short lessons, earn XP, keep streaks, and get instant,
 step-by-step feedback on every answer, including typed math answers like `3x^2 - 2sin(x)`.
@@ -116,6 +118,10 @@ Run the tests and checks:
 pytest
 ruff check .
 ```
+
+GitHub Actions runs the same checks on every push and pull request: backend lint, formatting
+and tests, plus the app's typecheck, lint and a production web build
+([.github/workflows/ci.yml](.github/workflows/ci.yml)).
 
 After changing `app/models.py`, create a migration with
 `alembic revision --autogenerate -m "describe the change"`. A test fails if you forget.
