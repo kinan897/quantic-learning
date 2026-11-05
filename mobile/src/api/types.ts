@@ -70,3 +70,48 @@ export type CheckResponse = {
   correct_choice: number | null;
   explanation: string | null;
 };
+
+// --- Accounts & progress ------------------------------------------------------------------
+
+export type User = {
+  id: string;
+  email: string | null;
+  display_name: string | null;
+  is_guest: boolean;
+  timezone: string;
+  created_at: string;
+};
+
+export type AuthResponse = {
+  access_token: string;
+  refresh_token: string;
+  token_type: 'bearer';
+  expires_in: number;
+  user: User;
+};
+
+export type LessonProgress = {
+  times_completed: number;
+  best_accuracy: number; // 0..1, share of questions right on the first try
+  last_completed_at: string;
+};
+
+export type Progress = {
+  total_xp: number;
+  streak: number;
+  today: string; // YYYY-MM-DD in the student's timezone
+  week: { date: string; xp: number }[];
+  lessons: Record<string, LessonProgress>;
+};
+
+export type LessonSessionStart = { session_id: string; lesson_id: string };
+
+export type Reward = {
+  xp_earned: number;
+  perfect_bonus: number;
+  accuracy: number;
+  streak: number;
+  streak_extended: boolean;
+  first_completion: boolean;
+  total_xp: number;
+};

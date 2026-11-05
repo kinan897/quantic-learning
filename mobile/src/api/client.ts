@@ -1,6 +1,10 @@
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 
+import { useAuth } from '@/store/auth';
+
+import type { AuthResponse } from './types';
+
 const API_PORT = 8000;
 
 /**
@@ -38,14 +42,34 @@ export class ApiError extends Error {
   }
 }
 
-export async function apiFetch<T>(path: string, init: RequestInit = {}): Promise<T> {
+/** Turn FastAPI's error body into one readable sentence. */
+function errorMessage(body: unknown, status: number): string {
+  const detail = (body as { detail?: unknown } | null)?.detail;
+  if (typeof detail === 'string') return detail;
+  if (Array.isArray(detail) && detail.length > 0) {
+    // Validation errors: [{ loc: [...], msg: "..." }]
+    const first = detail[0] as { loc?: string[]; msg?: string };
+    const field = first.loc?.at(-1);
+    const msg = (first.msg ?? 'Invalid value').replace(/^Value error, /, '');
+    if (field === 'email') return 'Enter a valid email address.';
+    if (field === 'password') return 'Your password needs at least 8 characters.';
+    return msg;
+  }
+  return `Something went wrong (${status}). Please try again.`;
+}
+
+async function request<T>(path: string, init: RequestInit, token: string | null): Promise<T> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 10_000);
   let response: Response;
   try {
     response = await fetch(`${API_URL}/api/v1${path}`, {
       ...init,
-      headers: { 'Content-Type': 'application/json', ...init.headers },
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...init.headers,
+      },
       signal: controller.signal,
     });
   } catch {
@@ -54,12 +78,57 @@ export async function apiFetch<T>(path: string, init: RequestInit = {}): Promise
     clearTimeout(timeout);
   }
 
-  if (!response.ok) {
-    const detail = await response
-      .json()
-      .then((body: { detail?: unknown }) => (typeof body.detail === 'string' ? body.detail : null))
-      .catch(() => null);
-    throw new ApiError(detail ?? `Request failed (${response.status})`, response.status);
+  if (response.status === 204) return undefined as T;
+  const body = await response.json().catch(() => null);
+  if (!response.ok) throw new ApiError(errorMessage(body, response.status), response.status);
+  return body as T;
+}
+
+// Only one refresh at a time. Refresh tokens are single-use, so two parallel refreshes
+// would look like token theft to the server and sign the student out.
+let refreshInFlight: Promise<boolean> | null = null;
+
+function refreshSession(): Promise<boolean> {
+  refreshInFlight ??= (async () => {
+    const { refreshToken, setSession, clearSession } = useAuth.getState();
+    if (!refreshToken) return false;
+    try {
+      setSession(
+        await request<AuthResponse>(
+          '/auth/refresh',
+          { method: 'POST', body: JSON.stringify({ refresh_token: refreshToken }) },
+          null,
+        ),
+      );
+      return true;
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 401) clearSession();
+      return false;
+    } finally {
+      refreshInFlight = null;
+    }
+  })();
+  return refreshInFlight;
+}
+
+type FetchOptions = { auth?: boolean };
+
+/**
+ * Call the API. Signed-in requests carry the access token. When it has expired (401), the
+ * session is refreshed once and the request retried.
+ */
+export async function apiFetch<T>(
+  path: string,
+  init: RequestInit = {},
+  { auth = true }: FetchOptions = {},
+): Promise<T> {
+  const send = () => request<T>(path, init, auth ? useAuth.getState().accessToken : null);
+  try {
+    return await send();
+  } catch (error) {
+    if (auth && error instanceof ApiError && error.status === 401 && (await refreshSession())) {
+      return send();
+    }
+    throw error;
   }
-  return (await response.json()) as T;
 }
