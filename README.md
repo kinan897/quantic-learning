@@ -4,7 +4,7 @@ Bite-sized, game-style lessons for Ontario high school and first-year university
 Learners work through a path of short lessons, earn XP, keep streaks, and get instant,
 step-by-step feedback on every answer, including typed math answers like `3x^2 - 2sin(x)`.
 
-> Status: **Step 1 — backend foundation.** See the roadmap below.
+> Status: **Step 2: mobile app.** See the roadmap below.
 
 ## Architecture
 
@@ -17,12 +17,18 @@ quantic-learning/
 │   │   ├── routers/  HTTP endpoints
 │   │   └── main.py   App entry point
 │   └── tests/
-└── mobile/           TypeScript · React Native · Expo  (iOS, Android, Web) — Step 2
+└── mobile/           TypeScript · React Native · Expo  (iOS, Android, Web)
+    └── src/
+        ├── app/      Screens: course path, lesson player, profile
+        ├── api/      Typed API client + React Query hooks
+        └── store/    XP, streaks and progress (Zustand)
 ```
 
 | Layer | Tech | Why |
 |---|---|---|
 | Client | React Native + Expo (TypeScript) | One codebase ships to iOS, Android and the web |
+| Client state | TanStack Query + Zustand | Server data cached and retried; progress saved on device |
+| Math display | KaTeX via Expo DOM components | Real LaTeX on every platform |
 | API | FastAPI (Python) | Fast, typed, auto-generated OpenAPI docs |
 | Math grading | Custom parser → SymPy | Accepts equivalent answers (`2(x+1)` = `2x+2`) without `eval` |
 | Content | YAML files, Pydantic-validated | Questions are version-controlled and checked in CI |
@@ -44,7 +50,7 @@ quantic-learning/
 ## Roadmap
 
 1. **Backend foundation** — content model, safe math grader, lesson API, first MCV4U unit ✅
-2. **Mobile app** — Expo app: course path, lesson player, math keyboard, feedback screens
+2. **Mobile app** — Expo app: course path, lesson player, math keypad, feedback screens ✅
 3. **Accounts & progress** — sign up/in, PostgreSQL, XP, streaks, lesson unlocking
 4. **Full MCV4U course** — all units: derivatives, applications, vectors, lines & planes
 5. **AI tutor** — "Why was I wrong?" explanations and adaptive practice (Claude API)
@@ -63,6 +69,11 @@ uvicorn app.main:app --reload
 ```
 
 Then open http://127.0.0.1:8000/docs for interactive API docs.
+Add `--host 0.0.0.0` to let phones on your Wi-Fi reach it.
+
+## Running the app
+
+See [mobile/README.md](mobile/README.md). In short: `cd mobile && npm install && npx expo start`.
 
 Run the tests:
 
