@@ -131,3 +131,21 @@ def test_graph_choice_question_can_be_answered(client):
     body = check(client, bearer(guest), question.id, question.answer, lesson=lesson_id).json()
     assert body["result"] == "correct"
     assert body["correct_answer"].startswith("Option ")
+
+
+def test_course_list_has_catalog_fields_and_order(client):
+    courses = client.get("/api/v1/courses").json()
+    assert [c["id"] for c in courses][:4] == [
+        "math-foundations",
+        "science-foundations",
+        "english-foundations",
+        "mcr3u",
+    ]
+    mcr3u = next(c for c in courses if c["id"] == "mcr3u")
+    assert mcr3u["category"] == "math" and mcr3u["status"] == "available"
+    assert mcr3u["grade_label"].startswith("Grade 11")
+
+
+def test_lessons_report_their_course_code(client, headers):
+    lesson = client.get(f"/api/v1/lessons/{FIRST}", headers=headers).json()
+    assert lesson["course_code"] == "MCV4U"

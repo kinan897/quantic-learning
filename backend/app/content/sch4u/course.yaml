@@ -1,0 +1,15 @@
+id: sch4u
+code: 'SCH4U'
+title: Chemistry
+subject: science
+level: high_school
+category: science
+grade: 12
+grade_label: 'Grade 12 · University prep'
+order: 10
+status: available
+description: 'Organic chemistry, structure and properties, energy changes, equilibrium and electrochemistry.'
+prerequisites:
+  - SCH3U
+units:
+  - unit-01-organic-chemistry.yaml

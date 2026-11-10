@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
@@ -5,7 +6,8 @@ import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-na
 import { Radius } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
-export function ProgressBar({ progress, height = 14 }: { progress: number; height?: number }) {
+/** The website's progress bar: an electric-blue → sky gradient on a faint track. */
+export function ProgressBar({ progress, height = 10 }: { progress: number; height?: number }) {
   const theme = useTheme();
   const value = useSharedValue(progress);
 
@@ -20,12 +22,19 @@ export function ProgressBar({ progress, height = 14 }: { progress: number; heigh
       accessibilityRole="progressbar"
       accessibilityValue={{ min: 0, max: 100, now: Math.round(progress * 100) }}
       style={[styles.track, { height, backgroundColor: theme.surfaceAlt }]}>
-      <Animated.View style={[styles.fill, { backgroundColor: theme.accent }, fillStyle]} />
+      <Animated.View style={[styles.fill, fillStyle]}>
+        <LinearGradient
+          colors={[theme.primary, theme.accent]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          style={StyleSheet.absoluteFill}
+        />
+      </Animated.View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   track: { flex: 1, borderRadius: Radius.pill, overflow: 'hidden' },
-  fill: { height: '100%', borderRadius: Radius.pill },
+  fill: { height: '100%', borderRadius: Radius.pill, overflow: 'hidden' },
 });

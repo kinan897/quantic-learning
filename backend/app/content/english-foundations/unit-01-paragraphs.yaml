@@ -1,0 +1,221 @@
+# English Foundations (Grade 8 English, ENL1W, ENG2D) — Writing strong paragraphs
+
+id: english-foundations-u1
+title: Writing Strong Paragraphs
+description: >-
+  The building block of every essay: a clear point, solid evidence, real explanation and a
+  link back to the argument.
+
+lessons:
+  - id: english-foundations-u1-t1-learn
+    kind: learn
+    topic: The PEEL Paragraph
+    title: 'Learn: The PEEL Paragraph'
+    description: Point, Evidence, Explain, Link.
+    xp: 10
+    items:
+      - type: teach
+        id: peel-structure
+        title: One paragraph, one idea
+        blocks:
+          - type: text
+            md: |-
+              A strong body paragraph proves **one** main idea. The **PEEL** structure keeps it
+              focused:
+
+              | | Part | What it does |
+              |---|---|---|
+              | **P** | Point | States the paragraph's main idea (the topic sentence) |
+              | **E** | Evidence | Gives a quote, fact or example that supports it |
+              | **E** | Explain | Shows *how* the evidence proves the point |
+              | **L** | Link | Connects back to the thesis or leads into the next idea |
+
+      - id: what-p-means
+        type: multiple_choice
+        prompt: In a PEEL paragraph, what does the **P** stand for?
+        choices: [Proof, Point, Paraphrase, Purpose]
+        answer: 1
+        explanation: The Point is the topic sentence, the claim the rest of the paragraph supports.
+
+      - type: teach
+        id: topic-sentences
+        title: Strong topic sentences
+        blocks:
+          - type: text
+            md: |-
+              A topic sentence makes a **specific claim** that someone could argue with. It's
+              not just a fact or a topic.
+
+              - Weak: *"This paragraph is about school uniforms."* (announces a topic)
+              - Weak: *"Many schools have uniforms."* (a fact, nothing to prove)
+              - Strong: *"School uniforms reduce pressure on students to compete over clothing."*
+          - type: callout
+            tone: key
+            md: Ask yourself, "Could someone disagree?" If not, the claim isn't specific enough yet.
+
+      - id: strongest-topic-sentence
+        type: multiple_choice
+        prompt: Which is the strongest topic sentence?
+        choices:
+          - In this paragraph I will talk about homework.
+          - Homework is work students do at home.
+          - Short daily homework helps students remember what they learned in class.
+          - Some students have homework.
+        answer: 2
+        explanation: It makes a specific, arguable claim that the rest of the paragraph can prove.
+
+      - type: teach
+        id: explain-not-summarize
+        title: Explain, don't just summarize
+        blocks:
+          - type: text
+            md: |-
+              Evidence alone doesn't prove anything. The **Explain** step shows the reader *how*
+              it supports your point.
+
+              - Evidence: *"After the school introduced uniforms, reports of clothing-related
+                bullying fell by half."*
+              - Weak explanation: *"This shows that bullying went down."* (repeats the evidence)
+              - Strong explanation: *"Because everyone looked the same, clothing was no longer
+                a way to single students out, which removed one common reason for bullying."*
+          - type: callout
+            tone: tip
+            md: 'Useful starters: "This shows that...", "Because of this...", "This matters because..."'
+
+      - id: which-explains
+        type: multiple_choice
+        prompt: Which sentence **explains** evidence instead of just repeating it?
+        choices:
+          - The study found that students slept less.
+          - The study had many students in it.
+          - Less sleep means students have less energy to focus, which explains the lower test scores.
+          - Students slept less, according to the study.
+        answer: 2
+        explanation: It connects the evidence (less sleep) to the point (lower scores) and explains *why*.
+
+  - id: english-foundations-u1-t1-practice
+    kind: practice
+    topic: The PEEL Paragraph
+    title: 'Practice: The PEEL Paragraph'
+    description: Spot each part of a paragraph.
+    xp: 10
+    items:
+      - id: identify-evidence
+        type: multiple_choice
+        prompt: |-
+          *(1) Recess helps students learn. (2) A study of Grade 5 classes found that students
+          focused longer after 20 minutes of outdoor play. (3) Moving around refreshes the brain,
+          so students return ready to concentrate. (4) For this reason, schools should protect
+          recess time.*
+
+          Which sentence is the **Evidence**?
+        choices: [Sentence 1, Sentence 2, Sentence 3, Sentence 4]
+        answer: 1
+        explanation: Sentence 2 gives a specific fact (the study) that supports the point.
+
+      - id: identify-explain
+        type: multiple_choice
+        prompt: In the same recess paragraph, which sentence **Explains** the evidence?
+        choices: [Sentence 1, Sentence 2, Sentence 3, Sentence 4]
+        answer: 2
+        explanation: Sentence 3 explains *why* play improves focus. It links the evidence to the point.
+
+      - id: identify-link
+        type: multiple_choice
+        prompt: In the same paragraph, which sentence is the **Link**?
+        choices: [Sentence 1, Sentence 2, Sentence 3, Sentence 4]
+        answer: 3
+        explanation: Sentence 4 ties the paragraph back to the bigger argument about protecting recess.
+
+      - id: does-not-belong
+        type: multiple_choice
+        prompt: |-
+          *(1) Reading every day builds vocabulary. (2) Readers meet new words in context, which
+          helps them remember meanings. (3) My favourite colour is blue. (4) Over time, stronger
+          vocabulary makes writing clearer.*
+
+          Which sentence does **not** belong?
+        choices: [Sentence 1, Sentence 2, Sentence 3, Sentence 4]
+        answer: 2
+        explanation: Sentence 3 has nothing to do with the point about reading and vocabulary.
+
+      - id: transition-contrast
+        type: multiple_choice
+        prompt: Which transition word shows **contrast**?
+        choices: [Furthermore, However, For example, As a result]
+        answer: 1
+        explanation: '"However" signals that the next idea goes against or limits the previous one.'
+
+      - id: fact-or-claim
+        type: multiple_choice
+        prompt: Which sentence is an arguable claim, not just a fact?
+        choices:
+          - Ottawa is the capital of Canada.
+          - Water boils at 100 °C at sea level.
+          - Cities should add more bike lanes to reduce traffic.
+          - The school day starts at 8:30.
+        answer: 2
+        explanation: People could reasonably disagree about bike lanes. The others are simply facts.
+
+  - id: english-foundations-u1-t1-destroyer
+    kind: destroyer
+    topic: The PEEL Paragraph
+    title: 'Destroyer: The PEEL Paragraph'
+    description: Fix weak paragraphs and spot faulty reasoning.
+    xp: 30
+    items:
+      - id: missing-part
+        type: multiple_choice
+        prompt: |-
+          *Video games can improve problem-solving. In a 2020 survey, players who played strategy
+          games scored higher on puzzle tests. Video games can improve problem-solving.*
+
+          What is this paragraph missing?
+        choices:
+          - a Point
+          - Evidence
+          - an Explanation of how the evidence proves the point
+          - a transition word
+        answer: 2
+        explanation: >-
+          It has a point and evidence, then just repeats the point. It never explains *why*
+          strategy games would build problem-solving skills.
+
+      - id: weak-reasoning
+        type: multiple_choice
+        prompt: |-
+          *"My cousin ate breakfast every day and got straight A's, so eating breakfast causes good
+          grades."*
+
+          What is the main problem with this reasoning?
+        choices:
+          - It uses a transition word incorrectly
+          - It draws a big conclusion from a single example
+          - It has no topic sentence
+          - Breakfast is not a real topic
+        answer: 1
+        explanation: One person's experience can't prove a cause. Other reasons could explain the grades.
+
+      - id: best-link
+        type: multiple_choice
+        prompt: >-
+          An essay argues that schools should start later. A paragraph shows that teenagers'
+          sleep cycles shift later in the evening. Which is the best **Link** sentence?
+        choices:
+          - Teenagers like sleeping.
+          - Some schools start at 8:00.
+          - Because teenagers' bodies are wired to fall asleep later, a later start would let them get the sleep they need to learn.
+          - In conclusion, sleep is important for everyone.
+        answer: 2
+        explanation: It connects the paragraph's evidence directly back to the essay's argument about start times.
+
+      - id: revise-vague
+        type: multiple_choice
+        prompt: 'Which revision of *"Technology is good and bad"* makes the clearest, most arguable point?'
+        choices:
+          - Technology has many sides.
+          - There are good things and bad things about technology.
+          - Phones in class distract students more than they help them learn.
+          - Technology is very interesting.
+        answer: 2
+        explanation: It picks one specific, arguable claim instead of a vague statement that can't be proven or disproven.

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" role="img" aria-labelledby="title">
+  <title id="title">Free-body diagram of a box on a floor: applied force 50 newtons to the right, friction 20 newtons to the left, gravity downward and the normal force upward</title>
+  <defs>
+    <marker id="head-e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2447F0"/></marker>
+    <marker id="head-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#FF5A6E"/></marker>
+    <marker id="head-s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4FADE8"/></marker>
+  </defs>
+  <style>
+    .lbl { font-family: Manrope, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 24px; }
+  </style>
+  <!-- floor -->
+  <line x1="60" y1="250" x2="580" y2="250" stroke="#9BA8C9" stroke-width="3"/>
+  <g stroke="#9BA8C9" stroke-width="2" opacity="0.6">
+    <line x1="80" y1="250" x2="64" y2="266"/><line x1="140" y1="250" x2="124" y2="266"/>
+    <line x1="200" y1="250" x2="184" y2="266"/><line x1="260" y1="250" x2="244" y2="266"/>
+    <line x1="320" y1="250" x2="304" y2="266"/><line x1="380" y1="250" x2="364" y2="266"/>
+    <line x1="440" y1="250" x2="424" y2="266"/><line x1="500" y1="250" x2="484" y2="266"/>
+    <line x1="560" y1="250" x2="544" y2="266"/>
+  </g>
+  <!-- box -->
+  <rect x="260" y="150" width="120" height="100" rx="8" fill="#0B1A4A" stroke="#4FADE8" stroke-width="3"/>
+  <text x="320" y="209" text-anchor="middle" class="lbl" fill="#FFFFFF">box</text>
+  <!-- applied force (right) -->
+  <line x1="380" y1="200" x2="520" y2="200" stroke="#2447F0" stroke-width="5" marker-end="url(#head-e)"/>
+  <text x="392" y="184" text-anchor="start" class="lbl" fill="#2447F0">F_applied = 50 N</text>
+  <!-- friction (left) -->
+  <line x1="260" y1="235" x2="160" y2="235" stroke="#FF5A6E" stroke-width="5" marker-end="url(#head-r)"/>
+  <text x="250" y="222" text-anchor="end" class="lbl" fill="#FF5A6E">F_friction = 20 N</text>
+  <!-- normal (up) -->
+  <line x1="320" y1="150" x2="320" y2="50" stroke="#4FADE8" stroke-width="5" marker-end="url(#head-s)"/>
+  <text x="332" y="62" class="lbl" fill="#4FADE8">F_normal</text>
+  <!-- gravity (down) -->
+  <line x1="300" y1="250" x2="300" y2="330" stroke="#4FADE8" stroke-width="5" marker-end="url(#head-s)"/>
+  <text x="290" y="326" text-anchor="end" class="lbl" fill="#4FADE8">F_gravity</text>
+</svg>

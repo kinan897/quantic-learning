@@ -7,19 +7,16 @@
  */
 
 import { useId, useState } from 'react';
-import { Platform, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
+import { StyleSheet, View, type LayoutChangeEvent } from 'react-native';
 import Svg, { Circle, ClipPath, Defs, G, Line, Path, Polygon, Rect, Text as SvgText } from 'react-native-svg';
 
 import type { GraphColor, GraphData, XY } from '@/api/types';
 import { RichText } from '@/components/math/rich-text';
-import { Radius, Spacing } from '@/constants/theme';
+import { Fonts, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
-// SVG text defaults to a serif font on the web; match the app's sans-serif instead.
-const FONT =
-  Platform.OS === 'web'
-    ? "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
-    : undefined;
+// Graph labels use the app's Manrope font (loaded in app/_layout.tsx) on every platform.
+const FONT = Fonts.bodySemi;
 const MAX_HEIGHT = 360;
 
 type Props = {
@@ -39,8 +36,8 @@ export function Graph({ graph, compact = false }: Props) {
 
   const colorOf = (c: GraphColor) =>
     ({
-      primary: theme.primary,
-      accent: theme.accent,
+      primary: theme.graphMain,
+      accent: theme.graphAccent,
       success: theme.success,
       error: theme.error,
       warning: theme.xp,

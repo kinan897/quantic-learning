@@ -1,0 +1,12 @@
+id: science-foundations
+code: 'GR 8–10'
+title: Science Foundations
+subject: science
+level: high_school
+category: junior
+grade_label: 'Grades 8–10'
+order: 2
+status: available
+description: 'Grade 8 science, SNC1W and SNC2D: chemistry, physics and biology basics.'
+units:
+  - unit-01-atoms-and-elements.yaml

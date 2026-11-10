@@ -1,0 +1,198 @@
+# First-year university sciences — Chemistry foundations
+
+id: uni-sciences-u1
+title: Chemistry Foundations
+description: >-
+  The mole, molar mass and stoichiometry: the calculations behind every first-year chemistry
+  problem set.
+
+lessons:
+  - id: uni-sciences-u1-t1-learn
+    kind: learn
+    topic: The Mole and Stoichiometry
+    title: 'Learn: The Mole and Stoichiometry'
+    description: Counting particles by mass, and using balanced equations.
+    xp: 10
+    items:
+      - type: teach
+        id: the-mole
+        title: The mole
+        blocks:
+          - type: text
+            md: |-
+              Atoms are far too small to count one by one, so chemists count them in **moles**:
+
+              $$1 \text{ mol} = 6.022 \times 10^{23} \text{ particles}$$
+
+              The **molar mass** $M$ (g/mol) is the mass of one mole. To convert between mass
+              $m$ and amount $n$:
+
+              $$n = \frac{m}{M}$$
+          - type: callout
+            tone: tip
+            md: 'Water has $M = 18.02$ g/mol, so $18.02$ g of water is exactly $1$ mol.'
+
+      - id: moles-of-water
+        type: math_input
+        prompt: 'How many moles are in $36.04$ g of water ($M = 18.02$ g/mol)?'
+        answer: '2'
+        tolerance: 0.01
+        placeholder: Enter a number
+        explanation: '$n = \dfrac{36.04}{18.02} = 2.00$ mol'
+
+      - type: teach
+        id: molar-mass
+        title: Calculating molar mass
+        blocks:
+          - type: text
+            md: |-
+              Add up the atomic masses (from the periodic table) of every atom in the formula:
+
+              $$M(\text{CO}_2) = 12.01 + 2(16.00) = 44.01 \text{ g/mol}$$
+          - type: callout
+            tone: key
+            md: Subscripts multiply the atom's mass. $\text{H}_2\text{O}$ counts hydrogen twice.
+
+      - id: nacl-molar-mass
+        type: math_input
+        prompt: 'Find the molar mass of NaCl (Na: $22.99$, Cl: $35.45$), in g/mol.'
+        answer: '58.44'
+        tolerance: 0.01
+        placeholder: Enter a number
+        explanation: '$22.99 + 35.45 = 58.44$ g/mol'
+
+      - type: teach
+        id: stoichiometry
+        title: Mole ratios from balanced equations
+        blocks:
+          - type: text
+            md: |-
+              A balanced equation gives the **mole ratio** between substances:
+
+              $$2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$$
+
+              Read it as: $2$ mol of $\text{H}_2$ reacts with $1$ mol of $\text{O}_2$ to make
+              $2$ mol of $\text{H}_2\text{O}$.
+          - type: callout
+            tone: key
+            md: 'Map for most problems: grams → moles (÷ $M$) → mole ratio → moles → grams (× $M$).'
+
+      - id: oxygen-needed
+        type: math_input
+        prompt: 'Using $2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$, how many moles of $\text{O}_2$ react with $6$ mol of $\text{H}_2$?'
+        answer: '3'
+        placeholder: Enter a number
+        explanation: 'The ratio is $2 : 1$, so $6 \div 2 = 3$ mol of $\text{O}_2$.'
+
+  - id: uni-sciences-u1-t1-practice
+    kind: practice
+    topic: The Mole and Stoichiometry
+    title: 'Practice: The Mole and Stoichiometry'
+    description: Conversions and mole ratios.
+    xp: 10
+    items:
+      - id: mass-of-co2
+        type: math_input
+        prompt: 'What is the mass of $0.500$ mol of $\text{CO}_2$ ($M = 44.01$ g/mol), in grams?'
+        answer: '22.005'
+        tolerance: 0.01
+        placeholder: Enter a number
+        explanation: '$m = nM = 0.500 \times 44.01 = 22.0$ g'
+
+      - id: moles-of-nacl
+        type: math_input
+        prompt: 'How many moles are in $116.88$ g of NaCl ($M = 58.44$ g/mol)?'
+        answer: '2'
+        tolerance: 0.01
+        placeholder: Enter a number
+        explanation: '$n = \dfrac{116.88}{58.44} = 2.00$ mol'
+
+      - id: avogadro
+        type: multiple_choice
+        prompt: How many particles are in one mole?
+        choices:
+          - '$6.022 \times 10^{22}$'
+          - '$1.000 \times 10^{23}$'
+          - '$6.022 \times 10^{23}$'
+          - '$6.022 \times 10^{-23}$'
+        answer: 2
+        explanation: "That's Avogadro's number, $6.022 \\times 10^{23}$."
+
+      - id: water-molar-mass
+        type: math_input
+        prompt: 'Find the molar mass of $\text{H}_2\text{O}$ (H: $1.01$, O: $16.00$), in g/mol.'
+        answer: '18.02'
+        tolerance: 0.01
+        placeholder: Enter a number
+        explanation: '$2(1.01) + 16.00 = 18.02$ g/mol'
+
+      - id: ammonia-ratio
+        type: math_input
+        prompt: 'Using $\text{N}_2 + 3\,\text{H}_2 \rightarrow 2\,\text{NH}_3$, how many moles of $\text{NH}_3$ form from $3$ mol of $\text{N}_2$?'
+        answer: '6'
+        placeholder: Enter a number
+        explanation: 'The ratio of $\text{N}_2$ to $\text{NH}_3$ is $1 : 2$, so $3 \times 2 = 6$ mol.'
+
+      - id: balance-water
+        type: multiple_choice
+        prompt: 'Which coefficients balance $\_\,\text{H}_2 + \_\,\text{O}_2 \rightarrow \_\,\text{H}_2\text{O}$?'
+        choices: ['$1,\ 1,\ 1$', '$1,\ 2,\ 2$', '$2,\ 1,\ 2$', '$2,\ 2,\ 1$']
+        answer: 2
+        explanation: '$2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$: $4$ H and $2$ O on each side.'
+
+  - id: uni-sciences-u1-t1-destroyer
+    kind: destroyer
+    topic: The Mole and Stoichiometry
+    title: 'Destroyer: The Mole and Stoichiometry'
+    description: Gram-to-gram problems and limiting reagents.
+    xp: 30
+    items:
+      - id: grams-water-from-hydrogen
+        type: math_input
+        prompt: >-
+          How many grams of water form when $8.064$ g of $\text{H}_2$ ($M = 2.016$ g/mol)
+          reacts with excess $\text{O}_2$? Use $2\,\text{H}_2 + \text{O}_2 \rightarrow
+          2\,\text{H}_2\text{O}$ and $M(\text{H}_2\text{O}) = 18.02$ g/mol.
+        answer: '72.08'
+        tolerance: 0.1
+        placeholder: Enter a number
+        hint: Grams of H₂ → moles of H₂ → moles of H₂O → grams of H₂O.
+        explanation: |-
+          $n(\text{H}_2) = \dfrac{8.064}{2.016} = 4.000$ mol. The ratio is $2 : 2$, so
+          $n(\text{H}_2\text{O}) = 4.000$ mol.
+
+          $m = 4.000 \times 18.02 = 72.08$ g
+
+      - id: methane-combustion
+        type: math_input
+        prompt: >-
+          Methane burns: $\text{CH}_4 + 2\,\text{O}_2 \rightarrow \text{CO}_2 +
+          2\,\text{H}_2\text{O}$. How many grams of $\text{CO}_2$ ($44.01$ g/mol) form from
+          $32.08$ g of $\text{CH}_4$ ($16.04$ g/mol)?
+        answer: '88.02'
+        tolerance: 0.1
+        placeholder: Enter a number
+        explanation: '$n(\text{CH}_4) = \dfrac{32.08}{16.04} = 2.000$ mol $\rightarrow 2.000$ mol $\text{CO}_2 \rightarrow 2.000 \times 44.01 = 88.02$ g'
+
+      - id: particles-in-two-moles
+        type: multiple_choice
+        prompt: 'How many molecules are in $2.0$ mol of $\text{CO}_2$?'
+        choices:
+          - '$1.2 \times 10^{23}$'
+          - '$3.0 \times 10^{23}$'
+          - '$1.2 \times 10^{24}$'
+          - '$6.0 \times 10^{24}$'
+        answer: 2
+        explanation: '$2.0 \times 6.022 \times 10^{23} = 1.2 \times 10^{24}$ molecules'
+
+      - id: limiting-reagent
+        type: math_input
+        prompt: >-
+          For $2\,\text{H}_2 + \text{O}_2 \rightarrow 2\,\text{H}_2\text{O}$, you have $3$ mol of
+          $\text{H}_2$ and $2$ mol of $\text{O}_2$. What is the most water (in mol) that can form?
+        answer: '3'
+        placeholder: Enter a number
+        hint: Work out which reactant runs out first.
+        explanation: >-
+          $3$ mol of $\text{H}_2$ needs only $1.5$ mol of $\text{O}_2$, and $2$ mol is available,
+          so $\text{H}_2$ is limiting. It makes $3$ mol of water ($2 : 2$ ratio).

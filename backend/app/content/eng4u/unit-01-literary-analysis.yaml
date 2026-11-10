@@ -1,0 +1,224 @@
+# ENG4U — Literary analysis and essay writing
+# Examples use Shakespeare's Macbeth (public domain).
+
+id: eng4u-u1
+title: Literary Analysis
+description: >-
+  Arguable theses, real analysis instead of plot summary, and quotations that do the work
+  for your argument.
+
+lessons:
+  - id: eng4u-u1-t1-learn
+    kind: learn
+    topic: Writing a Strong Thesis
+    title: 'Learn: Writing a Strong Thesis'
+    description: Thesis statements, analysis vs. summary, and embedding quotations.
+    xp: 10
+    items:
+      - type: teach
+        id: what-a-thesis-does
+        title: What a thesis does
+        blocks:
+          - type: text
+            md: |-
+              A **thesis** is the one-sentence argument your whole essay proves. A strong thesis
+              is:
+
+              - **Arguable**: a reasonable reader could disagree
+              - **Specific**: it names *what* happens and *why it matters*
+              - **Supportable**: you can prove it with evidence from the text
+
+              Weak: *"Macbeth is a play about a man who becomes king."* (plot summary)
+
+              Strong: *"In* Macbeth*, Shakespeare shows that unchecked ambition destroys the
+              conscience, as Macbeth's guilt turns into paranoia and violence."*
+
+      - id: pick-the-thesis
+        type: multiple_choice
+        prompt: Which is an arguable thesis?
+        choices:
+          - Macbeth was written by William Shakespeare.
+          - Macbeth meets three witches in Act 1.
+          - Lady Macbeth's collapse shows that guilt cannot be pushed away for long.
+          - Macbeth is a tragedy in five acts.
+        answer: 2
+        explanation: It makes an interpretive claim someone could debate. The others are facts.
+
+      - type: teach
+        id: analysis-vs-summary
+        title: Analysis, not summary
+        blocks:
+          - type: text
+            md: |-
+              **Summary** retells what happens. **Analysis** explains *how* and *why* the
+              writer creates meaning.
+
+              - Summary: *"Macbeth kills King Duncan and becomes king."*
+              - Analysis: *"Macbeth's hallucination of a bloody dagger before the murder shows
+                his mind turning against him even before he acts, foreshadowing the guilt that
+                will consume him."*
+          - type: callout
+            tone: key
+            md: 'If a sentence could appear in a plot summary, it isn''t analysis yet. Ask: how does this connect to my thesis?'
+
+      - id: which-is-analysis
+        type: multiple_choice
+        prompt: Which sentence is **analysis** rather than summary?
+        choices:
+          - Lady Macbeth sleepwalks in Act 5.
+          - Lady Macbeth tries to wash imaginary blood off her hands.
+          - The doctor watches Lady Macbeth sleepwalking.
+          - Lady Macbeth's obsession with washing her hands shows that her guilt has become impossible to escape.
+        answer: 3
+        explanation: It interprets the action and explains what it reveals about her guilt.
+
+      - type: teach
+        id: embedding-quotations
+        title: Embedding quotations
+        blocks:
+          - type: text
+            md: |-
+              Don't drop a quotation in on its own. **Introduce** it, **embed** it in your
+              sentence, then **explain** it.
+
+              - Dropped: *Lady Macbeth is guilty. "Out, damned spot! Out, I say!"*
+              - Embedded: *Lady Macbeth's desperate command, "Out, damned spot!", reveals that
+                the guilt she once dismissed now controls her.*
+          - type: callout
+            tone: tip
+            md: Keep quotations short. Quote only the words you are going to analyze.
+
+      - id: best-embedded
+        type: multiple_choice
+        prompt: Which uses a quotation most effectively?
+        choices:
+          - '"Fair is foul, and foul is fair." The witches say this.'
+          - 'The witches'' paradox, "Fair is foul, and foul is fair," sets up a world where appearances cannot be trusted.'
+          - 'This quote is important: "Fair is foul, and foul is fair."'
+          - 'The witches talk in Act 1. "Fair is foul, and foul is fair."'
+        answer: 1
+        explanation: The quotation is woven into the sentence and immediately explained.
+
+  - id: eng4u-u1-t1-practice
+    kind: practice
+    topic: Writing a Strong Thesis
+    title: 'Practice: Writing a Strong Thesis'
+    description: Spot strong theses, analysis and well-used evidence.
+    xp: 10
+    items:
+      - id: thesis-too-broad
+        type: multiple_choice
+        prompt: 'What is the main problem with the thesis *"Macbeth has many themes"*?'
+        choices:
+          - It is too long
+          - It is too broad and doesn't make a specific argument
+          - It uses the wrong title
+          - It is written in the first person
+        answer: 1
+        explanation: Every play has many themes. A thesis needs to argue something specific.
+
+      - id: summary-sentence
+        type: multiple_choice
+        prompt: Which sentence is plot summary?
+        choices:
+          - Banquo's ghost shows that Macbeth cannot escape what he has done.
+          - Macbeth sees Banquo's ghost at the banquet.
+          - The ghost's silence makes Macbeth's guilt feel even louder.
+          - Shakespeare uses the ghost to make Macbeth's guilt visible to the audience.
+        answer: 1
+        explanation: It only states what happens, without explaining any meaning.
+
+      - id: explain-quote-step
+        type: multiple_choice
+        prompt: What should come right after you embed a quotation?
+        choices:
+          - another quotation
+          - a summary of the next scene
+          - an explanation of how it supports your point
+          - your conclusion
+        answer: 2
+        explanation: A quotation doesn't speak for itself. The explanation is where your marks come from.
+
+      - id: literary-device
+        type: multiple_choice
+        prompt: '"Fair is foul, and foul is fair" places opposite ideas side by side. What is this device called?'
+        choices: [simile, paradox, onomatopoeia, alliteration only]
+        answer: 1
+        explanation: A paradox joins contradictory ideas to reveal a deeper truth, here that appearances deceive.
+
+      - id: present-tense
+        type: multiple_choice
+        prompt: Which sentence follows the convention for writing about literature?
+        choices:
+          - Macbeth killed Duncan in Act 2.
+          - Macbeth will kill Duncan in Act 2.
+          - Macbeth kills Duncan in Act 2.
+          - Macbeth had killed Duncan in Act 2.
+        answer: 2
+        explanation: Literary analysis uses the present tense ("the literary present"), because the text always exists now.
+
+      - id: strongest-evidence
+        type: multiple_choice
+        prompt: 'For the thesis *"Macbeth''s ambition overrides his conscience"*, which evidence fits best?'
+        choices:
+          - Macbeth is a Scottish nobleman.
+          - Macbeth admits he has only "vaulting ambition" to push him toward the murder.
+          - The play takes place in Scotland.
+          - Duncan has two sons.
+        answer: 1
+        explanation: It directly shows Macbeth recognizing that ambition is his only motive, which supports the thesis.
+
+  - id: eng4u-u1-t1-destroyer
+    kind: destroyer
+    topic: Writing a Strong Thesis
+    title: 'Destroyer: Writing a Strong Thesis'
+    description: Refine arguments and handle counterpoints.
+    xp: 30
+    items:
+      - id: sharpen-thesis
+        type: multiple_choice
+        prompt: 'Which revision makes *"Lady Macbeth is an important character"* into the strongest thesis?'
+        choices:
+          - Lady Macbeth is the most important character in Macbeth.
+          - Lady Macbeth appears in many scenes of the play.
+          - Lady Macbeth's shift from ruthless planner to guilt-ridden sleepwalker shows that conscience cannot be silenced forever.
+          - Lady Macbeth is interesting to read about.
+        answer: 2
+        explanation: It traces a specific change in the character and states what that change reveals.
+
+      - id: counterargument
+        type: multiple_choice
+        prompt: >-
+          Your thesis argues that Macbeth is responsible for his own downfall. Which sentence
+          handles a counterargument best?
+        choices:
+          - Some people disagree, but they are wrong.
+          - Although the witches' prophecy plants the idea of kingship, Macbeth alone chooses to murder Duncan.
+          - The witches are very creepy.
+          - Everyone agrees that Macbeth is guilty.
+        answer: 1
+        explanation: It admits the strongest opposing point (the witches' influence), then shows why the thesis still holds.
+
+      - id: analyze-the-word
+        type: multiple_choice
+        prompt: 'Macbeth says his ambition is "vaulting." Which analysis of this word is strongest?'
+        choices:
+          - '"Vaulting" is an interesting word choice.'
+          - '"Vaulting" means jumping.'
+          - '"Vaulting" suggests a leap so eager that it overshoots, hinting that Macbeth''s ambition will carry him past his goal into ruin.'
+          - Macbeth uses the word "vaulting" in Act 1.
+        answer: 2
+        explanation: It interprets the word's connotation and links it to where the story is heading.
+
+      - id: paragraph-order
+        type: multiple_choice
+        prompt: |-
+          Put these sentences in the strongest order for a body paragraph:
+
+          A. This hallucination shows that Macbeth's conscience resists the murder even as he plans it.
+          B. Shakespeare reveals Macbeth's inner conflict before the murder of Duncan.
+          C. Macbeth sees a dagger floating before him, "the handle toward my hand."
+          D. His guilt begins before the crime itself, setting up his later collapse.
+        choices: ['B → C → A → D', 'C → B → D → A', 'B → A → C → D', 'D → C → A → B']
+        answer: 0
+        explanation: Point (B), Evidence (C), Explain (A), Link (D). That's the PEEL order.

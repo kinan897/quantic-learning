@@ -75,7 +75,10 @@ class CourseSummary(BaseModel):
     title: str
     subject: str
     level: str
+    category: str
     grade: int | None
+    grade_label: str
+    status: Literal["available", "coming_soon"]
     description: str
     unit_count: int
     lesson_count: int
@@ -88,7 +91,10 @@ class CourseSummary(BaseModel):
             title=course.title,
             subject=course.subject,
             level=course.level,
+            category=course.category,
             grade=course.grade,
+            grade_label=course.grade_label,
+            status=course.status,
             description=course.description,
             unit_count=len(course.units),
             lesson_count=sum(len(u.lessons) for u in course.units),
@@ -289,6 +295,7 @@ class LessonDetail(BaseModel):
     description: str
     xp: int
     course_id: str
+    course_code: str
     unit_id: str
     items: list[PublicItem]
 

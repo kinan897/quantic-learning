@@ -26,11 +26,17 @@ export type CourseSummary = {
   title: string;
   subject: string;
   level: 'high_school' | 'university';
+  /** Filter tab on the Courses screen, matching the website. */
+  category: CourseCategory;
   grade: number | null;
+  grade_label: string;
+  status: 'available' | 'coming_soon';
   description: string;
   unit_count: number;
   lesson_count: number;
 };
+
+export type CourseCategory = 'junior' | 'math' | 'science' | 'english' | 'uni';
 
 export type CourseDetail = CourseSummary & {
   prerequisites: string[];
@@ -122,6 +128,7 @@ export type LessonDetail = {
   description: string;
   xp: number;
   course_id: string;
+  course_code: string;
   unit_id: string;
   items: LessonItem[];
 };

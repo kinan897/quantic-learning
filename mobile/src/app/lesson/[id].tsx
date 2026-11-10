@@ -230,15 +230,10 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
             </View>
           )}
 
-          <Text
-            variant="caption"
-            tone="secondary"
-            style={[styles.eyebrow, isDestroyer && { color: theme.destroyer }]}>
+          <Text variant="eyebrow" style={[styles.eyebrow, isDestroyer && { color: theme.destroyer }]}>
             {isDestroyer
-              ? 'DESTROYER QUESTION'
-              : question.type === 'multiple_choice'
-                ? 'CHOOSE THE ANSWER'
-                : 'TYPE YOUR ANSWER'}
+              ? `${lesson.course_code} · Destroyer`
+              : `${lesson.course_code} · ${lesson.topic ?? lesson.title}`}
           </Text>
           <RichText source={question.prompt} size="large" />
           {question.figure && <BlockView block={question.figure} />}
@@ -362,7 +357,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: { padding: Spacing.three, paddingBottom: Spacing.five },
   question: { gap: Spacing.three },
-  eyebrow: { fontWeight: '800', letterSpacing: 1.2 },
+  eyebrow: { fontSize: 11, letterSpacing: 2.4 },
   bold: { fontWeight: '700' },
   retryBadge: {
     flexDirection: 'row',

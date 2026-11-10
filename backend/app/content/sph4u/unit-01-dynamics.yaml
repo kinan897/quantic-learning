@@ -1,0 +1,191 @@
+# SPH4U — Strand B: Dynamics
+
+id: sph4u-u1
+title: Dynamics
+description: >-
+  Forces and motion: net force, Newton's second law, weight, normal force and friction.
+
+lessons:
+  - id: sph4u-u1-t1-learn
+    kind: learn
+    topic: Newton's Second Law
+    title: "Learn: Newton's Second Law"
+    description: Net force, F = ma, weight and friction.
+    xp: 10
+    items:
+      - type: teach
+        id: net-force
+        title: Net force and free-body diagrams
+        blocks:
+          - type: text
+            md: >-
+              A **free-body diagram** shows every force acting on one object as an arrow. The
+              **net force** is the vector sum of all of them. Opposite forces subtract.
+          - type: image
+            src: science/free-body-box.svg
+            alt: >-
+              Free-body diagram of a box: 50 N applied to the right, 20 N of friction to the
+              left, gravity down and the normal force up.
+            aspect: 0.53
+          - type: callout
+            tone: key
+            md: 'Horizontally: $F_{net} = 50 \text{ N} - 20 \text{ N} = 30$ N to the right. Vertically, gravity and the normal force cancel.'
+
+      - id: net-force-check
+        type: math_input
+        prompt: 'A box has $65$ N pulling right and $25$ N of friction acting left. What is the net force, in newtons?'
+        answer: '40'
+        placeholder: Enter a number
+        explanation: '$65 - 25 = 40$ N to the right.'
+
+      - type: teach
+        id: f-equals-ma
+        title: Newton's second law
+        blocks:
+          - type: text
+            md: |-
+              The net force on an object equals its mass times its acceleration:
+
+              $$\vec{F}_{net} = m\vec{a}$$
+
+              Force is in newtons (N), mass in kilograms (kg), acceleration in m/s². A $30$ N net
+              force on a $6$ kg box gives $a = \dfrac{30}{6} = 5$ m/s².
+          - type: callout
+            tone: tip
+            md: 'Same force, more mass → less acceleration. Double the mass and the acceleration halves.'
+
+      - id: acceleration-check
+        type: math_input
+        prompt: 'A $12$ N net force acts on a $3$ kg cart. What is its acceleration, in m/s²?'
+        answer: '4'
+        placeholder: Enter a number
+        explanation: '$a = \dfrac{F_{net}}{m} = \dfrac{12}{3} = 4$ m/s²'
+
+      - type: teach
+        id: weight-and-friction
+        title: Weight, normal force and friction
+        blocks:
+          - type: text
+            md: |-
+              - **Weight** (force of gravity): $F_g = mg$, with $g = 9.8$ m/s²
+              - On a level surface, the **normal force** balances weight: $F_N = mg$
+              - **Friction**: $F_f = \mu F_N$, where $\mu$ is the coefficient of friction
+
+              A $10$ kg box with $\mu = 0.30$: $F_f = 0.30 \times 98 = 29.4$ N.
+
+      - id: weight-check
+        type: math_input
+        prompt: 'What is the weight of a $5.0$ kg object, in newtons? Use $g = 9.8$ m/s².'
+        answer: '49'
+        tolerance: 0.05
+        placeholder: Enter a number
+        explanation: '$F_g = mg = 5.0 \times 9.8 = 49$ N'
+
+  - id: sph4u-u1-t1-practice
+    kind: practice
+    topic: Newton's Second Law
+    title: "Practice: Newton's Second Law"
+    description: One-step force and acceleration problems.
+    xp: 10
+    items:
+      - id: force-from-acceleration
+        type: math_input
+        prompt: 'What net force gives a $2.0$ kg cart an acceleration of $3.0$ m/s²?'
+        answer: '6'
+        tolerance: 0.05
+        placeholder: Enter a number
+        explanation: '$F = ma = 2.0 \times 3.0 = 6.0$ N'
+
+      - id: acceleration-from-force
+        type: math_input
+        prompt: 'A $40$ N net force acts on an $8.0$ kg box. What is its acceleration, in m/s²?'
+        answer: '5'
+        tolerance: 0.05
+        placeholder: Enter a number
+        explanation: '$a = \dfrac{40}{8.0} = 5.0$ m/s²'
+
+      - id: zero-net-force
+        type: multiple_choice
+        prompt: If the net force on a moving object is zero, the object...
+        choices:
+          - slows down and stops
+          - keeps moving at a constant velocity
+          - speeds up
+          - must be at rest
+        answer: 1
+        explanation: "No net force means no acceleration (Newton's first law): it keeps the same velocity."
+
+      - id: normal-force-flat
+        type: math_input
+        prompt: 'What is the normal force on a $12$ kg box resting on a level floor, in newtons? Use $g = 9.8$ m/s².'
+        answer: '117.6'
+        tolerance: 0.1
+        placeholder: Enter a number
+        explanation: '$F_N = mg = 12 \times 9.8 = 117.6$ N'
+
+      - id: double-the-mass
+        type: multiple_choice
+        prompt: The same net force pushes an object with twice the mass. Its acceleration...
+        choices: [doubles, halves, stays the same, becomes four times larger]
+        answer: 1
+        explanation: '$a = F/m$: double $m$ with the same $F$ and $a$ is cut in half.'
+
+      - id: friction-force
+        type: math_input
+        prompt: 'A $20$ kg crate sits on a level floor with $\mu = 0.25$. What is the force of friction, in newtons? Use $g = 9.8$ m/s².'
+        answer: '49'
+        tolerance: 0.1
+        placeholder: Enter a number
+        explanation: '$F_f = \mu mg = 0.25 \times 20 \times 9.8 = 49$ N'
+
+  - id: sph4u-u1-t1-destroyer
+    kind: destroyer
+    topic: Newton's Second Law
+    title: "Destroyer: Newton's Second Law"
+    description: Friction, two dimensions and elevators.
+    xp: 30
+    items:
+      - id: push-with-friction
+        type: math_input
+        prompt: >-
+          A $15$ kg crate is pushed across a level floor with a $90$ N horizontal force. The
+          coefficient of kinetic friction is $0.40$. Find the crate's acceleration, in m/s².
+          Use $g = 9.8$ m/s².
+        answer: '2.08'
+        tolerance: 0.02
+        placeholder: Enter a number
+        hint: Find friction first, then the net force.
+        explanation: |-
+          $F_f = 0.40 \times 15 \times 9.8 = 58.8$ N
+
+          $F_{net} = 90 - 58.8 = 31.2$ N, so $a = \dfrac{31.2}{15} = 2.08$ m/s².
+
+      - id: car-acceleration-force
+        type: math_input
+        prompt: 'A $1200$ kg car speeds up uniformly from rest to $24$ m/s in $8.0$ s. What net force acts on it, in newtons?'
+        answer: '3600'
+        tolerance: 1
+        placeholder: Enter a number
+        explanation: '$a = \dfrac{24}{8.0} = 3.0$ m/s², so $F = ma = 1200 \times 3.0 = 3600$ N.'
+
+      - id: perpendicular-forces
+        type: math_input
+        prompt: 'Forces of $30$ N east and $40$ N north act on a $10$ kg object. What is the size of its acceleration, in m/s²?'
+        answer: '5'
+        tolerance: 0.05
+        placeholder: Enter a number
+        hint: Combine perpendicular forces with Pythagoras.
+        explanation: '$F_{net} = \sqrt{30^2 + 40^2} = 50$ N, so $a = \dfrac{50}{10} = 5.0$ m/s².'
+
+      - id: elevator-normal-force
+        type: math_input
+        prompt: >-
+          A $70$ kg person stands in an elevator accelerating **upward** at $2.0$ m/s². What normal
+          force does the floor exert on them, in newtons? Use $g = 9.8$ m/s².
+        answer: '826'
+        tolerance: 1
+        placeholder: Enter a number
+        explanation: |-
+          Up is positive: $F_N - mg = ma$, so $F_N = m(g + a) = 70 \times (9.8 + 2.0) = 826$ N.
+
+          The person feels heavier than their usual $686$ N.
