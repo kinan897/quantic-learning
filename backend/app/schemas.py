@@ -75,6 +75,7 @@ class CourseSummary(BaseModel):
     title: str
     subject: str
     level: str
+    group: str
     category: str
     grade: int | None
     grade_label: str
@@ -91,6 +92,7 @@ class CourseSummary(BaseModel):
             title=course.title,
             subject=course.subject,
             level=course.level,
+            group=course.group,
             category=course.category,
             grade=course.grade,
             grade_label=course.grade_label,
@@ -99,6 +101,14 @@ class CourseSummary(BaseModel):
             unit_count=len(course.units),
             lesson_count=sum(len(u.lessons) for u in course.units),
         )
+
+
+class SubjectOut(BaseModel):
+    id: str
+    title: str
+    tagline: str
+    icon: str
+    courses: list[CourseSummary]
 
 
 class CourseDetail(CourseSummary):

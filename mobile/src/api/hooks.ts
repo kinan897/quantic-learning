@@ -12,10 +12,12 @@ import type {
   LessonSessionStart,
   Progress,
   Reward,
+  Subject,
 } from './types';
 
 export const queryKeys = {
   courses: ['courses'] as const,
+  subjects: ['subjects'] as const,
   course: (id: string) => ['courses', id] as const,
   // Keyed by user, so switching accounts never shows the previous person's data.
   lesson: (userId: string | undefined, id: string) => ['lessons', userId, id] as const,
@@ -30,6 +32,13 @@ export function useCourses() {
   return useQuery({
     queryKey: queryKeys.courses,
     queryFn: () => apiFetch<CourseSummary[]>('/courses', {}, { auth: false }),
+  });
+}
+
+export function useSubjects() {
+  return useQuery({
+    queryKey: queryKeys.subjects,
+    queryFn: () => apiFetch<Subject[]>('/subjects', {}, { auth: false }),
   });
 }
 
