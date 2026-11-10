@@ -12,24 +12,44 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
 
-from app.content.models import Course, Lesson, MathInputQuestion, MultipleChoiceQuestion, Unit
+from app.content.graphs import sample_curve
+from app.content.models import (
+    CalloutBlock,
+    Color,
+    Course,
+    GraphBlock,
+    ImageBlock,
+    Lesson,
+    LessonKind,
+    MathInputQuestion,
+    MultipleChoiceQuestion,
+    TeachCard,
+    TextBlock,
+    Unit,
+)
 
 
 class LessonSummary(BaseModel):
     id: str
+    kind: LessonKind
+    topic: str | None
     title: str
     description: str
     xp: int
     question_count: int
+    card_count: int
 
     @classmethod
     def of(cls, lesson: Lesson) -> LessonSummary:
         return cls(
             id=lesson.id,
+            kind=lesson.kind,
+            topic=lesson.topic,
             title=lesson.title,
             description=lesson.description,
             xp=lesson.xp,
             question_count=len(lesson.questions),
+            card_count=len(lesson.cards),
         )
 
 
@@ -88,42 +108,189 @@ class CourseDetail(CourseSummary):
         )
 
 
+# --- Visual blocks, ready to draw ---------------------------------------------------------
+
+
+class PublicCurve(BaseModel):
+    color: Color
+    label: str | None
+    dashed: bool
+    paths: list[list[tuple[float, float]]]  # polylines; gaps where the curve is undefined
+
+
+class PublicSegment(BaseModel):
+    start: tuple[float, float]
+    end: tuple[float, float]
+    color: Color
+    label: str | None
+    dashed: bool
+    arrow: bool
+
+
+class PublicPoint(BaseModel):
+    at: tuple[float, float]
+    label: str | None
+    color: Color
+    open: bool
+
+
+class PublicGraph(BaseModel):
+    type: Literal["graph"] = "graph"
+    x: tuple[float, float]
+    y: tuple[float, float]
+    x_label: str
+    y_label: str
+    grid: bool
+    aspect: float
+    curves: list[PublicCurve]
+    segments: list[PublicSegment]
+    points: list[PublicPoint]
+    caption: str | None
+
+
+class PublicImage(BaseModel):
+    type: Literal["image"] = "image"
+    url: str  # relative to the API host, e.g. /assets/mcv4u/derivative-machine.svg
+    alt: str
+    aspect: float
+    caption: str | None
+
+
+class PublicText(BaseModel):
+    type: Literal["text"] = "text"
+    md: str
+
+
+class PublicCallout(BaseModel):
+    type: Literal["callout"] = "callout"
+    tone: Literal["key", "tip", "warning"]
+    title: str | None
+    md: str
+
+
+PublicBlock = Annotated[
+    PublicText | PublicCallout | PublicGraph | PublicImage, Field(discriminator="type")
+]
+PublicFigure = Annotated[PublicGraph | PublicImage, Field(discriminator="type")]
+
+
+def public_graph(graph: GraphBlock) -> PublicGraph:
+    x0, x1 = graph.x
+    y0, y1 = graph.y
+    return PublicGraph(
+        x=graph.x,
+        y=graph.y,
+        x_label=graph.x_label,
+        y_label=graph.y_label,
+        grid=graph.grid,
+        aspect=graph.aspect,
+        curves=[
+            PublicCurve(
+                color=c.color,
+                label=c.label,
+                dashed=c.dashed,
+                paths=sample_curve(c.expr, *(c.domain or (x0, x1)), y0, y1),
+            )
+            for c in graph.curves
+        ],
+        segments=[
+            PublicSegment(
+                start=s.start,
+                end=s.end,
+                color=s.color,
+                label=s.label,
+                dashed=s.dashed,
+                arrow=s.arrow,
+            )
+            for s in graph.segments
+        ],
+        points=[
+            PublicPoint(at=p.at, label=p.label, color=p.color, open=p.open) for p in graph.points
+        ],
+        caption=graph.caption,
+    )
+
+
+def public_block(block: TextBlock | CalloutBlock | GraphBlock | ImageBlock) -> PublicBlock:
+    if isinstance(block, GraphBlock):
+        return public_graph(block)
+    if isinstance(block, ImageBlock):
+        return PublicImage(
+            url=f"/assets/{block.src}", alt=block.alt, aspect=block.aspect, caption=block.caption
+        )
+    if isinstance(block, CalloutBlock):
+        return PublicCallout(tone=block.tone, title=block.title, md=block.md)
+    return PublicText(md=block.md)
+
+
+# --- Lesson items -------------------------------------------------------------------------
+
+
+class PublicTeachCard(BaseModel):
+    id: str
+    type: Literal["teach"] = "teach"
+    title: str
+    blocks: list[PublicBlock]
+
+
 class PublicMultipleChoice(BaseModel):
     id: str
     type: Literal["multiple_choice"] = "multiple_choice"
     prompt: str
+    figure: PublicFigure | None
     hint: str | None
-    choices: list[str]
+    choices: list[str | PublicGraph]
 
 
 class PublicMathInput(BaseModel):
     id: str
     type: Literal["math_input"] = "math_input"
     prompt: str
+    figure: PublicFigure | None
     hint: str | None
     variables: list[str]
     placeholder: str | None
 
 
-PublicQuestion = Annotated[PublicMultipleChoice | PublicMathInput, Field(discriminator="type")]
+PublicItem = Annotated[
+    PublicTeachCard | PublicMultipleChoice | PublicMathInput, Field(discriminator="type")
+]
 
 
-def public_question(q: MultipleChoiceQuestion | MathInputQuestion) -> PublicQuestion:
-    if isinstance(q, MultipleChoiceQuestion):
-        return PublicMultipleChoice(id=q.id, prompt=q.prompt, hint=q.hint, choices=q.choices)
+def public_item(item: TeachCard | MultipleChoiceQuestion | MathInputQuestion) -> PublicItem:
+    if isinstance(item, TeachCard):
+        return PublicTeachCard(
+            id=item.id, title=item.title, blocks=[public_block(b) for b in item.blocks]
+        )
+    figure = public_block(item.figure) if item.figure is not None else None
+    if isinstance(item, MultipleChoiceQuestion):
+        return PublicMultipleChoice(
+            id=item.id,
+            prompt=item.prompt,
+            figure=figure,
+            hint=item.hint,
+            choices=[c if isinstance(c, str) else public_graph(c) for c in item.choices],
+        )
     return PublicMathInput(
-        id=q.id, prompt=q.prompt, hint=q.hint, variables=q.variables, placeholder=q.placeholder
+        id=item.id,
+        prompt=item.prompt,
+        figure=figure,
+        hint=item.hint,
+        variables=item.variables,
+        placeholder=item.placeholder,
     )
 
 
 class LessonDetail(BaseModel):
     id: str
+    kind: LessonKind
+    topic: str | None
     title: str
     description: str
     xp: int
     course_id: str
     unit_id: str
-    questions: list[PublicQuestion]
+    items: list[PublicItem]
 
 
 class CheckRequest(BaseModel):

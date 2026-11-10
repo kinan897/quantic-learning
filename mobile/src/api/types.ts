@@ -1,11 +1,16 @@
 /** Mirrors the backend's public schemas (backend/app/schemas.py). */
 
+export type LessonKind = 'learn' | 'practice' | 'destroyer';
+
 export type LessonSummary = {
   id: string;
+  kind: LessonKind;
+  topic: string | null;
   title: string;
   description: string;
   xp: number;
   question_count: number;
+  card_count: number;
 };
 
 export type Unit = {
@@ -32,33 +37,93 @@ export type CourseDetail = CourseSummary & {
   units: Unit[];
 };
 
+// --- Visual blocks ------------------------------------------------------------------------
+
+export type GraphColor = 'primary' | 'accent' | 'success' | 'error' | 'warning' | 'muted';
+export type XY = [number, number];
+
+/** A graph, already sampled into points by the server. */
+export type GraphData = {
+  type: 'graph';
+  x: XY;
+  y: XY;
+  x_label: string;
+  y_label: string;
+  grid: boolean;
+  aspect: number; // height / width
+  curves: { color: GraphColor; label: string | null; dashed: boolean; paths: XY[][] }[];
+  segments: {
+    start: XY;
+    end: XY;
+    color: GraphColor;
+    label: string | null;
+    dashed: boolean;
+    arrow: boolean;
+  }[];
+  points: { at: XY; label: string | null; color: GraphColor; open: boolean }[];
+  caption: string | null;
+};
+
+export type ImageData = {
+  type: 'image';
+  url: string; // relative to the API host
+  alt: string;
+  aspect: number;
+  caption: string | null;
+};
+
+export type TextBlock = { type: 'text'; md: string };
+export type CalloutBlock = {
+  type: 'callout';
+  tone: 'key' | 'tip' | 'warning';
+  title: string | null;
+  md: string;
+};
+
+export type Block = TextBlock | CalloutBlock | GraphData | ImageData;
+export type Figure = GraphData | ImageData;
+
+// --- Lesson items -------------------------------------------------------------------------
+
+export type TeachCard = {
+  id: string;
+  type: 'teach';
+  title: string;
+  blocks: Block[];
+};
+
 export type MultipleChoiceQuestion = {
   id: string;
   type: 'multiple_choice';
   prompt: string;
+  figure: Figure | null;
   hint: string | null;
-  choices: string[];
+  choices: (string | GraphData)[];
 };
 
 export type MathInputQuestion = {
   id: string;
   type: 'math_input';
   prompt: string;
+  figure: Figure | null;
   hint: string | null;
   variables: string[];
   placeholder: string | null;
 };
 
 export type Question = MultipleChoiceQuestion | MathInputQuestion;
+export type LessonItem = TeachCard | Question;
 
 export type LessonDetail = {
   id: string;
+  kind: LessonKind;
+  topic: string | null;
   title: string;
   description: string;
   xp: number;
   course_id: string;
   unit_id: string;
-  questions: Question[];
+  items: LessonItem[];
 };
 
 export type CheckResult = 'correct' | 'incorrect' | 'invalid';

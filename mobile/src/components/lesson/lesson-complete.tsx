@@ -4,21 +4,40 @@ import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInUp, ZoomIn } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import type { Reward } from '@/api/types';
+import type { LessonKind, Reward } from '@/api/types';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAuth } from '@/store/auth';
 
-type Props = { reward: Reward; elapsedMs: number; onDone: () => void };
+type Props = { reward: Reward; kind: LessonKind; elapsedMs: number; onDone: () => void };
 
-export function LessonComplete({ reward, elapsedMs, onDone }: Props) {
+export function LessonComplete({ reward, kind, elapsedMs, onDone }: Props) {
   const theme = useTheme();
   const isGuest = useAuth((s) => s.user?.is_guest ?? false);
   const perfect = reward.accuracy === 1;
+  const destroyer = kind === 'destroyer';
   const seconds = Math.round(elapsedMs / 1000);
   const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+
+  const title = destroyer
+    ? 'Destroyer defeated!'
+    : perfect
+      ? 'Flawless!'
+      : kind === 'learn'
+        ? 'Topic learned!'
+        : 'Lesson complete!';
+  const subtitle = destroyer
+    ? 'The hardest problems in this topic, solved. The next topic is unlocked.'
+    : kind === 'learn'
+      ? 'You know the ideas. Next up: practice them until they stick.'
+      : perfect
+        ? 'Every question right on the first try.'
+        : 'You worked through every question until it clicked.';
+  const accent = destroyer ? theme.destroyer : theme.primary;
+  const badgeBg = destroyer ? theme.destroyerSoft : theme.primarySoft;
+  const icon = destroyer ? 'skull' : perfect ? 'trophy' : kind === 'learn' ? 'school' : 'sparkles';
 
   return (
     <SafeAreaView style={[styles.screen, { backgroundColor: theme.background }]}>
@@ -26,17 +45,15 @@ export function LessonComplete({ reward, elapsedMs, onDone }: Props) {
         <View style={styles.hero}>
           <Animated.View
             entering={ZoomIn.springify().damping(12)}
-            style={[styles.badge, { backgroundColor: theme.primarySoft }]}>
-            <Ionicons name={perfect ? 'trophy' : 'sparkles'} size={64} color={theme.primary} />
+            style={[styles.badge, { backgroundColor: badgeBg }]}>
+            <Ionicons name={icon} size={64} color={accent} />
           </Animated.View>
           <Animated.View entering={FadeInUp.delay(150)} style={styles.heroText}>
-            <Text variant="display" style={styles.center}>
-              {perfect ? 'Flawless!' : 'Lesson complete!'}
+            <Text variant="display" style={[styles.center, destroyer && { color: accent }]}>
+              {title}
             </Text>
             <Text tone="secondary" style={styles.center}>
-              {perfect
-                ? 'Every question right on the first try.'
-                : 'You worked through every question until it clicked.'}
+              {subtitle}
             </Text>
           </Animated.View>
         </View>
