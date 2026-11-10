@@ -192,3 +192,170 @@ lessons:
         answer: '8'
         placeholder: Enter a number
         explanation: '$2n - 2 = 2(5) - 2 = 8$, so pentyne is $\text{C}_5\text{H}_8$.'
+
+  # =========================================================================================
+  # Topic 2: Functional groups
+  # =========================================================================================
+  - id: sch4u-u1-t2-learn
+    kind: learn
+    topic: Functional Groups
+    title: 'Learn: Functional Groups'
+    description: Recognise alcohols, carbonyls, acids, esters and amines.
+    xp: 10
+    items:
+      - type: teach
+        id: alcohols-ethers
+        title: Alcohols and ethers
+        blocks:
+          - type: text
+            md: |-
+              A **functional group** is the reactive part of an organic molecule.
+
+              - **Alcohol**: –OH attached to a carbon. Suffix **-ol**, e.g. ethanol, CH₃CH₂OH.
+              - **Ether**: an oxygen between two carbons, R–O–R′. e.g. methoxymethane, CH₃OCH₃.
+
+              The –OH lets alcohols hydrogen-bond, so they boil much higher than alkanes of
+              similar size.
+
+      - id: name-alcohol
+        type: multiple_choice
+        prompt: What is the name of CH₃CH₂CH₂OH?
+        choices: [propane, propanal, propan-1-ol, propanoic acid]
+        answer: 2
+        explanation: Three carbons with –OH on carbon 1, so propan-1-ol (1-propanol).
+
+      - type: teach
+        id: carbonyl-groups
+        title: 'The carbonyl family: C=O'
+        blocks:
+          - type: text
+            md: |-
+              - **Aldehyde**: C=O at the **end** of the chain (–CHO). Suffix **-al**, e.g. ethanal.
+              - **Ketone**: C=O **inside** the chain. Suffix **-one**, e.g. propanone (acetone).
+              - **Carboxylic acid**: –COOH. Suffix **-oic acid**, e.g. ethanoic acid (vinegar).
+          - type: callout
+            tone: tip
+            md: 'The suffix tells you the group: -ol, -al, -one, -oic acid.'
+
+      - id: ketone-pick
+        type: multiple_choice
+        prompt: Which compound is a ketone?
+        choices: [butanal, butan-2-one, butan-2-ol, butanoic acid]
+        answer: 1
+        explanation: The -one suffix means a C=O inside the carbon chain.
+
+      - type: teach
+        id: esters-amines
+        title: Esters and amines
+        blocks:
+          - type: text
+            md: |-
+              - **Ester**: –COO– between two carbon groups. Made from an acid + an alcohol, and
+                responsible for many fruity smells. Named *alkyl alkanoate*, e.g. methyl ethanoate.
+              - **Amine**: a nitrogen attached to carbon, –NH₂. e.g. methanamine, CH₃NH₂.
+
+              $$\text{acid} + \text{alcohol} \rightarrow \text{ester} + \text{water}$$
+
+      - id: ester-reactants
+        type: multiple_choice
+        prompt: Which two compounds react to make an ester?
+        choices:
+          - An alcohol and an amine
+          - A carboxylic acid and an alcohol
+          - A ketone and water
+          - An aldehyde and an ether
+        answer: 1
+        explanation: Esterification joins a carboxylic acid and an alcohol, releasing water.
+
+  - id: sch4u-u1-t2-practice
+    kind: practice
+    topic: Functional Groups
+    title: 'Practice: Functional Groups'
+    description: Match names, suffixes and structures.
+    xp: 10
+    items:
+      - id: suffix-al
+        type: multiple_choice
+        prompt: The suffix "-al" names which functional group?
+        choices: [Alcohol, Aldehyde, Alkane, Amine]
+        answer: 1
+        explanation: Aldehydes end in -al, like methanal and ethanal.
+
+      - id: cooh-group
+        type: multiple_choice
+        prompt: Which functional group is –COOH?
+        choices: [Ester, Ketone, Ether, Carboxylic acid]
+        answer: 3
+        explanation: –COOH is the carboxyl group of carboxylic acids.
+
+      - id: nitrogen-group
+        type: multiple_choice
+        prompt: Which functional group contains nitrogen?
+        choices: [Amine, Ether, Ester, Aldehyde]
+        answer: 0
+        explanation: Amines contain a C–N bond.
+
+      - id: fruity-smell
+        type: multiple_choice
+        prompt: A compound smells like bananas. Which group does it most likely contain?
+        choices: [Amine, Carboxylic acid, Ester, Alcohol]
+        answer: 2
+        explanation: Many esters have sweet, fruity smells.
+
+      - id: carbons-in-pentanal
+        type: math_input
+        prompt: How many carbon atoms are in pentanal?
+        answer: '5'
+        placeholder: Enter a number
+        explanation: '"Pent-" means 5 carbons.'
+
+      - id: boiling-point
+        type: multiple_choice
+        prompt: Ethanol boils at 78 °C, but propane (similar mass) boils at −42 °C. Why?
+        choices:
+          - Ethanol has a double bond
+          - Ethanol molecules can hydrogen-bond through their –OH groups
+          - Propane is ionic
+          - Ethanol has more carbon atoms
+        answer: 1
+        explanation: Hydrogen bonds are strong intermolecular forces, so more energy is needed to boil.
+
+  - id: sch4u-u1-t2-destroyer
+    kind: destroyer
+    topic: Functional Groups
+    title: 'Destroyer: Functional Groups'
+    description: Name, predict and compare.
+    xp: 30
+    items:
+      - id: name-ester
+        type: multiple_choice
+        prompt: Which ester forms when ethanoic acid reacts with propan-1-ol?
+        choices: [ethyl propanoate, propyl ethanoate, propyl propanoate, ethyl ethanoate]
+        answer: 1
+        hint: The alcohol part is named first, as the alkyl group.
+        explanation: 'The alcohol gives "propyl" and the acid gives "ethanoate": propyl ethanoate.'
+
+      - id: oxidise-primary
+        type: multiple_choice
+        prompt: >-
+          Oxidising a primary alcohol first forms an aldehyde, then a carboxylic acid.
+          What does fully oxidising ethanol produce?
+        choices: [ethanal only, propanone, ethanoic acid, ethyl ethanoate]
+        answer: 2
+        explanation: Ethanol → ethanal → ethanoic acid.
+
+      - id: isomer-count
+        type: multiple_choice
+        prompt: 'Which compound is an isomer of propanal (C₃H₆O)?'
+        choices: [propan-1-ol, propanone, propanoic acid, propane]
+        answer: 1
+        explanation: Propanone also has the formula C₃H₆O; its C=O is in the middle instead of the end.
+
+      - id: water-molecules
+        type: math_input
+        prompt: >-
+          How many molecules of water are released when one molecule of ethanoic acid reacts
+          completely with one molecule of methanol?
+        answer: '1'
+        placeholder: Enter a number
+        explanation: Each esterification joins one acid and one alcohol and releases one H₂O.

@@ -214,3 +214,200 @@ lessons:
         placeholder: Enter a number
         hint: 'Factor theorem: $(x - 2)$ is a factor exactly when $p(2) = 0$.'
         explanation: '$p(2) = 8 + 2k - 4 = 0 \Rightarrow 2k = -4 \Rightarrow k = -2$'
+
+  # =========================================================================================
+  # Topic 2: Dividing polynomials
+  # =========================================================================================
+  - id: mhf4u-u1-t2-learn
+    kind: learn
+    topic: Dividing Polynomials
+    title: 'Learn: Dividing Polynomials'
+    description: Long division, the remainder theorem and the factor theorem.
+    xp: 10
+    items:
+      - type: teach
+        id: polynomial-division
+        title: Dividing polynomials
+        blocks:
+          - type: text
+            md: |-
+              Polynomials divide like numbers. Every division can be written as
+
+              $$p(x) = d(x)\,q(x) + r(x)$$
+
+              (dividend $=$ divisor $\times$ quotient $+$ remainder). For example:
+
+              - $(x^2 + 5x + 6) \div (x + 2) = x + 3$, remainder $0$
+              - $(x^2 + 3x + 5) \div (x + 1) = x + 2$, remainder $3$
+          - type: callout
+            tone: tip
+            md: 'Check by multiplying back: $(x + 1)(x + 2) + 3 = x^2 + 3x + 5$.'
+
+      - id: divide-quadratic
+        type: math_input
+        prompt: 'Find the quotient of $(x^2 + 7x + 12) \div (x + 3)$.'
+        answer: x + 4
+        display_answer: '$x + 4$'
+        variables: [x]
+        placeholder: e.g. x + 1
+        explanation: '$x^2 + 7x + 12 = (x + 3)(x + 4)$, so the quotient is $x + 4$ with remainder $0$.'
+
+      - type: teach
+        id: remainder-theorem
+        title: The remainder theorem
+        blocks:
+          - type: text
+            md: |-
+              When $p(x)$ is divided by $(x - a)$, the remainder is $p(a)$. No division needed!
+
+              For $p(x) = x^3 - 2x + 1$ divided by $(x - 2)$: $p(2) = 8 - 4 + 1 = 5$.
+          - type: callout
+            tone: warning
+            title: Watch the sign
+            md: 'Dividing by $(x + 3)$ means $a = -3$, so evaluate $p(-3)$.'
+
+      - id: remainder-check
+        type: math_input
+        prompt: 'Find the remainder when $x^3 + x^2 - 4$ is divided by $(x - 1)$.'
+        answer: '-2'
+        placeholder: Enter a number
+        explanation: '$p(1) = 1 + 1 - 4 = -2$'
+
+      - type: teach
+        id: factor-theorem
+        title: The factor theorem
+        blocks:
+          - type: text
+            md: |-
+              $(x - a)$ is a **factor** of $p(x)$ exactly when $p(a) = 0$. To find factors, test
+              the integers that divide the constant term.
+
+              $p(x) = x^3 - 6x^2 + 11x - 6$: $p(1) = 0$, $p(2) = 0$, $p(3) = 0$, so
+              $p(x) = (x - 1)(x - 2)(x - 3)$.
+          - type: graph
+            x: [-0.5, 4]
+            y: [-3, 3]
+            curves:
+              - { expr: x^3 - 6x^2 + 11x - 6, label: y = p(x) }
+            points:
+              - { at: [1, 0], label: '1', color: accent }
+              - { at: [2, 0], label: '2', color: accent }
+              - { at: [3, 0], label: '3', color: accent }
+            caption: Each factor $(x - a)$ is a zero where the graph crosses the $x$-axis.
+
+      - id: which-factor
+        type: multiple_choice
+        prompt: 'Which is a factor of $p(x) = x^3 - 6x^2 + 11x - 6$?'
+        choices: ['$(x + 1)$', '$(x + 3)$', '$(x - 3)$', '$(x - 6)$']
+        answer: 2
+        explanation: '$p(3) = 27 - 54 + 33 - 6 = 0$, so $(x - 3)$ is a factor.'
+
+  - id: mhf4u-u1-t2-practice
+    kind: practice
+    topic: Dividing Polynomials
+    title: 'Practice: Dividing Polynomials'
+    description: Remainders and factors without long division.
+    xp: 10
+    items:
+      - id: remainder-quadratic
+        type: math_input
+        prompt: 'Find the remainder when $x^2 + 4x + 1$ is divided by $(x - 1)$.'
+        answer: '6'
+        placeholder: Enter a number
+        explanation: '$p(1) = 1 + 4 + 1 = 6$'
+
+      - id: evaluate-negative
+        type: math_input
+        prompt: 'If $p(x) = 2x^3 - x + 4$, find $p(-1)$.'
+        answer: '3'
+        placeholder: Enter a number
+        explanation: '$p(-1) = -2 + 1 + 4 = 3$'
+
+      - id: zero-means-factor
+        type: multiple_choice
+        prompt: 'If $p(4) = 0$, which must be true?'
+        choices:
+          - '$(x + 4)$ is a factor of $p(x)$'
+          - '$(x - 4)$ is a factor of $p(x)$'
+          - '$p(x)$ has degree 4'
+          - 'The remainder of $p(x) \div (x - 4)$ is $4$'
+        answer: 1
+        explanation: 'By the factor theorem, $p(4) = 0$ means $(x - 4)$ is a factor.'
+
+      - id: difference-of-squares
+        type: math_input
+        prompt: 'Find the quotient of $(x^2 - 9) \div (x - 3)$.'
+        answer: x + 3
+        display_answer: '$x + 3$'
+        variables: [x]
+        placeholder: e.g. x + 1
+        explanation: '$x^2 - 9 = (x - 3)(x + 3)$'
+
+      - id: possible-zeros
+        type: multiple_choice
+        prompt: 'Which values should you test as possible integer zeros of $x^3 + 2x^2 - 5x - 6$?'
+        choices:
+          - '$\pm 1,\ \pm 2,\ \pm 5$'
+          - '$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6$'
+          - '$\pm 1,\ \pm 5$'
+          - '$0,\ \pm 6$'
+        answer: 1
+        explanation: Integer zeros must divide the constant term, $-6$.
+
+      - id: remainder-plus-two
+        type: math_input
+        prompt: 'Find the remainder when $x^3$ is divided by $(x + 2)$.'
+        answer: '-8'
+        placeholder: Enter a number
+        explanation: '$a = -2$, so the remainder is $(-2)^3 = -8$.'
+
+  - id: mhf4u-u1-t2-destroyer
+    kind: destroyer
+    topic: Dividing Polynomials
+    title: 'Destroyer: Dividing Polynomials'
+    description: Unknown coefficients and full factoring.
+    xp: 30
+    items:
+      - id: find-k-remainder
+        type: math_input
+        prompt: 'Find $k$ so that $x^3 + kx^2 - 3$ leaves a remainder of $4$ when divided by $(x - 1)$.'
+        answer: '6'
+        placeholder: k = ?
+        explanation: '$p(1) = 1 + k - 3 = 4 \Rightarrow k = 6$'
+
+      - id: factor-fully
+        type: multiple_choice
+        prompt: 'Factor $x^3 - 7x - 6$ fully.'
+        choices:
+          - '$(x - 1)(x - 2)(x + 3)$'
+          - '$(x + 1)(x + 2)(x - 3)$'
+          - '$(x + 1)(x - 2)(x + 3)$'
+          - '$(x - 1)(x + 6)(x + 1)$'
+        answer: 1
+        hint: 'Test $p(-1)$ first.'
+        explanation: '$p(-1) = -1 + 7 - 6 = 0$. Dividing gives $x^2 - x - 6 = (x + 2)(x - 3)$.'
+
+      - id: synthetic-quotient
+        type: math_input
+        prompt: 'Find the quotient when $2x^3 + 3x^2 - 2x + 5$ is divided by $(x + 2)$.'
+        answer: 2x^2 - x
+        display_answer: '$2x^2 - x$ (remainder $5$)'
+        variables: [x]
+        placeholder: e.g. x^2 + 1
+        explanation: |-
+          Synthetic division with $-2$: coefficients $2,\ 3,\ -2,\ 5 \rightarrow 2,\ -1,\ 0$ with
+          remainder $5$. So the quotient is $2x^2 - x$.
+
+      - id: two-factors-unknowns
+        type: math_input
+        prompt: >-
+          $(x - 2)$ and $(x + 1)$ are both factors of $x^3 + ax^2 + bx + 2$. Find $a$.
+        answer: '-2'
+        placeholder: a = ?
+        hint: 'Set $p(2) = 0$ and $p(-1) = 0$, then solve the two equations.'
+        explanation: |-
+          $p(2) = 8 + 4a + 2b + 2 = 0 \Rightarrow 2a + b = -5$
+
+          $p(-1) = -1 + a - b + 2 = 0 \Rightarrow a - b = -1$
+
+          Adding: $3a = -6$, so $a = -2$ (and $b = -1$).

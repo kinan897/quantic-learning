@@ -179,3 +179,177 @@ lessons:
           - Mg and $\text{Na}^{+}$
         answer: 2
         explanation: '$\text{Na}^{+}$ has lost one electron: $11 - 1 = 10$, the same as neon.'
+
+  # =========================================================================================
+  # Topic 2: The periodic table
+  # =========================================================================================
+  - id: science-foundations-u1-t2-learn
+    kind: learn
+    topic: The Periodic Table
+    title: 'Learn: The Periodic Table'
+    description: Periods, groups, metals and chemical families.
+    xp: 10
+    items:
+      - type: teach
+        id: rows-and-columns
+        title: Rows and columns
+        blocks:
+          - type: text
+            md: |-
+              The periodic table arranges elements by **atomic number** (number of protons).
+
+              - A **period** is a row. Elements in the same period have the same number of
+                electron shells.
+              - A **group** (or family) is a column. Elements in the same group have the same
+                number of **valence electrons**, so they react in similar ways.
+          - type: callout
+            tone: key
+            md: Same column, similar chemistry. That's the big idea behind the table.
+
+      - id: same-group
+        type: multiple_choice
+        prompt: Which pair of elements would have the most similar chemical properties?
+        choices: [Sodium and magnesium, Sodium and potassium, Sodium and chlorine, Sodium and neon]
+        answer: 1
+        explanation: Sodium and potassium are both in Group 1, so each has one valence electron.
+
+      - type: teach
+        id: metals-nonmetals
+        title: Metals, non-metals and metalloids
+        blocks:
+          - type: text
+            md: |-
+              A staircase line runs down the right side of the table.
+
+              - **Metals** (left of the line): shiny, conduct heat and electricity, malleable.
+                Most elements are metals.
+              - **Non-metals** (right of the line): dull, brittle as solids, poor conductors.
+                Many are gases.
+              - **Metalloids** (along the line, like silicon and boron): a mix of both.
+          - type: callout
+            tone: warning
+            title: The odd one out
+            md: Hydrogen sits in Group 1 but is a non-metal gas.
+
+      - id: classify-sulfur
+        type: multiple_choice
+        prompt: 'Sulfur is a yellow, brittle solid that does not conduct electricity. It is a...'
+        choices: [metal, metalloid, non-metal, noble gas]
+        answer: 2
+        explanation: Dull, brittle and a poor conductor are all properties of non-metals.
+
+      - type: teach
+        id: chemical-families
+        title: Four families to know
+        blocks:
+          - type: text
+            md: |-
+              - **Group 1, alkali metals** (Li, Na, K): very reactive, react with water.
+              - **Group 2, alkaline earth metals** (Be, Mg, Ca): reactive, less than Group 1.
+              - **Group 17, halogens** (F, Cl, Br): very reactive non-metals.
+              - **Group 18, noble gases** (He, Ne, Ar): full outer shells, so almost
+                completely unreactive.
+
+      - id: noble-gas
+        type: multiple_choice
+        prompt: Why is argon used inside light bulbs instead of air?
+        choices:
+          - It is very reactive and burns brightly
+          - It is a noble gas, so it won't react with the hot filament
+          - It is a metal and conducts electricity
+          - It is a halogen and glows
+        answer: 1
+        explanation: Argon's full outer shell makes it unreactive, so the filament doesn't burn up.
+
+  - id: science-foundations-u1-t2-practice
+    kind: practice
+    topic: The Periodic Table
+    title: 'Practice: The Periodic Table'
+    description: Read the table and name the families.
+    xp: 10
+    items:
+      - id: row-name
+        type: multiple_choice
+        prompt: What is a horizontal row of the periodic table called?
+        choices: [A group, A family, A period, A shell]
+        answer: 2
+        explanation: Rows are periods; columns are groups (families).
+
+      - id: halogen-pick
+        type: multiple_choice
+        prompt: Which element is a halogen?
+        choices: [Chlorine, Calcium, Carbon, Copper]
+        answer: 0
+        explanation: Chlorine is in Group 17, the halogens.
+
+      - id: valence-group-two
+        type: math_input
+        prompt: How many valence electrons does magnesium (Group 2) have?
+        answer: '2'
+        placeholder: Enter a number
+        explanation: Group 2 elements have 2 valence electrons.
+
+      - id: metal-property
+        type: multiple_choice
+        prompt: Which property describes most metals?
+        choices: [Brittle, Good conductor of electricity, Dull, Usually a gas]
+        answer: 1
+        explanation: Metals conduct heat and electricity well.
+
+      - id: most-reactive-family
+        type: multiple_choice
+        prompt: Which family of metals reacts most violently with water?
+        choices: [Noble gases, Halogens, Alkaline earth metals, Alkali metals]
+        answer: 3
+        explanation: Group 1 alkali metals lose their single valence electron very easily.
+
+      - id: shells-period-three
+        type: math_input
+        prompt: How many electron shells does an element in Period 3 have?
+        answer: '3'
+        placeholder: Enter a number
+        explanation: The period number equals the number of occupied electron shells.
+
+  - id: science-foundations-u1-t2-destroyer
+    kind: destroyer
+    topic: The Periodic Table
+    title: 'Destroyer: The Periodic Table'
+    description: Use the table's patterns to predict.
+    xp: 30
+    items:
+      - id: mystery-element
+        type: multiple_choice
+        prompt: >-
+          A mystery element is a shiny solid, conducts electricity and reacts slowly with water.
+          It has 2 valence electrons and 4 electron shells. What is it?
+        choices: [Potassium, Calcium, Magnesium, Bromine]
+        answer: 1
+        explanation: 2 valence electrons means Group 2, and 4 shells means Period 4. That's calcium.
+
+      - id: predict-reactivity
+        type: multiple_choice
+        prompt: >-
+          Lithium, sodium and potassium all react with water. Reactivity increases down the group.
+          Which would react even more violently than potassium?
+        choices: [Magnesium, Hydrogen, Rubidium, Neon]
+        answer: 2
+        explanation: Rubidium is below potassium in Group 1, so it is even more reactive.
+
+      - id: valence-from-atomic-number
+        type: math_input
+        prompt: An element has atomic number 15. How many valence electrons does it have?
+        answer: '5'
+        placeholder: Enter a number
+        hint: 'Fill the shells 2, 8, then the rest.'
+        explanation: 'Phosphorus: 15 electrons arranged 2, 8, 5, so 5 valence electrons.'
+
+      - id: same-period-pair
+        type: multiple_choice
+        prompt: Which statement about sodium (Na) and chlorine (Cl) is true?
+        choices:
+          - They are in the same group, so they react alike
+          - They are in the same period, so both have 3 electron shells
+          - Both are metals
+          - Both are noble gases
+        answer: 1
+        explanation: Na and Cl are both in Period 3. They are in very different groups, a metal and a non-metal.

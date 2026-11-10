@@ -211,3 +211,175 @@ lessons:
         placeholder: Enter a number
         hint: On the $x$-axis, $y = 0$.
         explanation: '$0 = 2x - 6 \Rightarrow x = 3$'
+
+  # =========================================================================================
+  # Topic 2: Solving linear equations
+  # =========================================================================================
+  - id: math-foundations-u1-t2-learn
+    kind: learn
+    topic: Solving Linear Equations
+    title: 'Learn: Solving Linear Equations'
+    description: Balance both sides, collect terms, and clear brackets and fractions.
+    xp: 10
+    items:
+      - type: teach
+        id: keep-it-balanced
+        title: Keep it balanced
+        blocks:
+          - type: text
+            md: |-
+              An equation is like a balanced scale: whatever you do to one side, do to the
+              other. Undo operations in reverse order to get $x$ alone.
+
+              $$3x + 5 = 20 \;\Rightarrow\; 3x = 15 \;\Rightarrow\; x = 5$$
+          - type: graph
+            x: [0, 8]
+            y: [0, 26]
+            curves:
+              - { expr: 3x + 5, label: y = 3x + 5 }
+              - { expr: '20', color: accent, label: y = 20 }
+            points:
+              - { at: [5, 20], label: 'x = 5' }
+            caption: The solution is where the two sides are equal, where the graphs meet.
+
+      - id: two-step-equation
+        type: math_input
+        prompt: 'Solve $2x + 7 = 19$.'
+        answer: '6'
+        placeholder: x = ?
+        explanation: '$2x = 12$, so $x = 6$.'
+
+      - type: teach
+        id: variables-both-sides
+        title: Variables on both sides
+        blocks:
+          - type: text
+            md: |-
+              Collect the $x$-terms on one side and the numbers on the other:
+
+              $$5x - 4 = 2x + 11 \;\Rightarrow\; 3x = 15 \;\Rightarrow\; x = 5$$
+          - type: callout
+            tone: tip
+            md: Move the smaller $x$-term so you're left with a positive coefficient.
+
+      - id: both-sides-check
+        type: math_input
+        prompt: 'Solve $7x - 2 = 3x + 10$.'
+        answer: '3'
+        placeholder: x = ?
+        explanation: '$7x - 3x = 10 + 2 \Rightarrow 4x = 12 \Rightarrow x = 3$'
+
+      - type: teach
+        id: brackets-and-fractions
+        title: Brackets and fractions
+        blocks:
+          - type: text
+            md: |-
+              - **Brackets**: expand first. $3(x - 2) = 12 \Rightarrow 3x - 6 = 12 \Rightarrow x = 6$.
+              - **Fractions**: multiply every term by the denominator.
+                $\dfrac{x}{4} + 1 = 3 \Rightarrow x + 4 = 12 \Rightarrow x = 8$.
+          - type: callout
+            tone: warning
+            title: Common mistake
+            md: 'Multiply **every** term when clearing fractions, including the ones without a denominator.'
+
+      - id: bracket-check
+        type: math_input
+        prompt: 'Solve $2(x + 3) = 18$.'
+        answer: '6'
+        placeholder: x = ?
+        explanation: '$2x + 6 = 18 \Rightarrow 2x = 12 \Rightarrow x = 6$'
+
+  - id: math-foundations-u1-t2-practice
+    kind: practice
+    topic: Solving Linear Equations
+    title: 'Practice: Solving Linear Equations'
+    description: One- and two-step equations.
+    xp: 10
+    items:
+      - id: one-step-add
+        type: math_input
+        prompt: 'Solve $x + 9 = 4$.'
+        answer: '-5'
+        placeholder: x = ?
+        explanation: Subtract $9$ from both sides.
+
+      - id: one-step-multiply
+        type: math_input
+        prompt: 'Solve $5x = 35$.'
+        answer: '7'
+        placeholder: x = ?
+        explanation: Divide both sides by $5$.
+
+      - id: two-step-practice
+        type: math_input
+        prompt: 'Solve $3x - 8 = 10$.'
+        answer: '6'
+        placeholder: x = ?
+        explanation: '$3x = 18 \Rightarrow x = 6$'
+
+      - id: divide-by-three
+        type: math_input
+        prompt: 'Solve $\dfrac{x}{3} = 5$.'
+        answer: '15'
+        placeholder: x = ?
+        explanation: Multiply both sides by $3$.
+
+      - id: first-step
+        type: multiple_choice
+        prompt: 'What is the best first step to solve $4x + 6 = 30$?'
+        choices: [Divide both sides by 6, Subtract 6 from both sides, Add 4 to both sides, Multiply both sides by 4]
+        answer: 1
+        explanation: 'Undo the $+6$ first to get $4x = 24$, then divide by $4$.'
+
+      - id: check-solution
+        type: multiple_choice
+        prompt: 'Is $x = 2$ a solution of $3x + 1 = 7$?'
+        choices:
+          - 'Yes, because $3(2) + 1 = 7$'
+          - 'No, because $3(2) + 1 = 6$'
+          - 'No, because $2 + 1 = 3$'
+          - Only if $x$ is negative
+        answer: 0
+        explanation: Substituting $x = 2$ makes both sides equal to $7$, so it is a solution.
+
+  - id: math-foundations-u1-t2-destroyer
+    kind: destroyer
+    topic: Solving Linear Equations
+    title: 'Destroyer: Solving Linear Equations'
+    description: Brackets, fractions and word problems.
+    xp: 30
+    items:
+      - id: brackets-both-sides
+        type: math_input
+        prompt: 'Solve $6(x - 1) = 2(x + 7)$.'
+        answer: '5'
+        placeholder: x = ?
+        explanation: '$6x - 6 = 2x + 14 \Rightarrow 4x = 20 \Rightarrow x = 5$'
+
+      - id: fractions-both-sides
+        type: math_input
+        prompt: 'Solve $\dfrac{x + 2}{3} = \dfrac{x - 1}{2}$.'
+        answer: '7'
+        placeholder: x = ?
+        hint: Multiply both sides by $6$.
+        explanation: '$2(x + 2) = 3(x - 1) \Rightarrow 2x + 4 = 3x - 3 \Rightarrow x = 7$'
+
+      - id: phone-plan
+        type: math_input
+        prompt: >-
+          A phone plan costs 20 dollars a month plus 0.10 dollars per minute. How many minutes
+          make the monthly bill 35 dollars?
+        answer: '150'
+        placeholder: minutes
+        explanation: '$20 + 0.10m = 35 \Rightarrow 0.10m = 15 \Rightarrow m = 150$ minutes'
+
+      - id: rectangle-width
+        type: math_input
+        prompt: >-
+          A rectangle's length is $3$ cm more than twice its width. Its perimeter is $54$ cm.
+          Find the width, in cm.
+        answer: '8'
+        placeholder: cm
+        hint: 'Let the width be $w$, so the length is $2w + 3$.'
+        explanation: '$2(2w + 3) + 2w = 54 \Rightarrow 6w + 6 = 54 \Rightarrow w = 8$ cm'

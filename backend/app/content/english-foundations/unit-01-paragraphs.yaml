@@ -219,3 +219,209 @@ lessons:
           - Technology is very interesting.
         answer: 2
         explanation: It picks one specific, arguable claim instead of a vague statement that can't be proven or disproven.
+
+  # =========================================================================================
+  # Topic 2: Introductions and conclusions
+  # =========================================================================================
+  - id: english-foundations-u1-t2-learn
+    kind: learn
+    topic: Introductions and Conclusions
+    title: 'Learn: Introductions and Conclusions'
+    description: Hook the reader, state the thesis, and finish strong.
+    xp: 10
+    items:
+      - type: teach
+        id: funnel-introduction
+        title: The funnel introduction
+        blocks:
+          - type: text
+            md: |-
+              A strong introduction moves from general to specific, like a funnel:
+
+              1. **Hook**: a surprising fact, question or vivid image that makes the reader care.
+              2. **Context**: the background the reader needs (the topic, the text, the author).
+              3. **Thesis**: your specific, arguable claim, usually the last sentence.
+          - type: callout
+            tone: warning
+            title: Hooks to avoid
+            md: 'Dictionary definitions ("Webster''s defines courage as...") and huge claims ("Since the dawn of time...") feel lazy.'
+
+      - id: thesis-location
+        type: multiple_choice
+        prompt: Where does the thesis usually go in a funnel introduction?
+        choices: [The first sentence, The middle, The last sentence, In the conclusion only]
+        answer: 2
+        explanation: The introduction narrows down to the thesis, so it comes last.
+
+      - type: teach
+        id: good-hooks
+        title: Hooks that work
+        blocks:
+          - type: text
+            md: |-
+              - **Surprising fact**: *"The average teen checks their phone over 100 times a day."*
+              - **Question**: *"What would you give up to be popular?"*
+              - **Scene**: *"The bell rang, but nobody moved."*
+              - **Bold statement**: *"Homework is stealing your sleep."*
+
+              The best hook connects directly to your thesis.
+
+      - id: best-hook
+        type: multiple_choice
+        prompt: An essay argues that schools should start later. Which hook is best?
+        choices:
+          - Since the beginning of time, people have slept.
+          - Teenagers' body clocks shift later during puberty, yet most high schools start before 8:30.
+          - This essay is about school start times.
+          - Sleep is defined as a state of rest.
+        answer: 1
+        explanation: It's a specific, surprising fact that leads straight into the argument.
+
+      - type: teach
+        id: strong-conclusions
+        title: Strong conclusions
+        blocks:
+          - type: text
+            md: |-
+              A conclusion is the funnel flipped: specific to general.
+
+              1. **Restate the thesis in new words** (don't copy it).
+              2. **Sum up** the main points briefly.
+              3. **Zoom out**: why does this matter beyond the essay?
+          - type: callout
+            tone: key
+            md: Never add brand-new evidence in the conclusion. It's for closing, not opening new arguments.
+
+      - id: conclusion-mistake
+        type: multiple_choice
+        prompt: Which is a mistake in a conclusion?
+        choices:
+          - Restating the thesis in new words
+          - Briefly summing up the main points
+          - Introducing a new quote that wasn't discussed
+          - Explaining why the topic matters
+        answer: 2
+        explanation: New evidence belongs in a body paragraph, where you can explain it.
+
+  - id: english-foundations-u1-t2-practice
+    kind: practice
+    topic: Introductions and Conclusions
+    title: 'Practice: Introductions and Conclusions'
+    description: Spot the parts and pick the strongest options.
+    xp: 10
+    items:
+      - id: hook-purpose
+        type: multiple_choice
+        prompt: What is the main job of a hook?
+        choices: [To state the thesis, To grab the reader's interest, To list the evidence, To summarize the essay]
+        answer: 1
+        explanation: The hook makes the reader want to keep reading.
+
+      - id: identify-context
+        type: multiple_choice
+        prompt: >-
+          "In S. E. Hinton's novel The Outsiders, two rival gangs clash in 1960s Oklahoma."
+          Which part of an introduction is this sentence?
+        choices: [Hook, Context, Thesis, Conclusion]
+        answer: 1
+        explanation: It gives background on the text the reader needs before the thesis.
+
+      - id: funnel-order
+        type: multiple_choice
+        prompt: What is the correct order for a funnel introduction?
+        choices: ['Thesis → Hook → Context', 'Context → Thesis → Hook', 'Hook → Context → Thesis', 'Hook → Thesis → Context']
+        answer: 2
+        explanation: General to specific, ending on the thesis.
+
+      - id: restate-thesis
+        type: multiple_choice
+        prompt: >-
+          Thesis: "Social media harms teens' sleep, focus and self-esteem." Which is the best
+          restatement for the conclusion?
+        choices:
+          - Social media harms teens' sleep, focus and self-esteem.
+          - In conclusion, this essay was about social media.
+          - Clearly, the constant scroll costs teens far more than time. It drains their rest, attention and confidence.
+          - Social media is popular.
+        answer: 2
+        explanation: Same idea, new words, and it sounds like a confident ending.
+
+      - id: weak-hook
+        type: multiple_choice
+        prompt: Which hook is weakest?
+        choices:
+          - '"Are we raising a generation that can''t be bored?"'
+          - Since the dawn of time, humans have used technology.
+          - Last year, the average Canadian teen spent over seven hours a day on screens.
+          - The phone buzzed again, the fourth time in a minute.
+        answer: 1
+        explanation: It's vague and could start any essay about anything.
+
+      - id: zoom-out
+        type: multiple_choice
+        prompt: What does it mean to "zoom out" at the end of a conclusion?
+        choices:
+          - Repeat each body paragraph word for word
+          - Show why the argument matters in a bigger context
+          - Add a new piece of evidence
+          - Apologize for any weak points
+        answer: 1
+        explanation: Zooming out connects your essay to the wider world or a lasting idea.
+
+  - id: english-foundations-u1-t2-destroyer
+    kind: destroyer
+    topic: Introductions and Conclusions
+    title: 'Destroyer: Introductions and Conclusions'
+    description: Judge and repair full introductions and conclusions.
+    xp: 30
+    items:
+      - id: fix-introduction
+        type: multiple_choice
+        prompt: |-
+          What is the biggest problem with this introduction?
+
+          "Friendship is important. In this essay I will talk about friendship in The Outsiders.
+          There are many friendships in the book. Ponyboy has friends."
+        choices:
+          - It has no hook at all
+          - It has no arguable thesis; it only announces a topic
+          - It is too long
+          - It uses the title of the book
+        answer: 1
+        explanation: Nothing here makes a claim someone could argue with. Every sentence just states facts or the topic.
+
+      - id: order-introduction
+        type: multiple_choice
+        prompt: |-
+          Put these in the strongest order for an introduction:
+
+          A. Hinton shows that loyalty to friends can matter more than loyalty to a gang.
+          B. When Johnny tells Ponyboy to "stay gold," he isn't talking about gangs at all.
+          C. The Outsiders follows two rival groups, the Greasers and the Socs, in 1960s Oklahoma.
+        choices: ['A → B → C', 'C → A → B', 'B → C → A', 'B → A → C']
+        answer: 2
+        explanation: Hook (B), context (C), thesis (A).
+
+      - id: best-conclusion
+        type: multiple_choice
+        prompt: >-
+          Thesis: "Uniforms help students focus on learning instead of image." Which closing
+          sentence zooms out best?
+        choices:
+          - That is why uniforms are good.
+          - In the end, what we wear should never decide how much we learn.
+          - Uniforms come in many colours.
+          - Another reason is that uniforms are cheaper, which I didn't mention.
+        answer: 1
+        explanation: It lifts the argument into a broader, memorable idea without adding new evidence.
+
+      - id: thesis-repair
+        type: multiple_choice
+        prompt: 'Which revision turns "The book has a lot of symbolism." into an arguable thesis?'
+        choices:
+          - The book has a lot of different symbols.
+          - In The Outsiders, the sunset symbolizes that Greasers and Socs share more than divides them.
+          - Symbolism is when an object stands for an idea.
+          - I will discuss the symbolism in the book.
+        answer: 1
+        explanation: It names a specific symbol and makes a claim about what it means.

@@ -197,3 +197,194 @@ lessons:
         explanation: >-
           For example, a "cougar", "puma" and "mountain lion" are all *Puma concolor*. A single
           scientific name avoids that confusion.
+
+  # =========================================================================================
+  # Topic 2: Bacteria and viruses
+  # =========================================================================================
+  - id: sbi3u-u1-t2-learn
+    kind: learn
+    topic: Bacteria and Viruses
+    title: 'Learn: Bacteria and Viruses'
+    description: Prokaryotic cells, how bacteria grow, and why viruses aren't alive.
+    xp: 10
+    items:
+      - type: teach
+        id: bacterial-cells
+        title: Bacteria are prokaryotes
+        blocks:
+          - type: text
+            md: |-
+              Bacteria are single-celled **prokaryotes**: no nucleus and no membrane-bound
+              organelles. Their DNA floats in a region called the **nucleoid**, often with
+              small extra loops of DNA called **plasmids**.
+
+              They are classified by shape: **cocci** (spheres), **bacilli** (rods) and
+              **spirilla** (spirals).
+          - type: callout
+            tone: key
+            md: Most bacteria are harmless or helpful, in digestion, in soil and in making foods like yogurt.
+
+      - id: rod-shaped
+        type: multiple_choice
+        prompt: What is a rod-shaped bacterium called?
+        choices: [Coccus, Spirillum, Bacillus, Virion]
+        answer: 2
+        explanation: Bacilli are rods, cocci are spheres and spirilla are spirals.
+
+      - type: teach
+        id: binary-fission
+        title: Binary fission
+        blocks:
+          - type: text
+            md: |-
+              Bacteria reproduce asexually by **binary fission**: copy the DNA, then split in two.
+              In good conditions this can happen every $20$ minutes, so the population
+              **doubles** each generation.
+          - type: graph
+            x: [0, 6.5]
+            y: [0, 70]
+            x_label: generations
+            y_label: bacteria
+            curves:
+              - { expr: 2^x, domain: [0, 6], label: 'N = 2ⁿ' }
+            points:
+              - { at: [6, 64], label: '64' }
+            caption: One cell becomes 64 after six generations, two hours at 20 minutes each.
+
+      - id: doubling-count
+        type: math_input
+        prompt: A single bacterium divides every 20 minutes. How many bacteria are there after 1 hour?
+        answer: '8'
+        placeholder: Enter a number
+        explanation: 'One hour is 3 generations: $2^3 = 8$.'
+
+      - type: teach
+        id: viruses
+        title: Viruses
+        blocks:
+          - type: text
+            md: |-
+              A virus is genetic material (DNA or RNA) inside a protein coat called a **capsid**.
+              It has no cells, no metabolism, and can only reproduce **inside a host cell**,
+              so most biologists don't classify viruses as living.
+
+              In the **lytic cycle**, a virus takes over the cell, makes copies of itself, and
+              bursts the cell open. In the **lysogenic cycle**, its DNA hides in the host's
+              DNA and is copied every time the cell divides, until it switches to lytic.
+          - type: callout
+            tone: warning
+            title: Antibiotics vs viruses
+            md: Antibiotics target bacterial structures. They do nothing against viruses.
+
+      - id: virus-not-alive
+        type: multiple_choice
+        prompt: Why are viruses usually not considered living?
+        choices:
+          - They are too small to see
+          - They contain no genetic material
+          - They cannot reproduce or carry out metabolism on their own
+          - They only infect animals
+        answer: 2
+        explanation: Viruses need a host cell's machinery to do anything at all.
+
+  - id: sbi3u-u1-t2-practice
+    kind: practice
+    topic: Bacteria and Viruses
+    title: 'Practice: Bacteria and Viruses'
+    description: Structures, shapes and life cycles.
+    xp: 10
+    items:
+      - id: prokaryote-missing
+        type: multiple_choice
+        prompt: Which structure do bacteria NOT have?
+        choices: [Cell membrane, Ribosomes, Nucleus, DNA]
+        answer: 2
+        explanation: Prokaryotes have no nucleus; their DNA sits in the nucleoid.
+
+      - id: capsid-name
+        type: multiple_choice
+        prompt: What is the protein coat of a virus called?
+        choices: [Capsid, Plasmid, Cell wall, Nucleoid]
+        answer: 0
+        explanation: The capsid protects the virus's genetic material.
+
+      - id: sphere-shape
+        type: multiple_choice
+        prompt: Streptococcus bacteria are spheres arranged in chains. What shape are they?
+        choices: [Bacilli, Spirilla, Cocci, Rods]
+        answer: 2
+        explanation: '"Cocci" means spheres, and "strepto-" means chains.'
+
+      - id: generations-to-16
+        type: math_input
+        prompt: Starting from one bacterium, how many generations of binary fission make 16 bacteria?
+        answer: '4'
+        placeholder: Enter a number
+        explanation: '$2^4 = 16$'
+
+      - id: lytic-ending
+        type: multiple_choice
+        prompt: How does the lytic cycle end?
+        choices:
+          - The viral DNA joins the host DNA
+          - The host cell bursts and releases new viruses
+          - The host cell divides normally
+          - The virus is destroyed by antibiotics
+        answer: 1
+        explanation: Lysis means bursting; the new viruses go on to infect more cells.
+
+      - id: antibiotic-use
+        type: multiple_choice
+        prompt: Antibiotics would help treat which illness?
+        choices: [The flu, The common cold, Strep throat, Chickenpox]
+        answer: 2
+        explanation: Strep throat is caused by bacteria; the others are viral.
+
+  - id: sbi3u-u1-t2-destroyer
+    kind: destroyer
+    topic: Bacteria and Viruses
+    title: 'Destroyer: Bacteria and Viruses'
+    description: Growth calculations and resistance.
+    xp: 30
+    items:
+      - id: three-hour-growth
+        type: math_input
+        prompt: >-
+          A sample starts with 50 bacteria that divide every 30 minutes. How many are there after
+          3 hours, assuming none die?
+        answer: '3200'
+        placeholder: Enter a number
+        explanation: '3 hours is 6 generations: $50 \times 2^6 = 50 \times 64 = 3200$.'
+
+      - id: resistance-cause
+        type: multiple_choice
+        prompt: How does antibiotic resistance spread through a bacterial population?
+        choices:
+          - Bacteria learn to avoid the antibiotic
+          - The antibiotic causes every bacterium to mutate
+          - Resistant bacteria survive and reproduce, so their genes become more common
+          - Viruses carry the antibiotic away
+        answer: 2
+        explanation: This is natural selection. Plasmids can also pass resistance genes between bacteria.
+
+      - id: lysogenic-hidden
+        type: multiple_choice
+        prompt: >-
+          A person infected with a herpes virus has no symptoms for years, then gets a cold sore.
+          Which best explains this?
+        choices:
+          - The virus was in the lytic cycle the whole time
+          - The virus was in the lysogenic cycle, then switched to the lytic cycle
+          - The virus died and a new one infected them
+          - Bacteria activated the virus
+        answer: 1
+        explanation: The viral DNA stayed hidden in host cells, then entered the lytic cycle and caused symptoms.
+
+      - id: doubling-time
+        type: math_input
+        prompt: >-
+          A culture grows from 100 to 800 bacteria in 90 minutes. What is the doubling time,
+          in minutes?
+        answer: '30'
+        placeholder: minutes
+        explanation: '$800 / 100 = 8 = 2^3$, so 3 doublings in 90 minutes: one every 30 minutes.'

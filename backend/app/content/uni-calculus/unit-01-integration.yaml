@@ -198,3 +198,185 @@ lessons:
         explanation: >-
           $x^3$ is an odd function: the area below the axis on $[-1, 0]$ exactly cancels the area
           above it on $[0, 1]$. Check: $\left[\tfrac{x^4}{4}\right]_{-1}^{1} = \tfrac14 - \tfrac14 = 0$.
+
+  # =========================================================================================
+  # Topic 2: Integration by substitution
+  # =========================================================================================
+  - id: uni-calculus-u1-t2-learn
+    kind: learn
+    topic: Substitution
+    title: 'Learn: Substitution'
+    description: Undo the chain rule with u-substitution.
+    xp: 10
+    items:
+      - type: teach
+        id: undo-chain-rule
+        title: Undoing the chain rule
+        blocks:
+          - type: text
+            md: |-
+              When an integrand contains a function **and its derivative**, substitute
+              $u = g(x)$, $du = g'(x)\,dx$:
+
+              $$\int f\big(g(x)\big)\,g'(x)\,dx = \int f(u)\,du$$
+
+              Example: $\displaystyle\int 2x\,(x^2 + 1)^3\,dx$. Let $u = x^2 + 1$, so
+              $du = 2x\,dx$. Then $\displaystyle\int u^3\,du = \frac{u^4}{4} + C =
+              \frac{(x^2 + 1)^4}{4} + C$.
+          - type: callout
+            tone: tip
+            md: Choose $u$ to be the "inside" part whose derivative also appears in the integral.
+
+      - id: choose-u
+        type: multiple_choice
+        prompt: 'For $\displaystyle\int 3x^2 \cos\left(x^3\right) dx$, what is the best choice of $u$?'
+        choices: ['$3x^2$', '$\cos x$', '$x^3$', '$\cos\left(x^3\right)$']
+        answer: 2
+        explanation: '$u = x^3$ gives $du = 3x^2\,dx$, which is already in the integral.'
+
+      - type: teach
+        id: adjusting-constants
+        title: Adjusting constants
+        blocks:
+          - type: text
+            md: |-
+              If the derivative is only off by a constant, divide it out:
+
+              $\displaystyle\int x\,e^{x^2}\,dx$: let $u = x^2$, $du = 2x\,dx$, so
+              $x\,dx = \tfrac{1}{2}du$.
+
+              $$\int x\,e^{x^2}\,dx = \frac{1}{2}\int e^u\,du = \frac{1}{2}e^{x^2} + C$$
+
+      - id: linear-inside
+        type: multiple_choice
+        prompt: 'Evaluate $\displaystyle\int \cos(5x)\,dx$.'
+        choices:
+          - '$5\sin(5x) + C$'
+          - '$\dfrac{\sin(5x)}{5} + C$'
+          - '$-\dfrac{\sin(5x)}{5} + C$'
+          - '$\sin(5x) + C$'
+        answer: 1
+        explanation: '$u = 5x$, $du = 5\,dx$: $\tfrac{1}{5}\displaystyle\int \cos u\,du = \tfrac{1}{5}\sin(5x) + C$.'
+
+      - type: teach
+        id: definite-substitution
+        title: 'Definite integrals: change the limits'
+        blocks:
+          - type: text
+            md: |-
+              With a definite integral, convert the limits to $u$-values too, and there's no
+              need to substitute back:
+
+              $$\int_0^1 2x\,(x^2 + 1)^3\,dx = \int_1^2 u^3\,du = \left[\frac{u^4}{4}\right]_1^2 = \frac{16 - 1}{4} = \frac{15}{4}$$
+          - type: callout
+            tone: warning
+            title: Common mistake
+            md: 'Mixing $x$-limits with a $u$-integral. When $x = 0$, $u = 1$; when $x = 1$, $u = 2$.'
+
+      - id: definite-exponential
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^1 2x\,e^{x^2}\,dx$.'
+        answer: e - 1
+        display_answer: '$e - 1$'
+        placeholder: Enter an exact value
+        explanation: '$u = x^2$ runs from $0$ to $1$: $\displaystyle\int_0^1 e^u\,du = e - 1$.'
+
+  - id: uni-calculus-u1-t2-practice
+    kind: practice
+    topic: Substitution
+    title: 'Practice: Substitution'
+    description: Pick u, adjust constants, evaluate.
+    xp: 10
+    items:
+      - id: choose-u-linear
+        type: multiple_choice
+        prompt: 'For $\displaystyle\int (3x + 1)^5\,dx$, the natural choice is $u = $'
+        choices: ['$3x$', '$(3x + 1)^5$', '$3x + 1$', '$x^5$']
+        answer: 2
+        explanation: 'The inside of the power, $3x + 1$, has derivative $3$, a constant you can adjust for.'
+
+      - id: power-of-quadratic
+        type: multiple_choice
+        prompt: 'Evaluate $\displaystyle\int 2x\,(x^2 + 3)^4\,dx$.'
+        choices:
+          - '$\dfrac{(x^2 + 3)^5}{5} + C$'
+          - '$(x^2 + 3)^5 + C$'
+          - '$\dfrac{2x(x^2 + 3)^5}{5} + C$'
+          - '$4(x^2 + 3)^3 + C$'
+        answer: 0
+        explanation: '$u = x^2 + 3$, $du = 2x\,dx$: $\displaystyle\int u^4\,du = \frac{u^5}{5} + C$.'
+
+      - id: definite-cubic-sub
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^1 3x^2\left(x^3 + 1\right)dx$.'
+        answer: 3/2
+        display_answer: '$\dfrac{3}{2}$'
+        placeholder: Enter a number or fraction
+        explanation: '$u = x^3 + 1$ runs from $1$ to $2$: $\displaystyle\int_1^2 u\,du = \frac{4 - 1}{2} = \frac{3}{2}$.'
+
+      - id: exponential-linear
+        type: multiple_choice
+        prompt: 'Evaluate $\displaystyle\int e^{3x}\,dx$.'
+        choices: ['$3e^{3x} + C$', '$e^{3x} + C$', '$\dfrac{e^{3x}}{3} + C$', '$\dfrac{e^{3x + 1}}{3x + 1} + C$']
+        answer: 2
+        explanation: '$u = 3x$, $du = 3\,dx$: $\tfrac{1}{3}e^{3x} + C$.'
+
+      - id: sin-cos
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^{\pi/2} \sin x \cos x\,dx$.'
+        answer: 1/2
+        display_answer: '$\dfrac{1}{2}$'
+        placeholder: Enter a number or fraction
+        explanation: '$u = \sin x$ runs from $0$ to $1$: $\displaystyle\int_0^1 u\,du = \frac{1}{2}$.'
+
+      - id: find-du
+        type: multiple_choice
+        prompt: 'If $u = x^2 + 4x$, then $du = $'
+        choices: ['$(2x + 4)\,dx$', '$(x + 4)\,dx$', '$2x\,dx$', '$(x^2 + 4)\,dx$']
+        answer: 0
+        explanation: Differentiate $u$ with respect to $x$, then multiply by $dx$.
+
+  - id: uni-calculus-u1-t2-destroyer
+    kind: destroyer
+    topic: Substitution
+    title: 'Destroyer: Substitution'
+    description: Logarithms, roots and trig powers.
+    xp: 30
+    items:
+      - id: log-over-x
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_1^{e} \frac{\ln x}{x}\,dx$.'
+        answer: 1/2
+        display_answer: '$\dfrac{1}{2}$'
+        placeholder: Enter a number or fraction
+        explanation: '$u = \ln x$, $du = \tfrac{1}{x}dx$, from $u = 0$ to $u = 1$: $\displaystyle\int_0^1 u\,du = \frac{1}{2}$.'
+
+      - id: x-over-quadratic
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^1 \frac{x}{x^2 + 1}\,dx$.'
+        answer: ln(2)/2
+        display_answer: '$\dfrac{\ln 2}{2}$'
+        placeholder: Enter an exact value
+        explanation: '$u = x^2 + 1$ from $1$ to $2$: $\tfrac{1}{2}\displaystyle\int_1^2 \frac{du}{u} = \tfrac{1}{2}\ln 2$.'
+
+      - id: root-substitution
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^2 x\sqrt{x^2 + 5}\,dx$.'
+        answer: (27 - 5sqrt(5))/3
+        display_answer: '$\dfrac{27 - 5\sqrt{5}}{3}$'
+        placeholder: Enter an exact value
+        explanation: |-
+          $u = x^2 + 5$ runs from $5$ to $9$, and $x\,dx = \tfrac{1}{2}du$:
+
+          $$\frac{1}{2}\int_5^9 u^{1/2}\,du = \frac{1}{3}\left[u^{3/2}\right]_5^9 = \frac{27 - 5\sqrt{5}}{3}$$
+
+      - id: trig-power
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^{\pi} \sin x \cos^2 x\,dx$.'
+        answer: 2/3
+        display_answer: '$\dfrac{2}{3}$'
+        placeholder: Enter a number or fraction
+        explanation: |-
+          $u = \cos x$, $du = -\sin x\,dx$. The limits become $u = 1$ to $u = -1$:
+
+          $$-\int_1^{-1} u^2\,du = \int_{-1}^{1} u^2\,du = \frac{2}{3}$$

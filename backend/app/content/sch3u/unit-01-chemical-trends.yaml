@@ -196,3 +196,177 @@ lessons:
         explanation: >-
           $\Delta EN = 3.16 - 2.20 = 0.96$. That's between $0.4$ and $1.7$, so H–Cl is a polar
           covalent bond, with chlorine holding the shared electrons more tightly.
+
+  # =========================================================================================
+  # Topic 2: Chemical bonding
+  # =========================================================================================
+  - id: sch3u-u1-t2-learn
+    kind: learn
+    topic: Chemical Bonding
+    title: 'Learn: Chemical Bonding'
+    description: Ionic, covalent and polar covalent bonds.
+    xp: 10
+    items:
+      - type: teach
+        id: ionic-bonds
+        title: Ionic bonds
+        blocks:
+          - type: text
+            md: |-
+              A metal **transfers** electrons to a non-metal. The metal becomes a positive ion
+              and the non-metal a negative ion, and the opposite charges attract.
+
+              $$\text{Na} \rightarrow \text{Na}^{+} + e^{-} \qquad \text{Cl} + e^{-} \rightarrow \text{Cl}^{-}$$
+
+              Ionic compounds form crystal lattices: high melting points, and they conduct
+              electricity when melted or dissolved.
+
+      - id: identify-ionic
+        type: multiple_choice
+        prompt: Which compound is held together by ionic bonds?
+        choices: ['CO₂', 'H₂O', 'MgO', 'CH₄']
+        answer: 2
+        explanation: Magnesium (a metal) gives two electrons to oxygen (a non-metal).
+
+      - type: teach
+        id: covalent-bonds
+        title: Covalent bonds
+        blocks:
+          - type: text
+            md: |-
+              Two non-metals **share** pairs of electrons so each atom gets a full outer shell.
+
+              - Single bond: one shared pair (H–H)
+              - Double bond: two shared pairs (O=O)
+              - Triple bond: three shared pairs (N≡N)
+
+              Covalent compounds form separate molecules, usually with low melting points.
+          - type: callout
+            tone: key
+            md: 'Metal + non-metal: ionic. Non-metal + non-metal: covalent.'
+
+      - id: shared-pairs-n2
+        type: math_input
+        prompt: How many pairs of electrons are shared in the triple bond of N₂?
+        answer: '3'
+        placeholder: Enter a number
+        explanation: A triple bond is three shared pairs, six electrons in total.
+
+      - type: teach
+        id: electronegativity-difference
+        title: Electronegativity decides
+        blocks:
+          - type: text
+            md: |-
+              Electronegativity ($\text{EN}$) is how strongly an atom pulls on shared electrons.
+              The **difference** $\Delta\text{EN}$ tells you the bond type:
+
+              - $\Delta\text{EN} < 0.5$: non-polar covalent (shared evenly)
+              - $0.5 \le \Delta\text{EN} < 1.7$: **polar covalent** (shared unevenly)
+              - $\Delta\text{EN} \ge 1.7$: ionic (transferred)
+
+              In H–Cl, $\Delta\text{EN} = 3.2 - 2.2 = 1.0$, so chlorine gets a partial negative
+              charge ($\delta^-$) and hydrogen a partial positive charge ($\delta^+$).
+
+      - id: classify-oh-bond
+        type: multiple_choice
+        prompt: 'O has EN 3.4 and H has EN 2.2. What kind of bond is O–H?'
+        choices: [Non-polar covalent, Polar covalent, Ionic, Metallic]
+        answer: 1
+        explanation: '$\Delta\text{EN} = 1.2$, which is between $0.5$ and $1.7$: polar covalent.'
+
+  - id: sch3u-u1-t2-practice
+    kind: practice
+    topic: Chemical Bonding
+    title: 'Practice: Chemical Bonding'
+    description: Classify bonds and predict ions.
+    xp: 10
+    items:
+      - id: electrons-transferred
+        type: multiple_choice
+        prompt: In an ionic bond, electrons are...
+        choices: [shared evenly, shared unevenly, transferred from one atom to another, destroyed]
+        answer: 2
+        explanation: Ionic bonding transfers electrons from the metal to the non-metal.
+
+      - id: covalent-pick
+        type: multiple_choice
+        prompt: Which compound is covalent?
+        choices: ['NaCl', 'KBr', 'CaF₂', 'NH₃']
+        answer: 3
+        explanation: Nitrogen and hydrogen are both non-metals, so they share electrons.
+
+      - id: calcium-ion-charge
+        type: math_input
+        prompt: Calcium is in Group 2. What is the charge on a calcium ion?
+        answer: '2'
+        placeholder: e.g. 2 or -1
+        explanation: Calcium loses its 2 valence electrons to form Ca²⁺.
+
+      - id: oxide-ion-charge
+        type: math_input
+        prompt: Oxygen is in Group 16. What is the charge on an oxide ion?
+        answer: '-2'
+        placeholder: e.g. 2 or -1
+        explanation: Oxygen gains 2 electrons to fill its outer shell, forming O²⁻.
+
+      - id: nonpolar-pick
+        type: multiple_choice
+        prompt: Which bond is non-polar covalent?
+        choices: [Cl–Cl, H–F, Na–Cl, O–H]
+        answer: 0
+        explanation: Two identical atoms have $\Delta\text{EN} = 0$, so the electrons are shared evenly.
+
+      - id: ionic-property
+        type: multiple_choice
+        prompt: Which property is typical of ionic compounds?
+        choices:
+          - Low melting point
+          - Conducts electricity when dissolved in water
+          - Exists as a gas at room temperature
+          - Soft and waxy
+        answer: 1
+        explanation: Dissolved ions are free to move, so the solution conducts.
+
+  - id: sch3u-u1-t2-destroyer
+    kind: destroyer
+    topic: Chemical Bonding
+    title: 'Destroyer: Chemical Bonding'
+    description: Electronegativity, formulas and polarity.
+    xp: 30
+    items:
+      - id: rank-polarity
+        type: multiple_choice
+        prompt: >-
+          EN values are H 2.2, C 2.6, N 3.0, O 3.4, F 4.0. Which bond is the **most** polar?
+        choices: [C–H, N–H, O–H, F–H]
+        answer: 3
+        explanation: 'F–H has the largest difference: $4.0 - 2.2 = 1.8$.'
+
+      - id: aluminium-oxide-formula
+        type: multiple_choice
+        prompt: What is the formula of the ionic compound formed from aluminium and oxygen?
+        choices: ['AlO', 'Al₂O₃', 'Al₃O₂', 'AlO₂']
+        answer: 1
+        hint: 'Al forms Al³⁺ and O forms O²⁻. Balance the charges.'
+        explanation: '2 × (+3) = +6 and 3 × (−2) = −6, so the formula is Al₂O₃.'
+
+      - id: delta-en-value
+        type: math_input
+        prompt: 'K has EN 0.8 and Br has EN 3.0. What is $\Delta\text{EN}$ for the K–Br bond?'
+        answer: '2.2'
+        tolerance: 0.01
+        placeholder: Enter a number
+        explanation: '$3.0 - 0.8 = 2.2$, which is above $1.7$, so the bond is ionic.'
+
+      - id: co2-polarity
+        type: multiple_choice
+        prompt: >-
+          Each C=O bond in CO₂ is polar, but the CO₂ molecule is non-polar. Why?
+        choices:
+          - Carbon and oxygen have the same electronegativity
+          - The molecule is linear, so the two bond dipoles cancel
+          - The bonds are actually ionic
+          - Double bonds are never polar
+        answer: 1
+        explanation: O=C=O is straight, so the equal pulls in opposite directions cancel out.

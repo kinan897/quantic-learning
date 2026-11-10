@@ -13,3 +13,4 @@ prerequisites:
   - MHF4U
 units:
   - unit-01-rates-of-change.yaml
+  - unit-02-derivatives.yaml

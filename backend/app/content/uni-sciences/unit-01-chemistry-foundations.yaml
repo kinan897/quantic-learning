@@ -196,3 +196,188 @@ lessons:
         explanation: >-
           $3$ mol of $\text{H}_2$ needs only $1.5$ mol of $\text{O}_2$, and $2$ mol is available,
           so $\text{H}_2$ is limiting. It makes $3$ mol of water ($2 : 2$ ratio).
+
+  # =========================================================================================
+  # Topic 2: Solutions and concentration
+  # =========================================================================================
+  - id: uni-sciences-u1-t2-learn
+    kind: learn
+    topic: Solutions and Concentration
+    title: 'Learn: Solutions and Concentration'
+    description: Molarity, preparing solutions and dilution.
+    xp: 10
+    items:
+      - type: teach
+        id: molarity
+        title: Molar concentration
+        blocks:
+          - type: text
+            md: |-
+              **Molarity** is moles of solute per litre of solution:
+
+              $$c = \frac{n}{V} \qquad (\text{mol/L, written M})$$
+
+              Dissolving $0.50\ \text{mol}$ of NaCl to make $2.0\ \text{L}$ of solution gives
+              $c = \dfrac{0.50}{2.0} = 0.25\ \text{M}$.
+          - type: callout
+            tone: warning
+            title: Units
+            md: 'Volume must be in **litres**. $250\ \text{mL} = 0.250\ \text{L}$.'
+
+      - id: molarity-check
+        type: math_input
+        prompt: 'What is the concentration of $0.30\ \text{mol}$ of glucose dissolved to make $500\ \text{mL}$ of solution, in mol/L?'
+        answer: '0.6'
+        tolerance: 0.001
+        placeholder: mol/L
+        explanation: '$c = \dfrac{0.30}{0.500} = 0.60\ \text{M}$'
+
+      - type: teach
+        id: mass-to-concentration
+        title: From grams to molarity
+        blocks:
+          - type: text
+            md: |-
+              Usually you weigh the solute, so convert mass to moles first with the molar mass $M$:
+
+              $$n = \frac{m}{M}, \qquad c = \frac{m}{M\,V}$$
+
+              $5.85\ \text{g}$ of NaCl ($M = 58.44\ \text{g/mol}$) is $0.100\ \text{mol}$. In
+              $0.250\ \text{L}$: $c = 0.400\ \text{M}$.
+
+      - id: moles-needed
+        type: math_input
+        prompt: 'How many moles of solute are in $2.0\ \text{L}$ of $0.15\ \text{M}$ solution?'
+        answer: '0.3'
+        tolerance: 0.001
+        placeholder: mol
+        explanation: '$n = cV = 0.15 \times 2.0 = 0.30\ \text{mol}$'
+
+      - type: teach
+        id: dilution
+        title: Dilution
+        blocks:
+          - type: text
+            md: |-
+              Adding water doesn't change the moles of solute, so $n$ before $=$ $n$ after:
+
+              $$c_1V_1 = c_2V_2$$
+
+              To make $500\ \text{mL}$ of $0.20\ \text{M}$ from $1.0\ \text{M}$ stock:
+              $V_1 = \dfrac{0.20 \times 500}{1.0} = 100\ \text{mL}$ of stock, topped up to $500\ \text{mL}$.
+          - type: graph
+            x: [0, 5.5]
+            y: [0, 2.2]
+            x_label: total volume (L)
+            y_label: c (mol/L)
+            curves:
+              - { expr: 2/x, domain: [0.9, 5.5], label: 'c = n/V, n = 2 mol' }
+            caption: Doubling the volume halves the concentration.
+
+      - id: dilution-check
+        type: multiple_choice
+        prompt: '$100\ \text{mL}$ of $3.0\ \text{M}$ HCl is diluted to $300\ \text{mL}$. What is the new concentration?'
+        choices: ['9.0 M', '3.0 M', '1.0 M', '0.30 M']
+        answer: 2
+        explanation: '$c_2 = \dfrac{3.0 \times 100}{300} = 1.0\ \text{M}$'
+
+  - id: uni-sciences-u1-t2-practice
+    kind: practice
+    topic: Solutions and Concentration
+    title: 'Practice: Solutions and Concentration'
+    description: Quick molarity and dilution calculations.
+    xp: 10
+    items:
+      - id: simple-molarity
+        type: math_input
+        prompt: '$2.0\ \text{mol}$ of KCl is dissolved to make $4.0\ \text{L}$ of solution. Find the concentration in mol/L.'
+        answer: '0.5'
+        tolerance: 0.001
+        placeholder: mol/L
+        explanation: '$c = \dfrac{2.0}{4.0} = 0.50\ \text{M}$'
+
+      - id: ml-to-l
+        type: multiple_choice
+        prompt: 'Which volume should you use for $750\ \text{mL}$ in $c = n/V$?'
+        choices: ['750 L', '7.5 L', '0.75 L', '0.075 L']
+        answer: 2
+        explanation: 'Divide by $1000$: $750\ \text{mL} = 0.750\ \text{L}$.'
+
+      - id: what-stays-constant
+        type: multiple_choice
+        prompt: When a solution is diluted, what stays the same?
+        choices: [The concentration, The volume, The moles of solute, The mass of water]
+        answer: 2
+        explanation: Only solvent is added, so the amount of solute is unchanged.
+
+      - id: dilution-volume
+        type: math_input
+        prompt: 'What volume of $2.0\ \text{M}$ stock, in mL, is needed to make $200\ \text{mL}$ of $0.50\ \text{M}$ solution?'
+        answer: '50'
+        placeholder: mL
+        explanation: '$V_1 = \dfrac{0.50 \times 200}{2.0} = 50\ \text{mL}$'
+
+      - id: grams-to-moles
+        type: math_input
+        prompt: 'How many moles are in $20.0\ \text{g}$ of NaOH ($M = 40.0\ \text{g/mol}$)?'
+        answer: '0.5'
+        tolerance: 0.001
+        placeholder: mol
+        explanation: '$n = \dfrac{20.0}{40.0} = 0.500\ \text{mol}$'
+
+      - id: more-concentrated
+        type: multiple_choice
+        prompt: Which solution is the most concentrated?
+        choices:
+          - '1 mol in 4 L'
+          - '0.5 mol in 0.5 L'
+          - '2 mol in 10 L'
+          - '0.1 mol in 1 L'
+        answer: 1
+        explanation: '$0.5 / 0.5 = 1.0\ \text{M}$, higher than $0.25$, $0.20$ and $0.10\ \text{M}$.'
+
+  - id: uni-sciences-u1-t2-destroyer
+    kind: destroyer
+    topic: Solutions and Concentration
+    title: 'Destroyer: Solutions and Concentration'
+    description: Multi-step preparation and ion concentrations.
+    xp: 30
+    items:
+      - id: mass-to-prepare
+        type: math_input
+        prompt: >-
+          What mass of CuSO₄ ($M = 159.6\ \text{g/mol}$), in grams, is needed to make
+          $250\ \text{mL}$ of $0.100\ \text{M}$ solution? Round to two decimal places.
+        answer: '3.99'
+        tolerance: 0.01
+        placeholder: grams
+        explanation: '$n = 0.100 \times 0.250 = 0.0250\ \text{mol}$, so $m = 0.0250 \times 159.6 = 3.99\ \text{g}$.'
+
+      - id: ion-concentration
+        type: math_input
+        prompt: 'What is the concentration of Cl⁻ ions in $0.20\ \text{M}$ CaCl₂, in mol/L?'
+        answer: '0.4'
+        tolerance: 0.001
+        placeholder: mol/L
+        hint: 'CaCl₂ → Ca²⁺ + 2 Cl⁻'
+        explanation: Each formula unit releases two chloride ions, so $[\text{Cl}^-] = 2 \times 0.20 = 0.40\ \text{M}$.
+
+      - id: mix-two-solutions
+        type: math_input
+        prompt: >-
+          $100\ \text{mL}$ of $0.30\ \text{M}$ NaCl is mixed with $200\ \text{mL}$ of
+          $0.60\ \text{M}$ NaCl. What is the final concentration, in mol/L?
+        answer: '0.5'
+        tolerance: 0.001
+        placeholder: mol/L
+        explanation: '$n = 0.030 + 0.120 = 0.150\ \text{mol}$ in $0.300\ \text{L}$, so $c = 0.50\ \text{M}$.'
+
+      - id: serial-dilution
+        type: math_input
+        prompt: >-
+          A $1.0\ \text{M}$ solution is diluted 1 : 10, and then that solution is diluted 1 : 10
+          again. What is the final concentration, in mol/L?
+        answer: '0.01'
+        tolerance: 0.0001
+        placeholder: mol/L
+        explanation: 'Each step divides by $10$: $1.0 \rightarrow 0.10 \rightarrow 0.010\ \text{M}$.'

@@ -222,3 +222,203 @@ lessons:
         choices: ['B → C → A → D', 'C → B → D → A', 'B → A → C → D', 'D → C → A → B']
         answer: 0
         explanation: Point (B), Evidence (C), Explain (A), Link (D). That's the PEEL order.
+
+  # =========================================================================================
+  # Topic 2: Literary devices and their effects
+  # =========================================================================================
+  - id: eng4u-u1-t2-learn
+    kind: learn
+    topic: Literary Devices
+    title: 'Learn: Literary Devices'
+    description: Name the device, then explain its effect.
+    xp: 10
+    items:
+      - type: teach
+        id: imagery-figurative
+        title: Imagery and figurative language
+        blocks:
+          - type: text
+            md: |-
+              - **Metaphor**: says one thing *is* another. *"Life's but a walking shadow."*
+              - **Simile**: compares using *like* or *as*.
+              - **Personification**: gives human qualities to non-human things.
+                *"The night has been unruly."*
+              - **Imagery**: language that appeals to the senses, like the blood that recurs
+                all through Macbeth.
+          - type: callout
+            tone: key
+            md: Naming a device earns nothing on its own. Marks come from explaining **its effect**.
+
+      - id: identify-metaphor
+        type: multiple_choice
+        prompt: '"Life''s but a walking shadow, a poor player / That struts and frets his hour upon the stage." This is mainly an example of...'
+        choices: [Simile, Metaphor, Alliteration, Dramatic irony]
+        answer: 1
+        explanation: Life is described as a shadow and an actor directly, with no "like" or "as".
+
+      - type: teach
+        id: irony
+        title: Three kinds of irony
+        blocks:
+          - type: text
+            md: |-
+              - **Verbal**: saying the opposite of what you mean.
+              - **Situational**: the opposite of what's expected happens.
+              - **Dramatic**: the audience knows something a character doesn't.
+
+              When Duncan says Macbeth's castle "hath a pleasant seat," the audience already knows
+              the Macbeths plan to murder him there. That's dramatic irony, and it builds dread.
+
+      - id: irony-type
+        type: multiple_choice
+        prompt: 'Duncan praises Macbeth as "worthy" while the audience knows Macbeth is planning to kill him. What kind of irony is this?'
+        choices: [Verbal irony, Situational irony, Dramatic irony, Not irony]
+        answer: 2
+        explanation: The audience knows the danger; Duncan doesn't.
+
+      - type: teach
+        id: device-effect
+        title: 'Device → effect → meaning'
+        blocks:
+          - type: text
+            md: |-
+              A strong analysis sentence does three things:
+
+              1. **Names** the device and quotes it.
+              2. Explains the **effect** on the reader or audience.
+              3. Connects it to a **theme** or meaning.
+
+              *"Lady Macbeth's repeated 'Out, damned spot!' uses blood imagery to show that guilt
+              cannot be washed away, revealing that conscience outlasts ambition."*
+          - type: callout
+            tone: tip
+            md: Use precise verbs like *suggests*, *evokes*, *foreshadows* and *underscores* instead of *shows*.
+
+      - id: strongest-analysis
+        type: multiple_choice
+        prompt: 'Which sentence best analyzes the line "Fair is foul, and foul is fair"?'
+        choices:
+          - This line uses a literary device.
+          - The witches say this line in Act 1.
+          - The paradox blurs good and evil from the first scene, warning that appearances in the play cannot be trusted.
+          - This line rhymes.
+        answer: 2
+        explanation: It names the device (paradox), explains its effect and connects it to a theme.
+
+  - id: eng4u-u1-t2-practice
+    kind: practice
+    topic: Literary Devices
+    title: 'Practice: Literary Devices'
+    description: Identify devices in short passages.
+    xp: 10
+    items:
+      - id: simile-pick
+        type: multiple_choice
+        prompt: Which line contains a simile?
+        choices:
+          - The wind howled through the trees.
+          - Her voice was as soft as falling snow.
+          - Time is a thief.
+          - Silver sand slid softly.
+        answer: 1
+        explanation: It compares using "as."
+
+      - id: alliteration-pick
+        type: multiple_choice
+        prompt: '"Silver sand slid softly" is an example of...'
+        choices: [Alliteration, Onomatopoeia, Hyperbole, Oxymoron]
+        answer: 0
+        explanation: The repeated "s" sound at the start of words is alliteration.
+
+      - id: personification-pick
+        type: multiple_choice
+        prompt: Which line uses personification?
+        choices:
+          - The sky was grey.
+          - The old house groaned under the storm.
+          - He ran as fast as a cheetah.
+          - I've told you a million times.
+        answer: 1
+        explanation: Houses can't really groan; it gives the house a human sound of suffering.
+
+      - id: hyperbole-pick
+        type: multiple_choice
+        prompt: '"Will all great Neptune''s ocean wash this blood / Clean from my hand?" Macbeth''s question uses...'
+        choices: [Understatement, Simile, Hyperbole, Verbal irony]
+        answer: 2
+        explanation: Suggesting a whole ocean couldn't clean his hand is a deliberate exaggeration of his guilt.
+
+      - id: foreshadowing-pick
+        type: multiple_choice
+        prompt: What is foreshadowing?
+        choices:
+          - A flashback to earlier events
+          - A hint about something that will happen later
+          - A character speaking alone on stage
+          - A comparison using like or as
+        answer: 1
+        explanation: Foreshadowing builds suspense by hinting at what's to come.
+
+      - id: soliloquy-pick
+        type: multiple_choice
+        prompt: When a character speaks their thoughts aloud, alone on stage, it's called a...
+        choices: [Monologue to the audience, Aside, Soliloquy, Dialogue]
+        answer: 2
+        explanation: A soliloquy lets the audience hear a character's private thoughts.
+
+  - id: eng4u-u1-t2-destroyer
+    kind: destroyer
+    topic: Literary Devices
+    title: 'Destroyer: Literary Devices'
+    description: Analyze effects, not just names.
+    xp: 30
+    items:
+      - id: sleep-imagery
+        type: multiple_choice
+        prompt: >-
+          After the murder, Macbeth hears a voice cry "Macbeth does murder sleep." What is the
+          most insightful reading of this line?
+        choices:
+          - It shows that Macbeth is tired.
+          - It is an example of alliteration.
+          - Sleep stands for innocence and peace, so by killing Duncan Macbeth has destroyed his own peace of mind.
+          - It foreshadows that Macbeth will become a king.
+        answer: 2
+        explanation: It reads the image symbolically and links it to what Macbeth loses, which the play later confirms.
+
+      - id: weak-to-strong
+        type: multiple_choice
+        prompt: >-
+          A student writes, "Shakespeare uses a lot of imagery in Macbeth." Which revision is
+          strongest?
+        choices:
+          - Shakespeare uses lots of different kinds of imagery throughout the play.
+          - Shakespeare uses blood imagery, which is red.
+          - Shakespeare's recurring blood imagery tracks Macbeth's guilt, shifting from a sign of honour in battle to a stain that cannot be washed away.
+          - There is imagery in every act of Macbeth.
+        answer: 2
+        explanation: It names a specific image pattern and traces how its meaning changes.
+
+      - id: knocking-effect
+        type: multiple_choice
+        prompt: >-
+          Right after Duncan's murder, there is loud knocking at the castle gate. What is its
+          main dramatic effect?
+        choices:
+          - It adds comic relief only
+          - It heightens tension, as if the outside world is demanding to be let in on the crime
+          - It shows the castle has visitors
+          - It foreshadows that Duncan is still alive
+        answer: 1
+        explanation: The knocking forces the guilty Macbeths to act normal while the audience fears discovery.
+
+      - id: oxymoron-effect
+        type: multiple_choice
+        prompt: '"So foul and fair a day I have not seen." Why does Shakespeare give Macbeth this line?'
+        choices:
+          - To describe the weather accurately
+          - To echo the witches' "Fair is foul," linking Macbeth to them before he has even met them
+          - To show Macbeth is confused about the time
+          - It is a simile about the battle
+        answer: 1
+        explanation: The echo ties Macbeth's first words to the witches' paradox, suggesting he is already drawn into their world.

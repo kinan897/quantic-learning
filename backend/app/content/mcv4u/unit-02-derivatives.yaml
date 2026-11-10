@@ -1,0 +1,188 @@
+# MCV4U — Strand B: Derivatives and Their Applications
+
+id: mcv4u-u2
+title: Derivative Rules
+description: >-
+  Shortcuts for differentiating without first principles, starting with the power rule.
+
+lessons:
+  - id: mcv4u-u2-t1-learn
+    kind: learn
+    topic: The Power Rule
+    title: 'Learn: The Power Rule'
+    description: Differentiate powers, sums and constants in one step.
+    xp: 10
+    items:
+      - type: teach
+        id: power-rule
+        title: A shortcut for powers
+        blocks:
+          - type: text
+            md: |-
+              First principles works, but it's slow. For any power of $x$:
+
+              $$\frac{d}{dx}\left(x^n\right) = n\,x^{n-1}$$
+
+              Bring the power down in front, then subtract one from the power:
+              $\dfrac{d}{dx}(x^3) = 3x^2$ and $\dfrac{d}{dx}(x^5) = 5x^4$.
+          - type: graph
+            x: [-2.5, 2.5]
+            y: [-5, 6]
+            curves:
+              - { expr: x^2, label: f(x) = x² }
+              - { expr: 2x, color: accent, label: "f'(x) = 2x" }
+            caption: "The derivative of $x^2$ is $2x$: negative where $f$ falls, positive where it rises."
+
+      - id: derivative-x4
+        type: math_input
+        prompt: 'Differentiate $f(x) = x^4$.'
+        answer: 4x^3
+        display_answer: '$4x^3$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: 'Bring down the $4$ and subtract $1$ from the power: $4x^3$.'
+
+      - type: teach
+        id: constants-and-sums
+        title: Constants and sums
+        blocks:
+          - type: text
+            md: |-
+              - **Constant multiple**: $\dfrac{d}{dx}\big(c\,f(x)\big) = c\,f'(x)$
+              - **Sum rule**: differentiate term by term
+              - **Constants**: $\dfrac{d}{dx}(7) = 0$, because a flat line has slope $0$
+
+              $$\frac{d}{dx}\left(3x^4 - 5x^2 + 7\right) = 12x^3 - 10x$$
+
+      - id: derivative-sum
+        type: math_input
+        prompt: 'Differentiate $f(x) = 2x^3 + 6x$.'
+        answer: 6x^2 + 6
+        display_answer: '$6x^2 + 6$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: '$2 \cdot 3x^2 + 6 = 6x^2 + 6$'
+
+      - type: teach
+        id: negative-fractional-powers
+        title: Negative and fractional powers
+        blocks:
+          - type: text
+            md: |-
+              Rewrite roots and fractions as powers first, then use the power rule:
+
+              - $\dfrac{1}{x^2} = x^{-2} \;\rightarrow\; -2x^{-3} = -\dfrac{2}{x^3}$
+              - $\sqrt{x} = x^{1/2} \;\rightarrow\; \tfrac{1}{2}x^{-1/2} = \dfrac{1}{2\sqrt{x}}$
+          - type: callout
+            tone: key
+            md: These match the answers you found from first principles in Unit 1, with much less work.
+
+      - id: derivative-reciprocal
+        type: math_input
+        prompt: 'Differentiate $f(x) = \dfrac{1}{x}$.'
+        answer: -1/x^2
+        display_answer: '$-\dfrac{1}{x^2}$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: '$x^{-1} \rightarrow -1 \cdot x^{-2} = -\dfrac{1}{x^2}$'
+
+  - id: mcv4u-u2-t1-practice
+    kind: practice
+    topic: The Power Rule
+    title: 'Practice: The Power Rule'
+    description: One-step derivatives.
+    xp: 10
+    items:
+      - id: derivative-x7
+        type: math_input
+        prompt: 'Differentiate $x^7$.'
+        answer: 7x^6
+        display_answer: '$7x^6$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: '$7x^6$'
+
+      - id: derivative-5x2
+        type: math_input
+        prompt: 'Differentiate $5x^2$.'
+        answer: 10x
+        display_answer: '$10x$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: '$5 \cdot 2x = 10x$'
+
+      - id: derivative-polynomial
+        type: math_input
+        prompt: 'Differentiate $4x^3 - 2x + 9$.'
+        answer: 12x^2 - 2
+        display_answer: '$12x^2 - 2$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: 'Term by term: $12x^2 - 2 + 0$.'
+
+      - id: derivative-negative-power
+        type: math_input
+        prompt: 'Differentiate $x^{-3}$.'
+        answer: -3x^(-4)
+        display_answer: '$-3x^{-4}$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: '$-3x^{-3 - 1} = -3x^{-4}$'
+
+      - id: derivative-constant
+        type: multiple_choice
+        prompt: 'What is the derivative of $f(x) = 12$?'
+        choices: ['$12$', '$12x$', '$1$', '$0$']
+        answer: 3
+        explanation: A constant never changes, so its rate of change is $0$.
+
+      - id: evaluate-derivative-cubic
+        type: math_input
+        prompt: "If $f(x) = x^3$, find $f'(2)$."
+        answer: '12'
+        placeholder: Enter a number
+        explanation: "$f'(x) = 3x^2$, so $f'(2) = 12$."
+
+  - id: mcv4u-u2-t1-destroyer
+    kind: destroyer
+    topic: The Power Rule
+    title: 'Destroyer: The Power Rule'
+    description: Roots, tangent lines and horizontal tangents.
+    xp: 30
+    items:
+      - id: derivative-root
+        type: math_input
+        prompt: 'Differentiate $f(x) = 6\sqrt{x}$.'
+        answer: 3/sqrt(x)
+        display_answer: '$\dfrac{3}{\sqrt{x}}$'
+        variables: [x]
+        placeholder: f′(x) = ?
+        explanation: '$6x^{1/2} \rightarrow 6 \cdot \tfrac{1}{2}x^{-1/2} = 3x^{-1/2} = \dfrac{3}{\sqrt{x}}$'
+
+      - id: slope-at-point
+        type: math_input
+        prompt: 'Find the slope of the tangent to $y = x^3 - 4x$ at $x = 1$.'
+        answer: '-1'
+        placeholder: Enter a number
+        explanation: "$y' = 3x^2 - 4$, so at $x = 1$: $3 - 4 = -1$."
+
+      - id: tangent-line
+        type: math_input
+        prompt: 'Find the equation of the tangent to $y = x^2 + 3x$ at $x = 1$, as $y = mx + b$.'
+        answer: 5x - 1
+        display_answer: '$y = 5x - 1$'
+        variables: [x]
+        placeholder: y = mx + b
+        explanation: "$y' = 2x + 3 = 5$ at $x = 1$, and the point is $(1, 4)$. So $y - 4 = 5(x - 1)$, giving $y = 5x - 1$."
+
+      - id: horizontal-tangent
+        type: math_input
+        prompt: 'At what $x$-value is the tangent to $y = x^2 - 6x + 2$ horizontal?'
+        figure:
+          type: graph
+          x: [-1, 7]
+          y: [-8, 6]
+          curves: [{ expr: x^2 - 6x + 2 }]
+        answer: '3'
+        placeholder: x = ?
+        explanation: "Horizontal means slope $0$: $y' = 2x - 6 = 0$, so $x = 3$."

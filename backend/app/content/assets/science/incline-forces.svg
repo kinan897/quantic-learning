@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">A block on a ramp at angle theta. Gravity mg points straight down and splits into mg sin theta down the slope and mg cos theta into the slope. The normal force points out of the slope.</title>
+  <defs>
+    <marker id="head-s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4FADE8"/></marker>
+    <marker id="head-e" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2447F0"/></marker>
+    <marker id="head-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#FF5A6E"/></marker>
+  </defs>
+  <style>
+    .lbl { font-family: Manrope, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 24px; }
+  </style>
+  <!-- ramp -->
+  <polygon points="60,330 580,330 580,30" fill="#0B1A4A" fill-opacity="0.45" stroke="#9BA8C9" stroke-width="3" stroke-linejoin="round"/>
+  <polyline points="560,330 560,310 580,310" fill="none" stroke="#9BA8C9" stroke-width="2"/>
+  <path d="M130,330 A70,70 0 0 0 120.6,295" fill="none" stroke="#9BA8C9" stroke-width="2.5"/>
+  <text x="142" y="322" class="lbl" fill="#9BA8C9">θ</text>
+  <!-- block -->
+  <rect x="-35" y="-25" width="70" height="50" rx="6" fill="#0B1A4A" stroke="#4FADE8" stroke-width="3" transform="translate(317.5 152.5) rotate(-30)"/>
+  <!-- normal force (out of the slope) -->
+  <line x1="317.5" y1="152.5" x2="248.2" y2="32.5" stroke="#4FADE8" stroke-width="5" marker-end="url(#head-s)"/>
+  <text x="238" y="44" text-anchor="end" class="lbl" fill="#4FADE8">F<tspan dy="6" font-size="18">N</tspan></text>
+  <!-- gravity (straight down) -->
+  <line x1="317.5" y1="152.5" x2="317.5" y2="312.5" stroke="#4FADE8" stroke-width="5" marker-end="url(#head-s)"/>
+  <text x="330" y="308" class="lbl" fill="#4FADE8">mg</text>
+  <!-- component down the slope -->
+  <line x1="317.5" y1="152.5" x2="248.2" y2="192.5" stroke="#2447F0" stroke-width="5" stroke-dasharray="10 6" marker-end="url(#head-e)"/>
+  <text x="236" y="196" text-anchor="end" class="lbl" fill="#2447F0">mg sin θ</text>
+  <!-- component into the slope -->
+  <line x1="317.5" y1="152.5" x2="386.8" y2="272.5" stroke="#FF5A6E" stroke-width="5" stroke-dasharray="10 6" marker-end="url(#head-r)"/>
+  <text x="398" y="284" class="lbl" fill="#FF5A6E">mg cos θ</text>
+</svg>

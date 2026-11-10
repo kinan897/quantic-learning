@@ -189,3 +189,192 @@ lessons:
           Up is positive: $F_N - mg = ma$, so $F_N = m(g + a) = 70 \times (9.8 + 2.0) = 826$ N.
 
           The person feels heavier than their usual $686$ N.
+
+  # =========================================================================================
+  # Topic 2: Friction and inclines
+  # =========================================================================================
+  - id: sph4u-u1-t2-learn
+    kind: learn
+    topic: Friction and Inclines
+    title: 'Learn: Friction and Inclines'
+    description: Static and kinetic friction, and splitting gravity on a ramp.
+    xp: 10
+    items:
+      - type: teach
+        id: friction-force
+        title: The friction force
+        blocks:
+          - type: text
+            md: |-
+              Friction opposes sliding between surfaces. Its size depends on the **normal force**
+              $F_N$ and the **coefficient of friction** $\mu$:
+
+              $$F_f = \mu F_N$$
+
+              - **Static** friction ($\mu_s$) stops an object from starting to move.
+              - **Kinetic** friction ($\mu_k$) acts once it slides. Usually $\mu_k < \mu_s$.
+
+              On flat ground with no other vertical forces, $F_N = mg$.
+          - type: callout
+            tone: tip
+            md: That's why it takes more effort to start pushing a heavy box than to keep it moving.
+
+      - id: static-friction-start
+        type: math_input
+        prompt: 'A $25\ \text{kg}$ crate rests on a level floor with $\mu_s = 0.50$ and $\mu_k = 0.30$. What is the smallest horizontal push, in newtons, that will start it moving? Use $g = 9.8\ \text{m/s}^2$.'
+        answer: '122.5'
+        tolerance: 0.2
+        placeholder: Enter a number
+        hint: Starting motion means beating **static** friction.
+        explanation: '$F_{s,\max} = \mu_s mg = 0.50 \times 25 \times 9.8 = 122.5\ \text{N}$. Once it slides, only $73.5\ \text{N}$ is needed.'
+
+      - type: teach
+        id: incline-components
+        title: Gravity on a ramp
+        blocks:
+          - type: text
+            md: |-
+              On a ramp at angle $\theta$, split gravity into two parts:
+
+              - **Down the slope**: $mg\sin\theta$
+              - **Into the slope**: $mg\cos\theta$, which is balanced by the normal force, so
+                $F_N = mg\cos\theta$
+          - type: image
+            src: science/incline-forces.svg
+            alt: >-
+              A block on a ramp at angle θ. Gravity mg points straight down and splits into
+              mg sin θ down the slope and mg cos θ into the slope. The normal force points out
+              of the slope.
+            aspect: 0.56
+
+      - id: steeper-ramp
+        type: multiple_choice
+        prompt: As a ramp gets steeper, what happens to the normal force on a block resting on it?
+        choices: [It increases, It decreases, It stays the same, It becomes equal to mg]
+        answer: 1
+        explanation: '$F_N = mg\cos\theta$, and $\cos\theta$ gets smaller as $\theta$ grows.'
+
+      - type: teach
+        id: incline-with-friction
+        title: Sliding down with friction
+        blocks:
+          - type: text
+            md: |-
+              Along the slope, the net force is gravity's component minus friction:
+
+              $$ma = mg\sin\theta - \mu_k mg\cos\theta \;\Rightarrow\; a = g(\sin\theta - \mu_k\cos\theta)$$
+
+              The mass cancels: on the same ramp, a heavy and a light block slide with the same
+              acceleration.
+
+      - id: frictionless-ramp
+        type: math_input
+        prompt: 'A block slides down a frictionless ramp at $30^\circ$. Using $g = 9.8\ \text{m/s}^2$, what is its acceleration in $\text{m/s}^2$?'
+        answer: '4.9'
+        tolerance: 0.05
+        placeholder: Enter a number
+        explanation: '$a = g\sin 30^\circ = 9.8 \times 0.5 = 4.9\ \text{m/s}^2$'
+
+  - id: sph4u-u1-t2-practice
+    kind: practice
+    topic: Friction and Inclines
+    title: 'Practice: Friction and Inclines'
+    description: Normal force, friction and ramp components.
+    xp: 10
+    items:
+      - id: friction-direction
+        type: multiple_choice
+        prompt: A box slides to the right across the floor. Which way does kinetic friction act on it?
+        choices: [Right, Left, Up, Down]
+        answer: 1
+        explanation: Friction opposes the motion.
+
+      - id: normal-on-ramp
+        type: math_input
+        prompt: 'What is the normal force on a $10\ \text{kg}$ block resting on a $30^\circ$ ramp? Use $g = 9.8\ \text{m/s}^2$ and round to one decimal place.'
+        answer: '84.9'
+        tolerance: 0.1
+        placeholder: newtons
+        explanation: '$F_N = mg\cos 30^\circ = 98 \times 0.866 \approx 84.9\ \text{N}$, less than the $98\ \text{N}$ it would be on flat ground.'
+
+      - id: mu-from-forces
+        type: math_input
+        prompt: 'It takes a $40\ \text{N}$ push to slide a crate at constant speed. The normal force is $200\ \text{N}$. Find $\mu_k$.'
+        answer: '0.2'
+        tolerance: 0.001
+        placeholder: Enter a number
+        explanation: 'Constant speed means $F_f = 40\ \text{N}$, so $\mu_k = \dfrac{40}{200} = 0.2$.'
+
+      - id: static-vs-kinetic
+        type: multiple_choice
+        prompt: For most surfaces, how do the coefficients compare?
+        choices: ['μs < μk', 'μs = μk', 'μs > μk', 'They are unrelated']
+        answer: 2
+        explanation: It usually takes more force to start sliding than to keep sliding.
+
+      - id: component-down-slope
+        type: multiple_choice
+        prompt: Which expression gives the component of gravity pulling a block down a ramp at angle θ?
+        choices: ['mg cos θ', 'mg sin θ', 'mg tan θ', 'mg']
+        answer: 1
+        explanation: The along-the-slope component is $mg\sin\theta$.
+
+      - id: flat-ramp-limit
+        type: multiple_choice
+        prompt: What is the normal force on a block on a ramp with θ = 0°?
+        choices: ['0', 'mg', 'mg/2', 'It depends on μ']
+        answer: 1
+        explanation: '$\cos 0^\circ = 1$, so $F_N = mg$, just like flat ground.'
+
+  - id: sph4u-u1-t2-destroyer
+    kind: destroyer
+    topic: Friction and Inclines
+    title: 'Destroyer: Friction and Inclines'
+    description: Full free-body problems on ramps.
+    xp: 30
+    items:
+      - id: ramp-with-friction
+        type: math_input
+        prompt: >-
+          A block slides down a $30^\circ$ ramp with $\mu_k = 0.2$. Using $g = 9.8\ \text{m/s}^2$,
+          find its acceleration in $\text{m/s}^2$, to two decimal places.
+        answer: '3.20'
+        tolerance: 0.02
+        placeholder: Enter a number
+        explanation: '$a = 9.8(\sin 30^\circ - 0.2\cos 30^\circ) = 9.8(0.5 - 0.173) \approx 3.20\ \text{m/s}^2$'
+
+      - id: angle-of-repose
+        type: math_input
+        prompt: >-
+          A block just starts to slip when a ramp is tilted to $25^\circ$. What is $\mu_s$?
+          Round to two decimal places.
+        answer: '0.47'
+        tolerance: 0.01
+        placeholder: Enter a number
+        hint: 'At the slipping point, $mg\sin\theta = \mu_s mg\cos\theta$.'
+        explanation: '$\mu_s = \tan 25^\circ \approx 0.47$'
+
+      - id: pull-up-ramp
+        type: math_input
+        prompt: >-
+          A $5\ \text{kg}$ block is pulled up a frictionless $30^\circ$ ramp by a $40\ \text{N}$
+          force parallel to the ramp. Using $g = 9.8\ \text{m/s}^2$, find its acceleration up the
+          ramp in $\text{m/s}^2$.
+        answer: '3.1'
+        tolerance: 0.02
+        placeholder: Enter a number
+        hint: Gravity's component down the slope works against the pull.
+        explanation: '$mg\sin 30^\circ = 5 \times 9.8 \times 0.5 = 24.5\ \text{N}$, so $a = \dfrac{40 - 24.5}{5} = 3.1\ \text{m/s}^2$.'
+
+      - id: mass-cancels
+        type: multiple_choice
+        prompt: >-
+          A 2 kg block and a 10 kg block (same material) slide down the same rough ramp.
+          How do their accelerations compare?
+        choices:
+          - The 10 kg block accelerates 5 times faster
+          - The 2 kg block accelerates faster
+          - They are the same
+          - The 10 kg block doesn't move
+        answer: 2
+        explanation: '$a = g(\sin\theta - \mu_k\cos\theta)$ doesn''t depend on mass.'

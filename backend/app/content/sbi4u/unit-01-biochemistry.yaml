@@ -185,3 +185,208 @@ lessons:
         choices: [glycosidic bond, ester bond, peptide bond, hydrogen bond]
         answer: 2
         explanation: Peptide bonds link amino acids. Glycosidic bonds join sugars, and ester bonds join fatty acids to glycerol.
+
+  # =========================================================================================
+  # Topic 2: Enzymes
+  # =========================================================================================
+  - id: sbi4u-u1-t2-learn
+    kind: learn
+    topic: Enzymes
+    title: 'Learn: Enzymes'
+    description: How enzymes work, what affects them, and how they're regulated.
+    xp: 10
+    items:
+      - type: teach
+        id: lowering-activation-energy
+        title: Biological catalysts
+        blocks:
+          - type: text
+            md: |-
+              **Enzymes** are proteins that speed up reactions by lowering the
+              **activation energy**. They are not used up, so one enzyme can work again and again.
+
+              The reactant (the **substrate**) binds to the enzyme's **active site**. In the
+              **induced fit** model, the active site changes shape slightly to grip the substrate.
+          - type: callout
+            tone: key
+            md: Enzymes don't change how much energy a reaction releases, only how fast it gets started.
+
+      - id: active-site
+        type: multiple_choice
+        prompt: Where does the substrate bind to an enzyme?
+        choices: [The allosteric site, The active site, The cell membrane, The R group]
+        answer: 1
+        explanation: The active site has a shape and chemistry that match the substrate.
+
+      - type: teach
+        id: temperature-ph
+        title: Temperature and pH
+        blocks:
+          - type: text
+            md: |-
+              Each enzyme has an **optimum** temperature and pH. Below the optimum, molecules
+              collide less often. Above it, the enzyme **denatures**: its 3D shape unravels and
+              the active site stops fitting.
+          - type: graph
+            x: [0, 60]
+            y: [0, 110]
+            x_label: temperature (°C)
+            y_label: activity (%)
+            curves:
+              - { expr: 100((55 - x)/18)^4 exp(4(1 - (55 - x)/18)), domain: [0, 55] }
+            points:
+              - { at: [37, 100], label: 'optimum 37 °C' }
+            caption: Activity rises with temperature, peaks, then drops sharply as the enzyme denatures.
+
+      - id: why-drop
+        type: multiple_choice
+        prompt: Why does enzyme activity drop above the optimum temperature?
+        choices:
+          - The substrate runs out
+          - The enzyme's shape changes, so the active site no longer fits the substrate
+          - Molecules move too slowly
+          - The enzyme turns into a carbohydrate
+        answer: 1
+        explanation: Heat breaks the bonds that hold the protein's shape. That's denaturation.
+
+      - type: teach
+        id: inhibitors
+        title: Inhibitors
+        blocks:
+          - type: text
+            md: |-
+              - **Competitive** inhibitors look like the substrate and block the active site.
+                Adding more substrate can outcompete them.
+              - **Non-competitive** (allosteric) inhibitors bind somewhere else and change the
+                active site's shape. More substrate doesn't help.
+
+              Cells use **feedback inhibition**: the final product of a pathway inhibits an
+              enzyme near the start, so the cell doesn't make too much.
+
+      - id: competitive-fix
+        type: multiple_choice
+        prompt: Which type of inhibition can be overcome by adding more substrate?
+        choices: [Non-competitive, Allosteric, Denaturation, Competitive]
+        answer: 3
+        explanation: More substrate molecules win more of the competition for the active site.
+
+  - id: sbi4u-u1-t2-practice
+    kind: practice
+    topic: Enzymes
+    title: 'Practice: Enzymes'
+    description: Key terms and the activity graph.
+    xp: 10
+    items:
+      - id: enzyme-made-of
+        type: multiple_choice
+        prompt: Most enzymes are made of which type of macromolecule?
+        choices: [Carbohydrates, Lipids, Proteins, Nucleic acids]
+        answer: 2
+        explanation: Enzymes are proteins folded into precise 3D shapes.
+
+      - id: catalyst-role
+        type: multiple_choice
+        prompt: How do enzymes speed up reactions?
+        choices:
+          - By adding energy to the reaction
+          - By lowering the activation energy
+          - By raising the temperature of the cell
+          - By being used up as reactants
+        answer: 1
+        explanation: A lower energy barrier means more collisions succeed.
+
+      - id: read-optimum
+        type: math_input
+        prompt: 'At what temperature, in °C, does this enzyme work best?'
+        figure:
+          type: graph
+          x: [0, 100]
+          y: [0, 110]
+          x_label: temperature (°C)
+          y_label: activity (%)
+          curves: [{ expr: 100((88 - x)/18)^4 exp(4(1 - (88 - x)/18)), domain: [0, 88] }]
+        answer: '70'
+        tolerance: 2
+        placeholder: °C
+        explanation: The peak is at about 70 °C. This could be an enzyme from a hot-spring bacterium.
+
+      - id: pepsin-ph
+        type: multiple_choice
+        prompt: Pepsin digests protein in the stomach. Its optimum pH is most likely...
+        choices: ['about 2', 'about 7', 'about 9', 'about 12']
+        answer: 0
+        explanation: Stomach acid is around pH 2, so pepsin works best there.
+
+      - id: denature-meaning
+        type: multiple_choice
+        prompt: What does it mean when an enzyme is denatured?
+        choices:
+          - It has been used up
+          - It has lost its 3D shape
+          - It has been made more active
+          - It has bonded permanently to its substrate
+        answer: 1
+        explanation: Denaturation unravels the protein, so the active site no longer works.
+
+      - id: induced-fit
+        type: multiple_choice
+        prompt: The induced fit model says that...
+        choices:
+          - the active site is rigid, like a lock
+          - any substrate can fit any enzyme
+          - the active site changes shape slightly when the substrate binds
+          - the enzyme is destroyed after the reaction
+        answer: 2
+        explanation: The enzyme moulds around the substrate as it binds.
+
+  - id: sbi4u-u1-t2-destroyer
+    kind: destroyer
+    topic: Enzymes
+    title: 'Destroyer: Enzymes'
+    description: Experiments, inhibitors and regulation.
+    xp: 30
+    items:
+      - id: cooling-vs-heating
+        type: multiple_choice
+        prompt: >-
+          An enzyme is cooled from 37 °C to 5 °C, then warmed back to 37 °C. Another is heated
+          to 80 °C, then cooled back to 37 °C. Which one recovers its activity?
+        choices:
+          - Neither
+          - The heated one only
+          - The cooled one only
+          - Both recover fully
+        answer: 2
+        explanation: Cold only slows molecules down. High heat denatures the enzyme, which is usually permanent.
+
+      - id: identify-inhibitor
+        type: multiple_choice
+        prompt: >-
+          A drug slows an enzyme. Adding lots of extra substrate restores the reaction to its
+          normal maximum rate. What kind of inhibitor is the drug?
+        choices: [Non-competitive, Competitive, An allosteric activator, A coenzyme]
+        answer: 1
+        explanation: If more substrate overcomes it, the drug must be competing for the active site.
+
+      - id: feedback-loop
+        type: multiple_choice
+        prompt: >-
+          In a pathway A → B → C → D, product D inhibits the enzyme that turns A into B.
+          What happens when D builds up?
+        choices:
+          - More A is converted to B
+          - The pathway slows, so less D is made
+          - C converts directly into A
+          - The enzyme is denatured
+        answer: 1
+        explanation: This is feedback inhibition, a self-regulating off switch.
+
+      - id: rate-percent
+        type: math_input
+        prompt: >-
+          Without an inhibitor, an enzyme makes 80 µmol of product per minute. With a
+          non-competitive inhibitor, it makes 20 µmol per minute. By what percentage did the
+          rate decrease?
+        answer: '75'
+        placeholder: '%'
+        explanation: '$\dfrac{80 - 20}{80} \times 100\% = 75\%$'

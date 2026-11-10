@@ -366,3 +366,199 @@ lessons:
         explanation: >-
           The line $y = 3$ crosses the V-shaped graph twice, at $x = 0$ and $x = 4$. Check:
           $|0 - 2| + 1 = 3$ and $|4 - 2| + 1 = 3$.
+
+  # =========================================================================================
+  # Topic 2: Transformations of functions
+  # =========================================================================================
+  - id: mcr3u-u1-t2-learn
+    kind: learn
+    topic: Transformations
+    title: 'Learn: Transformations'
+    description: Shifts, stretches and reflections of a parent function.
+    xp: 10
+    items:
+      - type: teach
+        id: shifts
+        title: 'Shifts: f(x − d) + c'
+        blocks:
+          - type: text
+            md: |-
+              - $f(x) + c$ shifts the graph **up** $c$ units (down if $c < 0$).
+              - $f(x - d)$ shifts the graph **right** $d$ units. The sign looks backwards:
+                $f(x + 3)$ moves it **left** $3$.
+          - type: graph
+            x: [-3, 6]
+            y: [-1, 9]
+            curves:
+              - { expr: x^2, color: muted, dashed: true, label: y = x² }
+              - { expr: (x - 3)^2 + 1, label: 'y = (x − 3)² + 1' }
+            points:
+              - { at: [3, 1], label: 'vertex (3, 1)' }
+
+      - id: shift-left
+        type: multiple_choice
+        prompt: 'How does $y = (x + 4)^2$ compare with $y = x^2$?'
+        choices: [4 units right, 4 units up, 4 units left, 4 units down]
+        answer: 2
+        explanation: 'Inside the brackets, $+4$ means a shift of $4$ units **left**.'
+
+      - type: teach
+        id: stretches-reflections
+        title: Stretches and reflections
+        blocks:
+          - type: text
+            md: |-
+              Multiplying by $a$, as in $y = a\,f(x)$:
+
+              - $|a| > 1$: vertical **stretch** (narrower)
+              - $0 < |a| < 1$: vertical **compression** (wider)
+              - $a < 0$: **reflection** in the $x$-axis (flips upside down)
+          - type: graph
+            x: [-3, 3]
+            y: [-6, 8]
+            curves:
+              - { expr: x^2, color: muted, dashed: true, label: x² }
+              - { expr: 2x^2, label: 2x² }
+              - { expr: -x^2, color: accent, label: −x² }
+
+      - id: describe-negative-three
+        type: multiple_choice
+        prompt: 'Compared with $y = x^2$, the graph of $y = -3x^2$ is...'
+        choices:
+          - compressed by a factor of 3
+          - reflected in the x-axis and stretched by a factor of 3
+          - shifted down 3 units
+          - reflected in the y-axis
+        answer: 1
+        explanation: 'The negative sign flips it over the $x$-axis, and $|{-3}| = 3$ stretches it vertically.'
+
+      - type: teach
+        id: vertex-form
+        title: 'Putting it together: vertex form'
+        blocks:
+          - type: text
+            md: >-
+              For a parabola $y = a(x - d)^2 + c$, the vertex is $(d, c)$. $a$ tells you which way
+              it opens and how wide it is. For example, $y = 2(x - 1)^2 - 3$ has vertex $(1, -3)$
+              and opens up, narrower than $y = x^2$.
+          - type: graph
+            x: [-2, 4]
+            y: [-4, 6]
+            curves:
+              - { expr: 2(x - 1)^2 - 3, label: 'y = 2(x − 1)² − 3' }
+            points:
+              - { at: [1, -3], label: '(1, −3)' }
+
+      - id: vertex-x
+        type: math_input
+        prompt: 'What is the $x$-coordinate of the vertex of $y = -(x + 2)^2 + 5$?'
+        answer: '-2'
+        placeholder: Enter a number
+        explanation: '$(x + 2) = (x - (-2))$, so the vertex is $(-2, 5)$.'
+
+  - id: mcr3u-u1-t2-practice
+    kind: practice
+    topic: Transformations
+    title: 'Practice: Transformations'
+    description: Read transformations from equations and graphs.
+    xp: 10
+    items:
+      - id: shift-down
+        type: multiple_choice
+        prompt: 'How does $y = x^2 - 5$ compare with $y = x^2$?'
+        choices: [5 units up, 5 units left, 5 units down, 5 units right]
+        answer: 2
+        explanation: Subtracting $5$ outside the function moves every point down $5$.
+
+      - id: sqrt-shift
+        type: multiple_choice
+        prompt: 'How does $y = \sqrt{x - 2}$ compare with $y = \sqrt{x}$?'
+        choices: [2 units left, 2 units right, 2 units up, 2 units down]
+        answer: 1
+        explanation: '$x - 2$ inside the function shifts the graph $2$ units right.'
+
+      - id: half-compression
+        type: multiple_choice
+        prompt: 'What does the $0.5$ do in $y = 0.5x^2$?'
+        choices:
+          - vertical stretch by a factor of 2
+          - vertical compression by a factor of 1/2
+          - shift up 0.5
+          - reflection in the x-axis
+        answer: 1
+        explanation: Multiplying by a number between $0$ and $1$ squashes the graph toward the $x$-axis.
+
+      - id: vertex-y
+        type: math_input
+        prompt: 'What is the $y$-coordinate of the vertex of $y = (x - 4)^2 + 7$?'
+        answer: '7'
+        placeholder: Enter a number
+        explanation: 'The vertex is $(4, 7)$.'
+
+      - id: which-graph-shift
+        type: multiple_choice
+        prompt: 'Which graph is $y = (x - 2)^2$?'
+        choices:
+          - { type: graph, x: [-4, 4], y: [-1, 6], curves: [{ expr: (x + 2)^2 }] }
+          - { type: graph, x: [-4, 4], y: [-1, 6], curves: [{ expr: x^2 + 2 }] }
+          - { type: graph, x: [-4, 4], y: [-1, 6], curves: [{ expr: x^2 - 2 }] }
+          - { type: graph, x: [-4, 4], y: [-1, 6], curves: [{ expr: (x - 2)^2 }] }
+        answer: 3
+        explanation: The vertex moves to $(2, 0)$, two units right of the origin.
+
+      - id: reflect-y-axis
+        type: multiple_choice
+        prompt: 'What transformation maps $y = f(x)$ onto $y = f(-x)$?'
+        choices: [reflection in the x-axis, reflection in the y-axis, shift left 1, vertical compression]
+        answer: 1
+        explanation: Replacing $x$ with $-x$ swaps left and right, a reflection in the $y$-axis.
+
+  - id: mcr3u-u1-t2-destroyer
+    kind: destroyer
+    topic: Transformations
+    title: 'Destroyer: Transformations'
+    description: Combined transformations and building equations.
+    xp: 30
+    items:
+      - id: describe-all
+        type: multiple_choice
+        prompt: 'Describe how $y = -2(x + 1)^2 + 4$ is transformed from $y = x^2$.'
+        choices:
+          - reflected in the y-axis, stretched by 2, right 1, up 4
+          - reflected in the x-axis, stretched by 2, left 1, up 4
+          - reflected in the x-axis, compressed by 1/2, right 1, down 4
+          - stretched by 2, left 1, down 4
+        answer: 1
+        explanation: '$-2$: reflection in the $x$-axis and stretch by $2$. $(x + 1)$: left $1$. $+4$: up $4$.'
+
+      - id: image-point
+        type: math_input
+        prompt: >-
+          The point $(3, 5)$ is on $y = f(x)$. Its image on $y = 2f(x - 1) + 3$ has what
+          $y$-coordinate?
+        answer: '13'
+        placeholder: Enter a number
+        hint: Stretch the $y$-value first, then shift it.
+        explanation: 'The image is $(3 + 1,\ 2(5) + 3) = (4, 13)$.'
+
+      - id: build-equation
+        type: math_input
+        prompt: >-
+          A parabola has vertex $(2, -3)$ and passes through $(3, -1)$. Write its equation in the
+          form $y = a(x - d)^2 + c$.
+        answer: 2(x - 2)^2 - 3
+        display_answer: '$y = 2(x - 2)^2 - 3$'
+        variables: [x]
+        placeholder: y = a(x − d)² + c
+        explanation: '$-1 = a(3 - 2)^2 - 3 \Rightarrow a = 2$, so $y = 2(x - 2)^2 - 3$.'
+
+      - id: range-after-transform
+        type: multiple_choice
+        prompt: 'What is the range of $y = -3(x - 1)^2 + 6$?'
+        choices:
+          - '$\{y \in \mathbb{R} \mid y \ge 6\}$'
+          - '$\{y \in \mathbb{R} \mid y \le 6\}$'
+          - '$\{y \in \mathbb{R} \mid y \le 1\}$'
+          - All real numbers
+        answer: 1
+        explanation: It opens down with vertex $(1, 6)$, so $6$ is the maximum value.

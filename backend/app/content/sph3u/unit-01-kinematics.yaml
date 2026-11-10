@@ -205,3 +205,211 @@ lessons:
         answer: '260'
         placeholder: Enter a number
         explanation: '$25 \times 8 + 15 \times 4 = 200 + 60 = 260$ m'
+
+  # =========================================================================================
+  # Topic 2: Acceleration
+  # =========================================================================================
+  - id: sph3u-u1-t2-learn
+    kind: learn
+    topic: Acceleration
+    title: 'Learn: Acceleration'
+    description: Rate of change of velocity, and reading velocity–time graphs.
+    xp: 10
+    items:
+      - type: teach
+        id: what-is-acceleration
+        title: What is acceleration?
+        blocks:
+          - type: text
+            md: |-
+              **Acceleration** is how quickly velocity changes:
+
+              $$\vec{a} = \frac{\Delta \vec{v}}{\Delta t} = \frac{\vec{v}_2 - \vec{v}_1}{\Delta t}$$
+
+              Units: $\text{m/s}^2$. A car going from $0$ to $20\ \text{m/s}$ in $5\ \text{s}$
+              has $a = \dfrac{20 - 0}{5} = 4\ \text{m/s}^2$.
+          - type: callout
+            tone: warning
+            title: Sign matters
+            md: 'Slowing down while moving forward gives a **negative** acceleration.'
+
+      - id: basic-acceleration
+        type: math_input
+        prompt: 'A bike speeds up from $2\ \text{m/s}$ to $10\ \text{m/s}$ in $4\ \text{s}$. Find its acceleration in $\text{m/s}^2$.'
+        answer: '2'
+        placeholder: Enter a number
+        explanation: '$a = \dfrac{10 - 2}{4} = 2\ \text{m/s}^2$'
+
+      - type: teach
+        id: slope-of-vt
+        title: 'Slope of a velocity–time graph'
+        blocks:
+          - type: text
+            md: |-
+              On a velocity–time graph, the **slope** is the acceleration.
+
+              - Rising line: speeding up (positive acceleration)
+              - Flat line: constant velocity ($a = 0$)
+              - Falling line: slowing down (negative acceleration)
+          - type: graph
+            x: [0, 10.5]
+            y: [-1, 14]
+            x_label: t (s)
+            y_label: v (m/s)
+            curves:
+              - { expr: 3x, domain: [0, 4], label: 'a = 3 m/s²' }
+              - { expr: '12', domain: [4, 7], color: accent, label: 'a = 0' }
+              - { expr: 40 - 4x, domain: [7, 10], color: error, label: 'a = −4 m/s²' }
+
+      - id: flat-line
+        type: multiple_choice
+        prompt: What does a horizontal line on a velocity–time graph show?
+        choices: [The object is at rest, The object has constant velocity, The object is speeding up, The object is slowing down]
+        answer: 1
+        explanation: 'Zero slope means zero acceleration: the velocity isn''t changing.'
+
+      - type: teach
+        id: area-under-vt
+        title: Area under the graph is displacement
+        blocks:
+          - type: text
+            md: |-
+              The **area** between a velocity–time graph and the time axis is the displacement.
+
+              For a car accelerating from rest to $12\ \text{m/s}$ in $4\ \text{s}$, the area is a
+              triangle: $\tfrac{1}{2}(4)(12) = 24\ \text{m}$.
+          - type: graph
+            x: [0, 5]
+            y: [0, 14]
+            x_label: t (s)
+            y_label: v (m/s)
+            curves:
+              - { expr: 3x, domain: [0, 4], label: v = 3t }
+            segments:
+              - { from: [4, 0], to: [4, 12], color: muted, dashed: true }
+            caption: 'Triangle area: ½ × base × height = 24 m.'
+
+      - id: rectangle-area
+        type: math_input
+        prompt: 'A runner moves at a constant $5\ \text{m/s}$ for $6\ \text{s}$. Using the area under the graph, how far do they go, in metres?'
+        answer: '30'
+        placeholder: Enter a number
+        explanation: 'The area is a rectangle: $5 \times 6 = 30\ \text{m}$.'
+
+  - id: sph3u-u1-t2-practice
+    kind: practice
+    topic: Acceleration
+    title: 'Practice: Acceleration'
+    description: Calculate acceleration and read the graph.
+    xp: 10
+    items:
+      - id: units-of-a
+        type: multiple_choice
+        prompt: Which are the SI units of acceleration?
+        choices: ['m/s', 'm/s²', 'm²/s', 'm·s']
+        answer: 1
+        explanation: 'Metres per second, per second: $\text{m/s}^2$.'
+
+      - id: from-rest
+        type: math_input
+        prompt: 'A car starts from rest and reaches $15\ \text{m/s}$ in $3\ \text{s}$. Find its acceleration in $\text{m/s}^2$.'
+        answer: '5'
+        placeholder: Enter a number
+        explanation: '$a = \dfrac{15 - 0}{3} = 5\ \text{m/s}^2$'
+
+      - id: braking
+        type: math_input
+        prompt: 'A cyclist slows from $8\ \text{m/s}$ to $2\ \text{m/s}$ in $3\ \text{s}$. Find the acceleration in $\text{m/s}^2$.'
+        answer: '-2'
+        placeholder: Enter a number
+        explanation: '$a = \dfrac{2 - 8}{3} = -2\ \text{m/s}^2$ (slowing down).'
+
+      - id: read-slope
+        type: math_input
+        prompt: 'What is the acceleration shown on this graph, in $\text{m/s}^2$?'
+        figure:
+          type: graph
+          x: [0, 5]
+          y: [0, 12]
+          x_label: t (s)
+          y_label: v (m/s)
+          curves: [{ expr: 2 + 2x, domain: [0, 5] }]
+          points:
+            - { at: [0, 2], label: '(0, 2)' }
+            - { at: [4, 10], label: '(4, 10)' }
+        answer: '2'
+        placeholder: Enter a number
+        explanation: 'Slope $= \dfrac{10 - 2}{4 - 0} = 2\ \text{m/s}^2$.'
+
+      - id: final-velocity
+        type: math_input
+        prompt: 'A ball rolls from rest with $a = 3\ \text{m/s}^2$. What is its velocity after $4\ \text{s}$, in m/s?'
+        answer: '12'
+        placeholder: Enter a number
+        explanation: '$v_2 = v_1 + a\Delta t = 0 + 3(4) = 12\ \text{m/s}$'
+
+      - id: which-graph-slowing
+        type: multiple_choice
+        prompt: Which velocity–time graph shows an object slowing down?
+        choices:
+          - { type: graph, x: [0, 5], y: [0, 10], x_label: t, y_label: v, curves: [{ expr: 2x }] }
+          - { type: graph, x: [0, 5], y: [0, 10], x_label: t, y_label: v, curves: [{ expr: '5' }] }
+          - { type: graph, x: [0, 5], y: [0, 10], x_label: t, y_label: v, curves: [{ expr: 10 - 2x }] }
+          - { type: graph, x: [0, 5], y: [0, 10], x_label: t, y_label: v, curves: [{ expr: 1 + x }] }
+        answer: 2
+        explanation: The velocity is decreasing, so the line slopes down.
+
+  - id: sph3u-u1-t2-destroyer
+    kind: destroyer
+    topic: Acceleration
+    title: 'Destroyer: Acceleration'
+    description: Multi-stage motion and the kinematic equations.
+    xp: 30
+    items:
+      - id: total-displacement
+        type: math_input
+        prompt: 'Find the total displacement, in metres, for the motion on this graph.'
+        figure:
+          type: graph
+          x: [0, 10.5]
+          y: [-1, 14]
+          x_label: t (s)
+          y_label: v (m/s)
+          curves:
+            - { expr: 3x, domain: [0, 4] }
+            - { expr: '12', domain: [4, 7] }
+            - { expr: 40 - 4x, domain: [7, 10] }
+        answer: '78'
+        placeholder: Enter a number
+        hint: Split the area into a triangle, a rectangle and another triangle.
+        explanation: '$\tfrac{1}{2}(4)(12) + 3(12) + \tfrac{1}{2}(3)(12) = 24 + 36 + 18 = 78\ \text{m}$'
+
+      - id: stopping-distance
+        type: math_input
+        prompt: 'A car moving at $20\ \text{m/s}$ brakes at $-5\ \text{m/s}^2$ until it stops. How far does it travel while braking, in metres?'
+        answer: '40'
+        placeholder: Enter a number
+        hint: 'Use $v_2^2 = v_1^2 + 2a\Delta d$.'
+        explanation: '$0 = 20^2 + 2(-5)\Delta d \Rightarrow \Delta d = \dfrac{400}{10} = 40\ \text{m}$'
+
+      - id: drop-time
+        type: math_input
+        prompt: 'A stone is dropped from rest off a $45\ \text{m}$ cliff. Using $a = 9.8\ \text{m/s}^2$ down, how long does it take to land, in seconds? Round to one decimal place.'
+        answer: '3.0'
+        tolerance: 0.05
+        placeholder: Enter a number
+        hint: 'Use $\Delta d = v_1\Delta t + \tfrac{1}{2}a\Delta t^2$ with $v_1 = 0$.'
+        explanation: '$45 = \tfrac{1}{2}(9.8)\Delta t^2 \Rightarrow \Delta t^2 \approx 9.18 \Rightarrow \Delta t \approx 3.0\ \text{s}$'
+
+      - id: direction-of-a
+        type: multiple_choice
+        prompt: >-
+          A ball is thrown straight up. At the very top of its path, its velocity is zero.
+          What is its acceleration at that moment?
+        choices:
+          - Zero, because it has stopped
+          - '9.8 m/s² upward'
+          - '9.8 m/s² downward'
+          - It changes direction, so it is undefined
+        answer: 2
+        explanation: Gravity keeps pulling down the whole time, so the velocity is still changing at the top.
