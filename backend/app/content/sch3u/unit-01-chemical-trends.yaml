@@ -1,0 +1,198 @@
+# SCH3U — Strand B: Matter, Chemical Trends, and Chemical Bonding
+
+id: sch3u-u1
+title: Matter, Chemical Trends and Bonding
+description: >-
+  How the periodic table's layout predicts atomic size, ionization energy, electronegativity
+  and the type of bond two atoms will form.
+
+lessons:
+  - id: sch3u-u1-t1-learn
+    kind: learn
+    topic: Periodic Trends
+    title: 'Learn: Periodic Trends'
+    description: Groups, periods, atomic radius, ionization energy and electronegativity.
+    xp: 10
+    items:
+      - type: teach
+        id: table-layout
+        title: Reading the periodic table
+        blocks:
+          - type: text
+            md: |-
+              - **Periods** (rows): elements in the same period have the same number of
+                occupied electron shells.
+              - **Groups** (columns): main-group elements in the same group have the same number
+                of **valence electrons**, so they react in similar ways.
+
+              Some groups have names: group 1 **alkali metals**, group 17 **halogens**, group 18
+              **noble gases**.
+          - type: callout
+            tone: key
+            md: Same group → same number of valence electrons → similar chemistry.
+
+      - id: same-group-share
+        type: multiple_choice
+        prompt: Main-group elements in the same group have the same...
+        choices:
+          - number of protons
+          - mass number
+          - number of valence electrons
+          - number of occupied shells
+        answer: 2
+        explanation: Valence electrons decide how an element reacts, which is why a group behaves as a family.
+
+      - type: teach
+        id: atomic-radius
+        title: Atomic radius
+        blocks:
+          - type: text
+            md: >-
+              Across a period, each element has one more proton pulling on the **same** outer
+              shell, so atoms get **smaller**. Down a group, each element adds a shell, so atoms
+              get **larger**.
+          - type: graph
+            x: [2.5, 9.5]
+            y: [50, 170]
+            x_label: atomic number
+            y_label: radius (pm)
+            points:
+              - { at: [3, 152], label: Li }
+              - { at: [4, 112], label: Be }
+              - { at: [5, 85], label: B }
+              - { at: [6, 77], label: C }
+              - { at: [7, 75], label: 'N' }
+              - { at: [8, 73], label: O }
+              - { at: [9, 72], label: F }
+            caption: Atomic radius shrinks across period 2, from lithium to fluorine.
+          - type: callout
+            tone: tip
+            md: 'Radius: **decreases** across a period (→), **increases** down a group (↓).'
+
+      - id: largest-atom
+        type: multiple_choice
+        prompt: Which of these period 3 atoms is the largest?
+        choices: [Cl, Al, Mg, Na]
+        answer: 3
+        explanation: Sodium is furthest left in period 3, with the fewest protons pulling on its outer shell.
+
+      - type: teach
+        id: ie-and-en
+        title: Ionization energy and electronegativity
+        blocks:
+          - type: text
+            md: |-
+              - **Ionization energy**: the energy needed to remove an atom's outermost electron.
+              - **Electronegativity**: how strongly an atom attracts shared electrons in a bond.
+
+              Both **increase across a period** and **decrease down a group**, the opposite of
+              atomic radius. Smaller atoms hold their electrons more tightly.
+          - type: callout
+            tone: key
+            md: 'Fluorine is the most electronegative element ($3.98$ on the Pauling scale).'
+
+      - id: highest-en
+        type: multiple_choice
+        prompt: Which element has the highest electronegativity?
+        choices: [C, N, O, F]
+        answer: 3
+        explanation: Electronegativity increases across a period, and fluorine is the most electronegative element of all.
+
+  - id: sch3u-u1-t1-practice
+    kind: practice
+    topic: Periodic Trends
+    title: 'Practice: Periodic Trends'
+    description: Apply the trends to pairs of elements.
+    xp: 10
+    items:
+      - id: radius-down-group
+        type: multiple_choice
+        prompt: Moving down a group, atomic radius...
+        choices: [decreases, increases, stays the same, first increases then decreases]
+        answer: 1
+        explanation: Each step down adds an electron shell, so atoms get larger.
+
+      - id: k-vs-na
+        type: multiple_choice
+        prompt: Which atom is larger, K or Na?
+        choices: [Na, K, They are the same size]
+        answer: 1
+        explanation: Potassium is below sodium in group 1, so it has one more electron shell.
+
+      - id: ie-na-vs-cl
+        type: multiple_choice
+        prompt: Which has the higher first ionization energy, Na or Cl?
+        choices: [Cl, Na, They are equal]
+        answer: 0
+        explanation: Chlorine is further right in period 3. Its smaller atom holds its electrons more tightly.
+
+      - id: oxygen-valence
+        type: math_input
+        prompt: How many valence electrons does oxygen (group 16) have?
+        answer: '6'
+        placeholder: Enter a number
+        explanation: 'For groups 13 to 18, valence electrons $=$ group number $- 10$. So $16 - 10 = 6$.'
+
+      - id: group-17-name
+        type: multiple_choice
+        prompt: What are the group 17 elements called?
+        choices: [alkali metals, noble gases, halogens, alkaline earth metals]
+        answer: 2
+        explanation: Fluorine, chlorine, bromine and iodine are the halogens.
+
+      - id: en-across-period
+        type: multiple_choice
+        prompt: Moving left to right across a period, electronegativity...
+        choices: [decreases, stays the same, increases]
+        answer: 2
+        explanation: More protons and a smaller radius mean a stronger pull on shared electrons.
+
+  - id: sch3u-u1-t1-destroyer
+    kind: destroyer
+    topic: Periodic Trends
+    title: 'Destroyer: Periodic Trends'
+    description: Ranking, explaining and predicting bond type.
+    xp: 30
+    items:
+      - id: order-radius
+        type: multiple_choice
+        prompt: Arrange F, O and S in order of increasing atomic radius.
+        choices: ['O < F < S', 'S < O < F', 'F < O < S', 'F < S < O']
+        answer: 2
+        explanation: >-
+          F is right of O in period 2 (smaller), and S is below O in group 16 (larger). So
+          F < O < S.
+
+      - id: explain-mg-smaller
+        type: multiple_choice
+        prompt: Why is a magnesium atom smaller than a sodium atom?
+        choices:
+          - Magnesium has more electron shells
+          - Magnesium has more protons pulling on the same outer shell
+          - Magnesium has fewer neutrons
+          - Magnesium is a metal and sodium is not
+        answer: 1
+        explanation: >-
+          Both have three shells, but magnesium's $12$ protons (vs. sodium's $11$) pull the
+          electrons in more strongly.
+
+      - id: nacl-bond-type
+        type: multiple_choice
+        prompt: >-
+          Na has electronegativity $0.93$ and Cl has $3.16$. Using $\Delta EN > 1.7$ for ionic
+          bonds, what type of bond forms in NaCl?
+        choices: [non-polar covalent, polar covalent, ionic, metallic]
+        answer: 2
+        explanation: '$\Delta EN = 3.16 - 0.93 = 2.23$, which is greater than $1.7$, so the bond is ionic.'
+
+      - id: hcl-delta-en
+        type: math_input
+        prompt: >-
+          H has electronegativity $2.20$ and Cl has $3.16$. Calculate $\Delta EN$ for the H–Cl
+          bond.
+        answer: '0.96'
+        tolerance: 0.005
+        placeholder: Enter a number
+        explanation: >-
+          $\Delta EN = 3.16 - 2.20 = 0.96$. That's between $0.4$ and $1.7$, so H–Cl is a polar
+          covalent bond, with chlorine holding the shared electrons more tightly.

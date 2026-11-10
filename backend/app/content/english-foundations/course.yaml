@@ -1,0 +1,12 @@
+id: english-foundations
+code: 'GR 8–10'
+title: English Foundations
+subject: english
+level: high_school
+category: junior
+grade_label: 'Grades 8–10'
+order: 3
+status: available
+description: 'Grade 8 English, ENL1W and ENG2D: reading, writing and essay skills.'
+units:
+  - unit-01-paragraphs.yaml

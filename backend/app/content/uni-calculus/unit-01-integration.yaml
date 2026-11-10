@@ -1,0 +1,200 @@
+# First-year university calculus — Integration
+
+id: uni-calculus-u1
+title: Integration
+description: >-
+  From area under a curve to the Fundamental Theorem of Calculus.
+
+lessons:
+  - id: uni-calculus-u1-t1-learn
+    kind: learn
+    topic: The Definite Integral
+    title: 'Learn: The Definite Integral'
+    description: Signed area, Riemann sums and the Fundamental Theorem of Calculus.
+    xp: 10
+    items:
+      - type: teach
+        id: area-under-curve
+        title: The integral as area
+        blocks:
+          - type: text
+            md: >-
+              The **definite integral** $\displaystyle\int_a^b f(x)\,dx$ measures the **signed
+              area** between the graph of $f$ and the $x$-axis, from $x = a$ to $x = b$. Area
+              above the axis counts as positive, area below as negative.
+          - type: graph
+            x: [-0.5, 3]
+            y: [-0.5, 3]
+            curves:
+              - { expr: x, domain: [0, 2.8], label: y = x }
+            segments:
+              - { from: [2, 0], to: [2, 2], color: accent, dashed: true }
+              - { from: [0, 0], to: [2, 0], color: accent }
+            caption: '$\displaystyle\int_0^2 x\,dx$ is the triangle with base $2$ and height $2$: area $= 2$.'
+
+      - id: constant-integral
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^3 2\,dx$.'
+        answer: '6'
+        placeholder: Enter a number
+        hint: The region is a rectangle.
+        explanation: 'A rectangle of width $3$ and height $2$: area $= 6$.'
+
+      - type: teach
+        id: riemann-sums
+        title: Riemann sums
+        blocks:
+          - type: text
+            md: >-
+              For curved graphs, approximate the area with rectangles. With $n$ rectangles of
+              width $\Delta x$ and heights from the right endpoints, the **right Riemann sum**
+              is $\sum f(x_i)\,\Delta x$.
+          - type: graph
+            x: [-0.2, 2.3]
+            y: [-0.3, 4.5]
+            curves:
+              - { expr: x^2, label: y = x² }
+            segments:
+              - { from: [0, 0.25], to: [0.5, 0.25], color: accent }
+              - { from: [0.5, 0], to: [0.5, 1], color: accent }
+              - { from: [0.5, 1], to: [1, 1], color: accent }
+              - { from: [1, 0], to: [1, 2.25], color: accent }
+              - { from: [1, 2.25], to: [1.5, 2.25], color: accent }
+              - { from: [1.5, 0], to: [1.5, 4], color: accent }
+              - { from: [1.5, 4], to: [2, 4], color: accent }
+              - { from: [2, 0], to: [2, 4], color: accent }
+              - { from: [0, 0.25], to: [0, 0], color: accent }
+            caption: Four right-endpoint rectangles of width $0.5$ under $y = x^2$ on $[0, 2]$.
+          - type: callout
+            tone: key
+            md: As $n \to \infty$, the Riemann sum approaches the exact value of the integral.
+
+      - id: compute-riemann-sum
+        type: math_input
+        prompt: >-
+          Compute the right Riemann sum for $f(x) = x^2$ on $[0, 2]$ with $4$ rectangles of
+          width $0.5$.
+        answer: '3.75'
+        placeholder: Enter a number
+        hint: 'Heights are $f(0.5),\ f(1),\ f(1.5),\ f(2)$.'
+        explanation: '$0.5\,(0.25 + 1 + 2.25 + 4) = 0.5 \times 7.5 = 3.75$. The exact area is $\tfrac{8}{3} \approx 2.67$.'
+
+      - type: teach
+        id: ftc
+        title: The Fundamental Theorem of Calculus
+        blocks:
+          - type: text
+            md: |-
+              If $F$ is an antiderivative of $f$ (so $F' = f$), then
+
+              $$\int_a^b f(x)\,dx = F(b) - F(a)$$
+
+              For example, $\displaystyle\int_0^2 x^2\,dx = \left[\tfrac{x^3}{3}\right]_0^2 = \tfrac{8}{3} - 0 = \tfrac{8}{3}$.
+          - type: callout
+            tone: key
+            md: 'Power rule for antiderivatives: $\displaystyle\int x^n\,dx = \frac{x^{n+1}}{n+1} + C$ for $n \ne -1$.'
+
+      - id: ftc-linear
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_1^3 2x\,dx$.'
+        answer: '8'
+        placeholder: Enter a number
+        explanation: 'An antiderivative is $x^2$: $3^2 - 1^2 = 9 - 1 = 8$.'
+
+  - id: uni-calculus-u1-t1-practice
+    kind: practice
+    topic: The Definite Integral
+    title: 'Practice: The Definite Integral'
+    description: Areas, antiderivatives and basic integrals.
+    xp: 10
+    items:
+      - id: rectangle-area
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^4 3\,dx$.'
+        answer: '12'
+        placeholder: Enter a number
+        explanation: 'Rectangle: width $4$, height $3$.'
+
+      - id: triangle-area
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^2 x\,dx$.'
+        answer: '2'
+        placeholder: Enter a number
+        explanation: '$\left[\tfrac{x^2}{2}\right]_0^2 = 2$, the triangle from the first card.'
+
+      - id: x-squared-integral
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^1 x^2\,dx$.'
+        answer: 1/3
+        display_answer: '$\dfrac{1}{3}$'
+        placeholder: Enter a number or fraction
+        explanation: '$\left[\tfrac{x^3}{3}\right]_0^1 = \tfrac{1}{3}$'
+
+      - id: antiderivative
+        type: multiple_choice
+        prompt: 'Which is an antiderivative of $3x^2$?'
+        choices: ['$6x$', '$x^3 + C$', '$3x^3 + C$', '$\tfrac{x^3}{3} + C$']
+        answer: 1
+        explanation: 'Differentiate $x^3$ to get $3x^2$.'
+
+      - id: sign-of-integral
+        type: multiple_choice
+        prompt: 'What is the sign of $\displaystyle\int_0^2 f(x)\,dx$ for this function?'
+        figure:
+          type: graph
+          x: [-0.5, 2.5]
+          y: [-2.5, 1]
+          curves: [{ expr: -x, label: y = f(x) }]
+        choices: [positive, negative, zero, undefined]
+        answer: 1
+        explanation: The graph is below the axis on $[0, 2]$, so the signed area is negative ($-2$).
+
+      - id: cubic-integral
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_1^2 4x^3\,dx$.'
+        answer: '15'
+        placeholder: Enter a number
+        explanation: '$\left[x^4\right]_1^2 = 16 - 1 = 15$'
+
+  - id: uni-calculus-u1-t1-destroyer
+    kind: destroyer
+    topic: The Definite Integral
+    title: 'Destroyer: The Definite Integral'
+    description: Trig, logarithms and symmetry.
+    xp: 30
+    items:
+      - id: sine-integral
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^{\pi} \sin x\,dx$.'
+        answer: '2'
+        placeholder: Enter a number
+        explanation: '$\left[-\cos x\right]_0^{\pi} = -\cos\pi + \cos 0 = 1 + 1 = 2$'
+
+      - id: reciprocal-integral
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_1^{e} \frac{1}{x}\,dx$.'
+        answer: '1'
+        placeholder: Enter a number
+        explanation: '$\left[\ln x\right]_1^{e} = \ln e - \ln 1 = 1 - 0 = 1$'
+
+      - id: polynomial-integral
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_0^2 \left(3x^2 - 2x + 1\right)dx$.'
+        answer: '6'
+        placeholder: Enter a number
+        explanation: '$\left[x^3 - x^2 + x\right]_0^2 = 8 - 4 + 2 = 6$'
+
+      - id: odd-symmetry
+        type: math_input
+        prompt: 'Evaluate $\displaystyle\int_{-1}^{1} x^3\,dx$.'
+        figure:
+          type: graph
+          x: [-1.3, 1.3]
+          y: [-1.2, 1.2]
+          curves: [{ expr: x^3, label: y = x³ }]
+        answer: '0'
+        placeholder: Enter a number
+        hint: Compare the area on the left with the area on the right.
+        explanation: >-
+          $x^3$ is an odd function: the area below the axis on $[-1, 0]$ exactly cancels the area
+          above it on $[0, 1]$. Check: $\left[\tfrac{x^4}{4}\right]_{-1}^{1} = \tfrac14 - \tfrac14 = 0$.

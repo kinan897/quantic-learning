@@ -1,0 +1,216 @@
+# MHF4U — Strand C: Polynomial and Rational Functions
+
+id: mhf4u-u1
+title: Polynomial Functions
+description: >-
+  Degree, leading coefficient, end behaviour and zeros: reading a polynomial's shape
+  straight from its equation.
+
+lessons:
+  - id: mhf4u-u1-t1-learn
+    kind: learn
+    topic: Polynomial Basics
+    title: 'Learn: Polynomial Basics'
+    description: Degree, leading coefficient, end behaviour and zeros.
+    xp: 10
+    items:
+      - type: teach
+        id: what-is-a-polynomial
+        title: What is a polynomial?
+        blocks:
+          - type: text
+            md: |-
+              A **polynomial** is a sum of terms of the form $a x^n$, where $n$ is a whole
+              number. Two features control its shape:
+
+              - **Degree**: the highest power of $x$
+              - **Leading coefficient**: the number in front of that highest power
+
+              For $f(x) = -2x^3 + 5x - 1$: degree $3$, leading coefficient $-2$.
+          - type: callout
+            tone: warning
+            title: Not polynomials
+            md: '$\dfrac{1}{x}$, $\sqrt{x}$ and $2^x$ are **not** polynomials: the powers must be whole numbers $0, 1, 2, \dots$'
+
+      - id: identify-degree
+        type: multiple_choice
+        prompt: 'What is the degree of $f(x) = 4x^5 - x^2 + 7$?'
+        choices: ['$4$', '$2$', '$5$', '$7$']
+        answer: 2
+        explanation: 'The highest power of $x$ is $5$. The $4$ is the leading coefficient.'
+
+      - type: teach
+        id: end-behaviour
+        title: End behaviour
+        blocks:
+          - type: text
+            md: >-
+              **End behaviour** describes what $y$ does at the far left and far right of the
+              graph. It depends only on the degree (odd or even) and the sign of the leading
+              coefficient.
+          - type: graph
+            x: [-2.2, 2.2]
+            y: [-6, 6]
+            curves:
+              - { expr: x^3, label: 'x³: odd, positive' }
+              - { expr: -x^4 + 2, color: accent, label: '−x⁴ + 2: even, negative' }
+          - type: text
+            md: |-
+              | | Leading coefficient $> 0$ | Leading coefficient $< 0$ |
+              |---|---|---|
+              | **Odd degree** | falls left, rises right | rises left, falls right |
+              | **Even degree** | rises on both ends | falls on both ends |
+
+      - id: odd-negative-graph
+        type: multiple_choice
+        prompt: 'Which graph could be $f(x) = -x^3 + 2x$?'
+        choices:
+          - { type: graph, x: [-2.2, 2.2], y: [-4, 4], curves: [{ expr: x^3 - 2x }] }
+          - { type: graph, x: [-2.2, 2.2], y: [-4, 4], curves: [{ expr: x^4 - 2x^2 }] }
+          - { type: graph, x: [-2.2, 2.2], y: [-4, 4], curves: [{ expr: -x^3 + 2x }] }
+          - { type: graph, x: [-2.2, 2.2], y: [-4, 4], curves: [{ expr: -x^4 + 2x^2 }] }
+        answer: 2
+        hint: Odd degree, negative leading coefficient. Which way do the ends point?
+        explanation: >-
+          Degree $3$ (odd) with a negative leading coefficient: the graph **rises on the left
+          and falls on the right**. Only graph C does that.
+
+      - type: teach
+        id: zeros-factored-form
+        title: Zeros from factored form
+        blocks:
+          - type: text
+            md: >-
+              In factored form you can read the **zeros** ($x$-intercepts) directly: each factor
+              $(x - a)$ gives a zero at $x = a$.
+          - type: graph
+            x: [-3, 4]
+            y: [-12, 12]
+            curves:
+              - { expr: (x - 1)(x + 2)(x - 3), label: 'f(x) = (x − 1)(x + 2)(x − 3)' }
+            points:
+              - { at: [-2, 0], label: '−2', color: accent }
+              - { at: [1, 0], label: '1', color: accent }
+              - { at: [3, 0], label: '3', color: accent }
+              - { at: [0, 6], label: '(0, 6)' }
+          - type: callout
+            tone: tip
+            md: 'The $y$-intercept is $f(0)$: multiply the constants. Here $(-1)(2)(-3) = 6$.'
+
+      - id: y-intercept-factored
+        type: math_input
+        prompt: 'What is the $y$-intercept of $f(x) = (x + 1)(x - 2)(x + 4)$?'
+        answer: '-8'
+        placeholder: Enter a number
+        explanation: '$f(0) = (1)(-2)(4) = -8$'
+
+  - id: mhf4u-u1-t1-practice
+    kind: practice
+    topic: Polynomial Basics
+    title: 'Practice: Polynomial Basics'
+    description: Degree, end behaviour and zeros at a glance.
+    xp: 10
+    items:
+      - id: leading-coefficient
+        type: multiple_choice
+        prompt: 'What is the leading coefficient of $f(x) = 3 - 2x + 7x^4$?'
+        choices: ['$3$', '$-2$', '$4$', '$7$']
+        answer: 3
+        explanation: 'The highest power is $x^4$, and its coefficient is $7$. Order of terms doesn''t matter.'
+
+      - id: even-positive-ends
+        type: multiple_choice
+        prompt: 'Describe the end behaviour of $f(x) = 2x^4$.'
+        choices:
+          - Falls left, rises right
+          - Rises on both ends
+          - Rises left, falls right
+          - Falls on both ends
+        answer: 1
+        explanation: Even degree with a positive leading coefficient points up on both ends, like a parabola.
+
+      - id: positive-zero
+        type: math_input
+        prompt: 'What is the positive zero of $f(x) = (x - 4)(x + 1)$?'
+        answer: '4'
+        placeholder: Enter a number
+        explanation: 'Set each factor to zero: $x = 4$ or $x = -1$. The positive one is $4$.'
+
+      - id: count-intercepts
+        type: multiple_choice
+        prompt: How many $x$-intercepts does this graph have?
+        figure:
+          type: graph
+          x: [-3, 3]
+          y: [-5, 5]
+          curves: [{ expr: x^3 - 4x }]
+        choices: ['$1$', '$2$', '$3$', '$4$']
+        answer: 2
+        explanation: 'It crosses at $x = -2$, $0$ and $2$, because $x^3 - 4x = x(x - 2)(x + 2)$.'
+
+      - id: max-turning-points
+        type: multiple_choice
+        prompt: What is the greatest number of turning points a degree 5 polynomial can have?
+        choices: ['$5$', '$4$', '$6$', '$3$']
+        answer: 1
+        explanation: A degree $n$ polynomial has at most $n - 1$ turning points, so at most $4$.
+
+      - id: evaluate-cubic
+        type: math_input
+        prompt: 'If $f(x) = x^3 - 2x + 1$, find $f(2)$.'
+        answer: '5'
+        placeholder: Enter a number
+        explanation: '$f(2) = 8 - 4 + 1 = 5$'
+
+  - id: mhf4u-u1-t1-destroyer
+    kind: destroyer
+    topic: Polynomial Basics
+    title: 'Destroyer: Polynomial Basics'
+    description: Multiplicity, factor theorem and harder end behaviour.
+    xp: 30
+    items:
+      - id: y-intercept-with-repeat
+        type: math_input
+        prompt: 'Find the $y$-intercept of $f(x) = 2(x - 1)^2(x + 3)$.'
+        answer: '6'
+        placeholder: Enter a number
+        explanation: '$f(0) = 2(-1)^2(3) = 2 \cdot 1 \cdot 3 = 6$'
+
+      - id: odd-negative-ends
+        type: multiple_choice
+        prompt: 'Describe the end behaviour of $f(x) = -3x^5 + 4x^2 - 1$.'
+        choices:
+          - 'As $x \to -\infty$, $y \to +\infty$; as $x \to +\infty$, $y \to -\infty$'
+          - 'As $x \to -\infty$, $y \to -\infty$; as $x \to +\infty$, $y \to +\infty$'
+          - 'As $x \to \pm\infty$, $y \to +\infty$'
+          - 'As $x \to \pm\infty$, $y \to -\infty$'
+        answer: 0
+        explanation: Odd degree with a negative leading coefficient rises on the left and falls on the right.
+
+      - id: multiplicity-two
+        type: multiple_choice
+        prompt: 'At a zero of multiplicity $2$, such as $x = 1$ in $f(x) = (x - 1)^2(x + 2)$, the graph...'
+        figure:
+          type: graph
+          x: [-3, 2.5]
+          y: [-3, 6]
+          curves: [{ expr: (x - 1)^2(x + 2) }]
+          points:
+            - { at: [1, 0], color: accent }
+        choices:
+          - crosses the $x$-axis in a straight line
+          - touches the $x$-axis and turns back
+          - has a vertical asymptote
+          - does not reach the $x$-axis
+        answer: 1
+        explanation: >-
+          A squared factor doesn't change sign, so the graph touches the axis at $x = 1$ and
+          bounces back instead of crossing.
+
+      - id: factor-theorem-k
+        type: math_input
+        prompt: 'Find $k$ if $(x - 2)$ is a factor of $p(x) = x^3 + kx - 4$.'
+        answer: '-2'
+        placeholder: Enter a number
+        hint: 'Factor theorem: $(x - 2)$ is a factor exactly when $p(2) = 0$.'
+        explanation: '$p(2) = 8 + 2k - 4 = 0 \Rightarrow 2k = -4 \Rightarrow k = -2$'

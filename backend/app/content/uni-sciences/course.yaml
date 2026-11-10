@@ -1,0 +1,12 @@
+id: uni-sciences
+code: '1ST YEAR'
+title: University Sciences
+subject: science
+level: university
+category: uni
+grade_label: 'First-year university'
+order: 15
+status: available
+description: 'Help with first-year chemistry, physics and biology problem sets and exams.'
+units:
+  - unit-01-chemistry-foundations.yaml

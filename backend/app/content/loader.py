@@ -57,9 +57,9 @@ class Catalog:
 def load_course(course_dir: Path) -> Course:
     meta_path = course_dir / "course.yaml"
     meta = _read_yaml(meta_path)
-    unit_files = meta.pop("units", None)
-    if not isinstance(unit_files, list) or not unit_files:
-        raise ContentError(f"{meta_path}: 'units' must list at least one unit file")
+    unit_files = meta.pop("units", None) or []
+    if not isinstance(unit_files, list):
+        raise ContentError(f"{meta_path}: 'units' must be a list of unit files")
 
     units = []
     for name in unit_files:
@@ -85,8 +85,9 @@ def _check_images(unit: Unit, unit_path: Path, assets_dir: Path) -> None:
 
 
 def load_catalog(root: Path = CONTENT_DIR) -> Catalog:
-    course_dirs = sorted(p for p in root.iterdir() if (p / "course.yaml").is_file())
-    return Catalog.from_courses([load_course(d) for d in course_dirs])
+    course_dirs = [p for p in root.iterdir() if (p / "course.yaml").is_file()]
+    courses = sorted((load_course(d) for d in course_dirs), key=lambda c: (c.order, c.id))
+    return Catalog.from_courses(courses)
 
 
 @lru_cache

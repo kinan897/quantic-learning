@@ -1,0 +1,207 @@
+# SPH3U — Strand B: Kinematics
+
+id: sph3u-u1
+title: Kinematics
+description: >-
+  Describing motion: distance and displacement, speed and velocity, and reading
+  position–time graphs.
+
+lessons:
+  - id: sph3u-u1-t1-learn
+    kind: learn
+    topic: Describing Motion
+    title: 'Learn: Describing Motion'
+    description: Scalars vs. vectors, average velocity and position–time graphs.
+    xp: 10
+    items:
+      - type: teach
+        id: distance-vs-displacement
+        title: Distance vs. displacement
+        blocks:
+          - type: text
+            md: |-
+              - **Distance** is the total length travelled. It's a **scalar** (size only).
+              - **Displacement** is the change in position, from start to finish. It's a
+                **vector** (size *and* direction).
+
+              Walk $3$ m east, then $1$ m west: distance $= 4$ m, displacement $= 2$ m east.
+          - type: graph
+            x: [-0.5, 4]
+            y: [-0.4, 3.4]
+            grid: false
+            aspect: 0.45
+            x_label: position (m)
+            y_label: ''
+            segments:
+              - { from: [0, 2.9], to: [3, 2.9], color: primary, arrow: true, label: 3 m east }
+              - { from: [3, 1.85], to: [2, 1.85], color: accent, arrow: true, label: 1 m west }
+              - { from: [0, 0.8], to: [2, 0.8], color: success, arrow: true, label: displacement = 2 m east }
+
+      - id: north-south-displacement
+        type: math_input
+        prompt: 'You walk $5$ m north, then $2$ m south. What is the size of your displacement, in metres?'
+        answer: '3'
+        placeholder: Enter a number
+        explanation: 'You end up $5 - 2 = 3$ m north of where you started. (The distance travelled is $7$ m.)'
+
+      - type: teach
+        id: speed-and-velocity
+        title: Speed and velocity
+        blocks:
+          - type: text
+            md: |-
+              **Average speed** is distance ÷ time. **Average velocity** is displacement ÷ time:
+
+              $$\vec{v}_{avg} = \frac{\Delta \vec{d}}{\Delta t}$$
+
+              A sprinter covering $100$ m in $20$ s has an average speed of $5$ m/s.
+          - type: callout
+            tone: tip
+            md: 'Units matter: $1$ m/s $= 3.6$ km/h. Divide km/h by $3.6$ to get m/s.'
+
+      - id: average-speed-check
+        type: math_input
+        prompt: 'A cyclist travels $240$ m in $30$ s. What is the average speed, in m/s?'
+        answer: '8'
+        placeholder: Enter a number
+        explanation: '$\dfrac{240}{30} = 8$ m/s'
+
+      - type: teach
+        id: position-time-graphs
+        title: Position–time graphs
+        blocks:
+          - type: text
+            md: >-
+              On a **position–time** graph, the **slope is the velocity**. A steep line means fast,
+              a flat line means at rest, and a downward slope means moving back toward the start.
+          - type: graph
+            x: [0, 8.5]
+            y: [-1, 10]
+            x_label: t (s)
+            y_label: d (m)
+            curves:
+              - { expr: 2x, domain: [0, 4], label: 'v = 2 m/s' }
+              - { expr: '8', domain: [4, 6], color: accent, label: at rest }
+              - { expr: 32 - 4x, domain: [6, 8], color: error, label: 'v = −4 m/s' }
+
+      - id: flat-section
+        type: multiple_choice
+        prompt: Using the graph above, what is the object doing from $t = 4$ s to $t = 6$ s?
+        choices:
+          - moving at a constant 8 m/s
+          - speeding up
+          - standing still
+          - moving backward
+        answer: 2
+        explanation: The position stays at $8$ m, so the slope (velocity) is $0$. It's at rest.
+
+  - id: sph3u-u1-t1-practice
+    kind: practice
+    topic: Describing Motion
+    title: 'Practice: Describing Motion'
+    description: Scalars, vectors, units and slopes.
+    xp: 10
+    items:
+      - id: which-is-vector
+        type: multiple_choice
+        prompt: Which of these is a vector?
+        choices: [speed, distance, time, displacement]
+        answer: 3
+        explanation: Displacement has a direction. The others have size only.
+
+      - id: lap-displacement
+        type: math_input
+        prompt: A runner completes one full lap of a $400$ m track, ending where they started. What is their displacement, in metres?
+        answer: '0'
+        placeholder: Enter a number
+        explanation: They finish at the starting point, so the displacement is $0$, even though the distance is $400$ m.
+
+      - id: highway-speed
+        type: math_input
+        prompt: 'A bus travels $180$ km in $3$ hours. What is its average speed, in km/h?'
+        answer: '60'
+        placeholder: Enter a number
+        explanation: '$\dfrac{180}{3} = 60$ km/h'
+
+      - id: slope-is-velocity
+        type: math_input
+        prompt: What is the velocity of this object, in m/s?
+        figure:
+          type: graph
+          x: [0, 5]
+          y: [0, 16]
+          x_label: t (s)
+          y_label: d (m)
+          curves: [{ expr: 3x }]
+          points:
+            - { at: [4, 12], label: '(4 s, 12 m)' }
+        answer: '3'
+        placeholder: Enter a number
+        explanation: 'Slope $= \dfrac{12 \text{ m}}{4 \text{ s}} = 3$ m/s'
+
+      - id: steeper-means
+        type: multiple_choice
+        prompt: On a position–time graph, a steeper line means the object is...
+        choices: [moving faster, moving slower, accelerating downward, at rest]
+        answer: 0
+        explanation: Slope is velocity, so a steeper slope means more metres covered each second.
+
+      - id: kmh-to-ms
+        type: math_input
+        prompt: 'Convert $72$ km/h to m/s.'
+        answer: '20'
+        placeholder: Enter a number
+        explanation: '$72 \div 3.6 = 20$ m/s'
+
+  - id: sph3u-u1-t1-destroyer
+    kind: destroyer
+    topic: Describing Motion
+    title: 'Destroyer: Describing Motion'
+    description: Multi-part trips and reading graphs carefully.
+    xp: 30
+    items:
+      - id: trip-average-velocity
+        type: math_input
+        prompt: >-
+          You walk $30$ m east in $10$ s, then $10$ m west in $10$ s. What is the size of your
+          average velocity for the whole trip, in m/s?
+        answer: '1'
+        placeholder: Enter a number
+        hint: Average velocity uses displacement, not distance.
+        explanation: 'Displacement $= 30 - 10 = 20$ m east over $20$ s, so $\dfrac{20}{20} = 1$ m/s east.'
+
+      - id: trip-average-speed
+        type: math_input
+        prompt: For the same trip ($30$ m east in $10$ s, then $10$ m west in $10$ s), what is your average speed, in m/s?
+        answer: '2'
+        placeholder: Enter a number
+        explanation: 'Distance $= 30 + 10 = 40$ m over $20$ s, so $\dfrac{40}{20} = 2$ m/s.'
+
+      - id: negative-velocity-from-graph
+        type: math_input
+        prompt: What is the velocity from $t = 6$ s to $t = 8$ s, in m/s?
+        figure:
+          type: graph
+          x: [0, 8.5]
+          y: [-1, 10]
+          x_label: t (s)
+          y_label: d (m)
+          curves:
+            - { expr: 2x, domain: [0, 4] }
+            - { expr: '8', domain: [4, 6] }
+            - { expr: 32 - 4x, domain: [6, 8] }
+          points:
+            - { at: [6, 8], label: '(6, 8)' }
+            - { at: [8, 0], label: '(8, 0)' }
+        answer: '-4'
+        placeholder: Enter a number
+        explanation: 'Slope $= \dfrac{0 - 8}{8 - 6} = -4$ m/s. The negative sign means it''s heading back toward the start.'
+
+      - id: two-stage-displacement
+        type: math_input
+        prompt: >-
+          A car drives at $25$ m/s for $8$ s, then at $15$ m/s for $4$ s, in the same direction.
+          What is its total displacement, in metres?
+        answer: '260'
+        placeholder: Enter a number
+        explanation: '$25 \times 8 + 15 \times 4 = 200 + 60 = 260$ m'

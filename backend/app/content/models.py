@@ -225,18 +225,25 @@ class Unit(_Strict):
 
 class Course(_Strict):
     id: Slug
-    code: Text  # Ontario course code, e.g. "MCV4U"
+    code: Text  # Ontario course code, e.g. "MCV4U" (or "GR 8–10", "1ST YEAR")
     title: Text
     subject: Literal["math", "science", "english", "computer-science"]
     level: Literal["high_school", "university"]
+    # Filter tab on the Courses screen, matching the website's subject tabs.
+    category: Literal["junior", "math", "science", "english", "uni"]
     grade: int | None = Field(default=None, ge=9, le=12)
+    grade_label: Text  # e.g. "Grade 12 · University prep"
+    order: int = 100  # position in the course catalog
+    status: Literal["available", "coming_soon"] = "available"
     description: str = ""
     prerequisites: list[str] = Field(default_factory=list)
-    units: list[Unit] = Field(min_length=1)
+    units: list[Unit] = Field(default_factory=list)
 
     @model_validator(mode="after")
-    def _unique_unit_ids(self) -> Course:
+    def _check_units(self) -> Course:
         _require_unique([u.id for u in self.units], f"unit id in course {self.id}")
+        if self.status == "available" and not self.units:
+            raise ValueError(f"course {self.id} is available but has no units")
         return self
 
 

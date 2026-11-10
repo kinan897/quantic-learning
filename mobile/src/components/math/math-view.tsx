@@ -21,6 +21,8 @@ import { useEffect, useMemo, useRef } from 'react';
 // sync with the `katex` package in package.json.
 const KATEX_CSS = 'https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css';
 
+const MANROPE_CSS = 'https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap';
+
 type Props = {
   source: string;
   color: string;
@@ -48,6 +50,7 @@ export default function MathView({ source, color, fontSize, align, onHeight }: P
   return (
     <>
       <link rel="stylesheet" href={KATEX_CSS} precedence="default" />
+      <link rel="stylesheet" href={MANROPE_CSS} precedence="default" />
       <style>{CSS}</style>
       <div
         ref={ref}
@@ -81,7 +84,7 @@ function renderMarkdownWithMath(source: string): string {
 const CSS = `
   html, body { margin: 0; padding: 0; background: transparent; }
   .ql-rich {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    font-family: Manrope_500Medium, Manrope, -apple-system, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.5;
     overflow-wrap: anywhere;
     -webkit-text-size-adjust: 100%;

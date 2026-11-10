@@ -1,0 +1,14 @@
+id: uni-calculus
+code: '1ST YEAR'
+title: University Calculus
+subject: math
+level: university
+category: uni
+grade_label: 'First-year university'
+order: 14
+status: available
+description: 'Support for first-year calculus: limits, differentiation, integration and series.'
+prerequisites:
+  - MCV4U
+units:
+  - unit-01-integration.yaml

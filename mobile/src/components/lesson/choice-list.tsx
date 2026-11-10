@@ -57,7 +57,7 @@ export function ChoiceList({ choices, selected, onSelect, correctChoice, locked 
           <Pressable
             key={index}
             accessibilityRole="radio"
-            accessibilityState={{ selected: isSelected, disabled: locked }}
+            accessibilityState={{ checked: isSelected, disabled: locked }}
             disabled={locked}
             onPress={() => {
               haptics.tap();

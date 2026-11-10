@@ -1,0 +1,12 @@
+id: math-foundations
+code: 'GR 8–10'
+title: Math Foundations
+subject: math
+level: high_school
+category: junior
+grade_label: 'Grades 8–10'
+order: 1
+status: available
+description: 'Grade 8 math, MTH1W and MPM2D: algebra, linear relations and quadratics.'
+units:
+  - unit-01-linear-relations.yaml

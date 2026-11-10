@@ -91,3 +91,23 @@ def test_multiple_choice_answers_are_not_predictable(lesson):
     total = sum(answers.values())
     if total >= 3:
         assert max(answers.values()) < total, f"{lesson.id}: every answer is option {answers}"
+
+
+def test_catalog_matches_the_website_subjects():
+    """All 15 subjects from the Quantic website, in the website's order."""
+    ids = list(catalog.courses)
+    assert len(ids) == 15
+    assert ids[:6] == [
+        "math-foundations",
+        "science-foundations",
+        "english-foundations",
+        "mcr3u",
+        "mhf4u",
+        "mcv4u",
+    ]
+    for course in catalog.courses.values():
+        lessons = [lesson for unit in course.units for lesson in unit.lessons]
+        if course.status == "coming_soon":
+            assert not lessons, f"{course.id} is 'coming soon' but has lessons"
+        else:
+            assert lessons, f"{course.id} is available but has no lessons"

@@ -11,7 +11,7 @@ import Animated, {
 
 import type { LessonSummary } from '@/api/types';
 import { Text } from '@/components/ui/text';
-import { Radius, Spacing } from '@/constants/theme';
+import { Glow, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 
 export type LessonStatus = 'completed' | 'current' | 'locked';
@@ -40,10 +40,11 @@ export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOp
   const kind = LESSON_KINDS[lesson.kind];
   const isDestroyer = lesson.kind === 'destroyer';
   const kindColor = isDestroyer ? theme.destroyer : theme.primary;
+  const labelColor = isDestroyer ? theme.destroyer : theme.accent;
   const railColor = (done: boolean) => (done ? theme.accent : theme.border);
 
   const node = {
-    completed: { bg: theme.accent, fg: theme.onPrimary, icon: 'checkmark' as const },
+    completed: { bg: theme.accent, fg: theme.onAccent, icon: 'checkmark' as const },
     current: { bg: kindColor, fg: theme.onPrimary, icon: kind.icon },
     locked: { bg: theme.surfaceAlt, fg: theme.locked, icon: 'lock-closed' as const },
   }[status];
@@ -56,7 +57,12 @@ export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOp
         />
         <View style={styles.nodeWrap}>
           {status === 'current' && <PulseRing color={kindColor} />}
-          <View style={[styles.node, { backgroundColor: node.bg }]}>
+          <View
+            style={[
+              styles.node,
+              { backgroundColor: node.bg },
+              status === 'current' && { boxShadow: `0px 0px 18px ${kindColor}` },
+            ]}>
             <Ionicons name={node.icon} size={22} color={node.fg} />
           </View>
         </View>
@@ -81,8 +87,8 @@ export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOp
           },
         ]}>
         <View style={styles.kindRow}>
-          <Ionicons name={kind.icon} size={13} color={kindColor} />
-          <Text variant="caption" style={[styles.kindLabel, { color: kindColor }]}>
+          <Ionicons name={kind.icon} size={13} color={labelColor} />
+          <Text variant="caption" style={[styles.kindLabel, { color: labelColor }]}>
             {kind.label}
           </Text>
         </View>
@@ -103,7 +109,11 @@ export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOp
         </View>
         {status === 'current' && (
           // Looks like a button, but the whole card is the tap target (no nested buttons).
-          <View style={[styles.start, { backgroundColor: kindColor }]}>
+          <View
+            style={[
+              styles.start,
+              { backgroundColor: kindColor, boxShadow: isDestroyer ? undefined : Glow.primary },
+            ]}>
             <Ionicons name={isDestroyer ? 'skull' : 'arrow-forward'} size={18} color={theme.onPrimary} />
             <Text variant="label" style={{ color: theme.onPrimary }}>
               {kind.start}
@@ -170,13 +180,13 @@ const styles = StyleSheet.create({
     marginVertical: Spacing.two,
   },
   kindRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one },
-  kindLabel: { fontWeight: '800', letterSpacing: 1.1 },
+  kindLabel: { fontWeight: '700', letterSpacing: 2.2, fontSize: 11 },
   meta: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.three, marginTop: Spacing.one },
   metaItem: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one },
   start: {
     marginTop: Spacing.two,
     minHeight: 48,
-    borderRadius: Radius.md,
+    borderRadius: Radius.pill,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
