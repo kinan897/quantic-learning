@@ -92,6 +92,9 @@ const CSS = `
   .ql-rich ul, .ql-rich ol { margin: 0 0 0.6em; padding-left: 1.3em; }
   .ql-rich li { margin: 0.2em 0; }
   .ql-rich strong { font-weight: 700; }
+  .ql-rich table { border-collapse: collapse; margin: 0.4em 0 0.8em; min-width: 60%; }
+  .ql-rich th, .ql-rich td { border: 1px solid rgba(127, 127, 127, 0.35); padding: 0.35em 0.8em; text-align: center; }
+  .ql-rich th { font-weight: 700; background: rgba(127, 127, 127, 0.12); }
   .ql-rich .ql-nowrap { white-space: nowrap; }
   .ql-rich .katex { font-size: 1.08em; }
   .ql-rich .katex-display { margin: 0.6em 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
