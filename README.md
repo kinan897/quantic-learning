@@ -45,6 +45,21 @@ quantic-learning/
 | Auth | Argon2id passwords, JWT access tokens, rotating refresh tokens | Industry-standard, no third-party lock-in |
 | AI tutor | Claude API | Step 5: explains *your specific* mistake |
 
+### How a topic is taught
+
+Every topic is three lessons, and each one unlocks the next:
+
+| Lesson | What it is |
+|---|---|
+| **Learn** | One idea per card, with graphs, diagrams and key-idea boxes, and a quick check question after each idea |
+| **Practice** | Easy questions that build the foundation, many read straight off a graph. No pen and paper needed |
+| **Destroyer** | The hard, multi-step problems, worth 3× the XP. Required before the next topic opens |
+
+Graphs are written in the course files as formulas (`x^2 - 4x + 5`, plus points, labels and
+dashed lines). The server samples them into points, splitting curves at gaps and asymptotes,
+and the app draws them with SVG. They look identical on iOS, Android and the web, and they
+work as question figures or as answer choices ("which graph could be f′(x)?").
+
 ### Design decisions
 
 - **Answers never reach the client.** Lesson payloads omit answers, and the server grades
@@ -68,8 +83,10 @@ quantic-learning/
   before they can hang the server.
 - **Equivalence by numeric sampling.** Two expressions match if they agree at several random
   points. That's fast and handles forms `simplify()` struggles with.
-- **Content is code.** Every question is validated when the app starts: ids are unique,
-  multiple-choice indexes are in range, and math answers parse.
+- **Content is code.** Every lesson is validated when the app starts: ids are unique,
+  multiple-choice indexes are in range, math answers and graph formulas parse, and diagram
+  files exist. Tests also check that every topic runs Learn → Practice → Destroyer, every
+  graph has something to draw, and correct answers don't always sit in the same position.
 
 ### API overview
 
@@ -92,7 +109,8 @@ Full interactive docs: http://127.0.0.1:8000/docs
 1. **Backend foundation** — content model, safe math grader, lesson API, first MCV4U unit ✅
 2. **Mobile app** — Expo app: course path, lesson player, math keypad, feedback screens ✅
 3. **Accounts & progress** — guest-first accounts, sign up/in, server-side XP, streaks, unlocking ✅
-4. **Full MCV4U course** — all units: derivatives, applications, vectors, lines & planes
+4. **Full MCV4U course** — Learn / Practice / Destroyer format with graphs ✅ (Unit 1);
+   next: derivatives, applications, vectors, lines & planes
 5. **AI tutor** — "Why was I wrong?" explanations and adaptive practice (Claude API)
 6. **More courses** — MHF4U, MCR3U, SCH4U, SPH4U, SBI4U, then first-year university
 7. **Gamification** — leagues, achievements, daily goals, notifications

@@ -15,9 +15,12 @@ from pathlib import Path
 import yaml
 from pydantic import ValidationError
 
-from .models import Course, Lesson, Unit
+from .models import Course, ImageBlock, Lesson, Unit, iter_blocks
 
 CONTENT_DIR = Path(__file__).parent
+# Diagrams and pictures used in lessons; served by the API at /assets/.
+ASSETS_DIRNAME = "assets"
+ASSETS_DIR = CONTENT_DIR / ASSETS_DIRNAME
 
 
 class ContentError(Exception):
@@ -62,14 +65,23 @@ def load_course(course_dir: Path) -> Course:
     for name in unit_files:
         unit_path = course_dir / name
         try:
-            units.append(Unit.model_validate(_read_yaml(unit_path)))
+            unit = Unit.model_validate(_read_yaml(unit_path))
         except ValidationError as exc:
             raise ContentError(f"{unit_path}:\n{exc}") from exc
+        _check_images(unit, unit_path, course_dir.parent / ASSETS_DIRNAME)
+        units.append(unit)
 
     try:
         return Course.model_validate({**meta, "units": units})
     except ValidationError as exc:
         raise ContentError(f"{meta_path}:\n{exc}") from exc
+
+
+def _check_images(unit: Unit, unit_path: Path, assets_dir: Path) -> None:
+    for lesson in unit.lessons:
+        for block in iter_blocks(lesson):
+            if isinstance(block, ImageBlock) and not (assets_dir / block.src).is_file():
+                raise ContentError(f"{unit_path}: image {block.src!r} not found in {assets_dir}")
 
 
 def load_catalog(root: Path = CONTENT_DIR) -> Catalog:

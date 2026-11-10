@@ -1,5 +1,6 @@
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
+import { Fragment } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -62,17 +63,24 @@ export default function LearnScreen() {
                 completedCount={unit.lessons.filter((l) => lessonRecords[l.id]).length}
               />
               <View>
-                {unit.lessons.map((lesson, i) => (
-                  <LessonNode
-                    key={lesson.id}
-                    lesson={lesson}
-                    status={statusOf(lesson.id)}
-                    bestAccuracy={lessonRecords[lesson.id]?.best_accuracy}
-                    isFirst={i === 0}
-                    isLast={i === unit.lessons.length - 1}
-                    onOpen={() => router.push({ pathname: '/lesson/[id]', params: { id: lesson.id } })}
-                  />
-                ))}
+                {unit.lessons.map((lesson, i) => {
+                  const newTopic = lesson.topic && lesson.topic !== unit.lessons[i - 1]?.topic;
+                  return (
+                    <Fragment key={lesson.id}>
+                      {newTopic && <TopicHeader title={lesson.topic!} />}
+                      <LessonNode
+                        lesson={lesson}
+                        status={statusOf(lesson.id)}
+                        bestAccuracy={lessonRecords[lesson.id]?.best_accuracy}
+                        isFirst={i === 0}
+                        isLast={i === unit.lessons.length - 1}
+                        onOpen={() =>
+                          router.push({ pathname: '/lesson/[id]', params: { id: lesson.id } })
+                        }
+                      />
+                    </Fragment>
+                  );
+                })}
               </View>
             </View>
           ))}
@@ -106,7 +114,29 @@ export default function LearnScreen() {
   );
 }
 
+function TopicHeader({ title }: { title: string }) {
+  const theme = useTheme();
+  return (
+    <View style={styles.topic}>
+      <View style={[styles.topicLine, { backgroundColor: theme.border }]} />
+      <Text variant="label" tone="secondary" style={styles.topicText}>
+        {title}
+      </Text>
+      <View style={[styles.topicLine, { backgroundColor: theme.border }]} />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  topic: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    marginTop: Spacing.three,
+    marginBottom: Spacing.one,
+  },
+  topicLine: { flex: 1, height: 1 },
+  topicText: { textTransform: 'uppercase', letterSpacing: 1.2, fontSize: 12 },
   screen: { flex: 1 },
   topBar: {
     flexDirection: 'row',

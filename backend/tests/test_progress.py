@@ -9,6 +9,7 @@ from app.services.progress import local_today
 from tests.conftest import CATALOG, FIRST, SECOND, bearer, correct_answer, play_lesson
 
 FIRST_XP = CATALOG.lessons[FIRST].lesson.xp  # 10
+Q1 = CATALOG.lessons[FIRST].lesson.questions[0].id
 
 
 @pytest.fixture
@@ -40,7 +41,7 @@ def test_perfect_first_run(client, headers):
 
 
 def test_mistakes_lower_accuracy_and_skip_the_bonus(client, headers):
-    reward = play_lesson(client, headers, FIRST, miss=frozenset({"q1"}))
+    reward = play_lesson(client, headers, FIRST, miss=frozenset({Q1}))
     total = len(CATALOG.lessons[FIRST].lesson.questions)
     assert reward["accuracy"] == pytest.approx((total - 1) / total)
     assert reward["perfect_bonus"] == 0
@@ -49,7 +50,7 @@ def test_mistakes_lower_accuracy_and_skip_the_bonus(client, headers):
 
 def test_replays_earn_half_xp_and_keep_the_best_accuracy(client, headers):
     play_lesson(client, headers, FIRST)
-    replay = play_lesson(client, headers, FIRST, miss=frozenset({"q1"}))
+    replay = play_lesson(client, headers, FIRST, miss=frozenset({Q1}))
     assert replay["first_completion"] is False
     assert replay["xp_earned"] == FIRST_XP // 2
     assert replay["streak_extended"] is False  # same day
@@ -64,8 +65,8 @@ def test_cannot_finish_without_answering_everything(client, headers):
         "session_id"
     ]
     client.post(
-        f"/api/v1/lessons/{FIRST}/questions/q1/check",
-        json={"answer": correct_answer(FIRST, "q1"), "session_id": session_id},
+        f"/api/v1/lessons/{FIRST}/questions/{Q1}/check",
+        json={"answer": correct_answer(FIRST, Q1), "session_id": session_id},
         headers=headers,
     )
     done = client.post(f"/api/v1/lessons/{FIRST}/sessions/{session_id}/complete", headers=headers)
@@ -118,7 +119,7 @@ def test_other_users_cannot_use_my_session(client, headers):
     ]
     intruder = bearer(client.post("/api/v1/auth/guest", json={}).json())
     stolen = client.post(
-        f"/api/v1/lessons/{FIRST}/questions/q1/check",
+        f"/api/v1/lessons/{FIRST}/questions/{Q1}/check",
         json={"answer": 0, "session_id": session_id},
         headers=intruder,
     )
@@ -159,3 +160,17 @@ def test_streak_resets_after_a_missed_day(client, guest, headers):
     _set_last_active(guest, days_ago=2, streak=9)
     assert progress(client, headers)["streak"] == 0
     assert play_lesson(client, headers, FIRST)["streak"] == 1
+
+
+def test_destroyer_is_required_before_the_next_topic(client, headers):
+    topic_one = ["mcv4u-u1-t1-learn", "mcv4u-u1-t1-practice", "mcv4u-u1-t1-destroyer"]
+    next_topic = "mcv4u-u1-t2-learn"
+
+    for lesson_id in topic_one[:2]:
+        play_lesson(client, headers, lesson_id)
+    # Learn and Practice done, but the Destroyer isn't: the next topic stays locked.
+    assert client.get(f"/api/v1/lessons/{next_topic}", headers=headers).status_code == 403
+
+    reward = play_lesson(client, headers, topic_one[2])
+    assert reward["xp_earned"] == CATALOG.lessons[topic_one[2]].lesson.xp + 5
+    assert client.get(f"/api/v1/lessons/{next_topic}", headers=headers).status_code == 200

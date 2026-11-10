@@ -6,10 +6,11 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from app import __version__
 from app.config import get_settings
-from app.content.loader import get_catalog
+from app.content.loader import ASSETS_DIR, get_catalog
 from app.routers import auth, courses, lessons, me
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +53,9 @@ app.add_middleware(
 
 for router in (auth.router, me.router, courses.router, lessons.router):
     app.include_router(router, prefix="/api/v1")
+
+# Lesson diagrams and pictures (app/content/assets), referenced by image blocks.
+app.mount("/assets", StaticFiles(directory=ASSETS_DIR), name="assets")
 
 
 @app.get("/health", tags=["meta"])

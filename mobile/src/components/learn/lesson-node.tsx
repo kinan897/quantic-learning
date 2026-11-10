@@ -27,15 +27,24 @@ type Props = {
 
 const NODE = 48;
 
+export const LESSON_KINDS = {
+  learn: { label: 'LEARN', icon: 'book', start: 'Start learning' },
+  practice: { label: 'PRACTICE', icon: 'barbell', start: 'Start practice' },
+  destroyer: { label: 'DESTROYER', icon: 'skull', start: 'Face the Destroyer' },
+} as const;
+
 /** One stop on the course timeline: a node on the rail plus a lesson card. */
 export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOpen }: Props) {
   const theme = useTheme();
   const locked = status === 'locked';
+  const kind = LESSON_KINDS[lesson.kind];
+  const isDestroyer = lesson.kind === 'destroyer';
+  const kindColor = isDestroyer ? theme.destroyer : theme.primary;
   const railColor = (done: boolean) => (done ? theme.accent : theme.border);
 
   const node = {
-    completed: { bg: theme.accent, fg: theme.onSuccess, icon: 'checkmark' as const },
-    current: { bg: theme.primary, fg: theme.onPrimary, icon: 'play' as const },
+    completed: { bg: theme.accent, fg: theme.onPrimary, icon: 'checkmark' as const },
+    current: { bg: kindColor, fg: theme.onPrimary, icon: kind.icon },
     locked: { bg: theme.surfaceAlt, fg: theme.locked, icon: 'lock-closed' as const },
   }[status];
 
@@ -46,7 +55,7 @@ export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOp
           style={[styles.segment, { backgroundColor: railColor(status !== 'locked') }, isFirst && styles.hidden]}
         />
         <View style={styles.nodeWrap}>
-          {status === 'current' && <PulseRing color={theme.primary} />}
+          {status === 'current' && <PulseRing color={kindColor} />}
           <View style={[styles.node, { backgroundColor: node.bg }]}>
             <Ionicons name={node.icon} size={22} color={node.fg} />
           </View>
@@ -66,17 +75,27 @@ export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOp
           styles.card,
           {
             backgroundColor: theme.surface,
-            borderColor: status === 'current' ? theme.primary : theme.border,
+            borderColor: status === 'current' ? kindColor : isDestroyer ? theme.destroyerSoft : theme.border,
             borderWidth: status === 'current' ? 2 : 1,
             opacity: locked ? 0.55 : pressed ? 0.85 : 1,
           },
         ]}>
-        <Text variant="heading">{lesson.title}</Text>
+        <View style={styles.kindRow}>
+          <Ionicons name={kind.icon} size={13} color={kindColor} />
+          <Text variant="caption" style={[styles.kindLabel, { color: kindColor }]}>
+            {kind.label}
+          </Text>
+        </View>
+        <Text variant="heading">{lesson.title.replace(/^(Learn|Practice|Destroyer): /, '')}</Text>
         <Text variant="caption" tone="secondary">
           {lesson.description}
         </Text>
         <View style={styles.meta}>
-          <Meta icon="help-circle-outline" label={`${lesson.question_count} questions`} />
+          {lesson.card_count > 0 && <Meta icon="albums-outline" label={`${lesson.card_count} cards`} />}
+          <Meta
+            icon="help-circle-outline"
+            label={`${lesson.question_count} ${lesson.kind === 'learn' ? 'checks' : 'questions'}`}
+          />
           <Meta icon="flash" label={`${lesson.xp} XP`} tone="xp" />
           {status === 'completed' && bestAccuracy !== undefined && (
             <Meta icon="ribbon-outline" label={`Best ${Math.round(bestAccuracy * 100)}%`} tone="accent" />
@@ -84,10 +103,10 @@ export function LessonNode({ lesson, status, bestAccuracy, isFirst, isLast, onOp
         </View>
         {status === 'current' && (
           // Looks like a button, but the whole card is the tap target (no nested buttons).
-          <View style={[styles.start, { backgroundColor: theme.primary }]}>
-            <Ionicons name="arrow-forward" size={18} color={theme.onPrimary} />
+          <View style={[styles.start, { backgroundColor: kindColor }]}>
+            <Ionicons name={isDestroyer ? 'skull' : 'arrow-forward'} size={18} color={theme.onPrimary} />
             <Text variant="label" style={{ color: theme.onPrimary }}>
-              Start lesson
+              {kind.start}
             </Text>
           </View>
         )}
@@ -150,6 +169,8 @@ const styles = StyleSheet.create({
     gap: Spacing.one,
     marginVertical: Spacing.two,
   },
+  kindRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one },
+  kindLabel: { fontWeight: '800', letterSpacing: 1.1 },
   meta: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.three, marginTop: Spacing.one },
   metaItem: { flexDirection: 'row', alignItems: 'center', gap: Spacing.one },
   start: {
