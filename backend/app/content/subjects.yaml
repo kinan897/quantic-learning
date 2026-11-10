@@ -1,0 +1,33 @@
+# Subjects shown as tiles on the app's Courses tab. Each course (course.yaml) names its
+# subject with `group:`. Tapping a tile lets the student pick the grade or course.
+# `icon` is an Ionicons name (https://icons.expo.fyi).
+
+subjects:
+  - id: math
+    title: Math
+    tagline: Algebra to calculus
+    icon: calculator
+  - id: physics
+    title: Physics
+    tagline: Motion, forces and energy
+    icon: rocket
+  - id: chemistry
+    title: Chemistry
+    tagline: Atoms, bonds and reactions
+    icon: flask
+  - id: biology
+    title: Biology
+    tagline: Life, from cells to species
+    icon: leaf
+  - id: science
+    title: Science
+    tagline: Grades 8–10 foundations
+    icon: telescope
+  - id: english
+    title: English
+    tagline: Reading, writing and essays
+    icon: book
+  - id: university
+    title: University
+    tagline: First-year calculus and sciences
+    icon: school

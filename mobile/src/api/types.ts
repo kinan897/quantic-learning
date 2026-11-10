@@ -26,6 +26,8 @@ export type CourseSummary = {
   title: string;
   subject: string;
   level: 'high_school' | 'university';
+  /** The Subject tile this course sits under (e.g. 'physics'). */
+  group: string;
   /** Filter tab on the Courses screen, matching the website. */
   category: CourseCategory;
   grade: number | null;
@@ -37,6 +39,15 @@ export type CourseSummary = {
 };
 
 export type CourseCategory = 'junior' | 'math' | 'science' | 'english' | 'uni';
+
+/** A tile on the Courses tab, e.g. Physics, holding its courses (SPH3U, SPH4U). */
+export type Subject = {
+  id: string;
+  title: string;
+  tagline: string;
+  icon: string; // Ionicons name
+  courses: CourseSummary[];
+};
 
 export type CourseDetail = CourseSummary & {
   prerequisites: string[];

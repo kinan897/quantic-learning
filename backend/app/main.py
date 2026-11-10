@@ -51,7 +51,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-for router in (auth.router, me.router, courses.router, lessons.router):
+for router in (auth.router, me.router, courses.router, courses.subjects_router, lessons.router):
     app.include_router(router, prefix="/api/v1")
 
 # Lesson diagrams and pictures (app/content/assets), referenced by image blocks.
