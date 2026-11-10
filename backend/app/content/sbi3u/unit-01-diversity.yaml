@@ -1,0 +1,199 @@
+# SBI3U — Strand B: Diversity of Living Things
+
+id: sbi3u-u1
+title: Diversity of Living Things
+description: >-
+  How biologists organize millions of species: taxonomy, scientific names, domains and
+  kingdoms.
+
+lessons:
+  - id: sbi3u-u1-t1-learn
+    kind: learn
+    topic: Classifying Life
+    title: 'Learn: Classifying Life'
+    description: Taxonomic levels, binomial nomenclature and the three domains.
+    xp: 10
+    items:
+      - type: teach
+        id: taxonomic-levels
+        title: The levels of classification
+        blocks:
+          - type: text
+            md: |-
+              **Taxonomy** sorts living things into nested groups, from broadest to most
+              specific:
+
+              **Domain → Kingdom → Phylum → Class → Order → Family → Genus → Species**
+          - type: callout
+            tone: tip
+            md: '**D**ear **K**ing **P**hilip **C**ame **O**ver **F**or **G**ood **S**oup.'
+          - type: text
+            md: Organisms in the same species share every level above it. The further down two organisms match, the more closely related they are.
+
+      - id: most-specific-level
+        type: multiple_choice
+        prompt: Which level of classification is the most specific?
+        choices: [kingdom, domain, family, species]
+        answer: 3
+        explanation: Species is the smallest group. Members can breed and produce fertile offspring.
+
+      - type: teach
+        id: binomial-nomenclature
+        title: Scientific names
+        blocks:
+          - type: text
+            md: |-
+              Every species gets a two-part **scientific name** (binomial nomenclature):
+              *Genus species*.
+
+              - The genus is capitalized; the species name is lowercase.
+              - Both are written in *italics* (or underlined by hand).
+
+              Humans are *Homo sapiens*. House cats are *Felis catus*.
+          - type: callout
+            tone: key
+            md: Scientific names are the same in every language, so scientists anywhere know exactly which organism is meant.
+
+      - id: correct-format
+        type: multiple_choice
+        prompt: Which scientific name is written correctly?
+        choices: ['*felis catus*', '*Felis Catus*', '*Felis catus*', 'Felis Catus']
+        answer: 2
+        explanation: Genus capitalized, species lowercase, both italicized.
+
+      - type: teach
+        id: domains-and-kingdoms
+        title: Three domains
+        blocks:
+          - type: text
+            md: |-
+              | Domain | Cell type | Examples |
+              |---|---|---|
+              | Bacteria | prokaryotic (no nucleus) | *E. coli*, *Streptococcus* |
+              | Archaea | prokaryotic (no nucleus) | microbes in hot springs and salt lakes |
+              | Eukarya | eukaryotic (nucleus) | protists, fungi, plants, animals |
+
+              Eukarya is divided into four kingdoms: **Protists, Fungi, Plants and Animals**.
+
+      - id: mushroom-kingdom
+        type: multiple_choice
+        prompt: Mushrooms belong to which kingdom?
+        choices: [Plants, Fungi, Protists, Bacteria]
+        answer: 1
+        explanation: Mushrooms are fungi. They don't photosynthesize; they absorb nutrients from their surroundings.
+
+  - id: sbi3u-u1-t1-practice
+    kind: practice
+    topic: Classifying Life
+    title: 'Practice: Classifying Life'
+    description: Levels, names and kingdoms.
+    xp: 10
+    items:
+      - id: level-after-order
+        type: multiple_choice
+        prompt: Which level comes directly after order?
+        choices: [class, genus, family, phylum]
+        answer: 2
+        explanation: '... Class → Order → **Family** → Genus → Species.'
+
+      - id: no-nucleus-domain
+        type: multiple_choice
+        prompt: Which domain is made of eukaryotic organisms?
+        choices: [Bacteria, Archaea, Eukarya]
+        answer: 2
+        explanation: Eukaryotes have a nucleus. Bacteria and Archaea are both prokaryotes.
+
+      - id: genus-implies-family
+        type: multiple_choice
+        prompt: Two organisms are in the same genus. Which other level must they share?
+        choices: [species, family, none of the others, only domain]
+        answer: 1
+        explanation: Groups are nested, so sharing a genus means sharing every level above it, including family.
+
+      - id: genus-of-wolf
+        type: multiple_choice
+        prompt: 'The grey wolf is *Canis lupus*. What is its genus?'
+        choices: ['*lupus*', '*Canis*', 'Canidae', 'Carnivora']
+        answer: 1
+        explanation: The first word of a scientific name is the genus.
+
+      - id: archaea-habitat
+        type: multiple_choice
+        prompt: Many archaea are known for living in...
+        choices:
+          - extreme environments like hot springs
+          - only inside animals
+          - only in fresh water lakes
+          - only on plant leaves
+        answer: 0
+        explanation: Many archaea thrive in extreme heat, salt or acidity, though some live in ordinary places too.
+
+      - id: plant-features
+        type: multiple_choice
+        prompt: Which feature belongs to the plant kingdom?
+        choices:
+          - cell walls made of chitin
+          - no cell walls
+          - photosynthesis and cell walls made of cellulose
+          - prokaryotic cells
+        answer: 2
+        explanation: Plants make their own food by photosynthesis, and their cell walls are made of cellulose. Fungi use chitin.
+
+  - id: sbi3u-u1-t1-destroyer
+    kind: destroyer
+    topic: Classifying Life
+    title: 'Destroyer: Classifying Life'
+    description: Reasoning with the hierarchy and dichotomous keys.
+    xp: 30
+    items:
+      - id: shared-order
+        type: multiple_choice
+        prompt: Two organisms belong to the same order. Which statement must be true?
+        choices:
+          - They are the same species
+          - They belong to the same family
+          - They belong to the same class
+          - They belong to different kingdoms
+        answer: 2
+        explanation: Order sits inside class, so organisms in one order share the same class (and every level above).
+
+      - id: dichotomous-key
+        type: multiple_choice
+        prompt: |-
+          Use this dichotomous key:
+
+          1a. Has a backbone → go to 2
+          1b. No backbone → **Insect**
+          2a. Has feathers → **Bird**
+          2b. No feathers → go to 3
+          3a. Has fur → **Mammal**
+          3b. No fur → **Reptile**
+
+          An animal has a backbone, no feathers and no fur. What is it?
+        choices: [Insect, Bird, Mammal, Reptile]
+        answer: 3
+        explanation: 1a (backbone) → 2b (no feathers) → 3b (no fur) → Reptile.
+
+      - id: bacteria-vs-archaea
+        type: multiple_choice
+        prompt: Bacteria and Archaea are both prokaryotes. Why are they placed in separate domains?
+        choices:
+          - Archaea have a nucleus
+          - They differ in their chemistry, such as cell membranes and cell walls
+          - Bacteria are multicellular
+          - Archaea can photosynthesize and bacteria cannot
+        answer: 1
+        explanation: Both lack a nucleus, but their cell membranes, cell walls and genetic machinery differ enough to make separate domains.
+
+      - id: why-scientific-names
+        type: multiple_choice
+        prompt: Why do scientists use scientific names instead of common names?
+        choices:
+          - Scientific names are shorter
+          - One species can have many common names, but has only one scientific name
+          - Common names are illegal in science
+          - Scientific names describe what the organism eats
+        answer: 1
+        explanation: >-
+          For example, a "cougar", "puma" and "mountain lion" are all *Puma concolor*. A single
+          scientific name avoids that confusion.

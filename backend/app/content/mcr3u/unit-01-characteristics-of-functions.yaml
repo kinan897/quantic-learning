@@ -1,0 +1,368 @@
+# MCR3U — Strand A: Characteristics of Functions
+# Covers A1 (functions, notation, domain and range).
+#
+# Every topic is taught in three lessons:
+#   learn      teaching cards with graphs, plus a quick check after each idea
+#   practice   easy questions that build the foundation (no pen and paper needed)
+#   destroyer  the hard, multi-step problems. Required to unlock the next topic.
+
+id: mcr3u-u1
+title: Characteristics of Functions
+description: >-
+  What makes a relation a function, how to read function notation, and how to find the
+  domain and range from an equation or a graph.
+
+lessons:
+  # =========================================================================================
+  # Topic 1: What is a function?
+  # =========================================================================================
+  - id: mcr3u-u1-t1-learn
+    kind: learn
+    topic: What Is a Function?
+    title: 'Learn: What Is a Function?'
+    description: One input, one output. Function notation, domain and range.
+    xp: 10
+    items:
+      - type: teach
+        id: one-input-one-output
+        title: 'A function: one input, one output'
+        blocks:
+          - type: text
+            md: >-
+              A **relation** pairs inputs ($x$-values) with outputs ($y$-values). A relation is a
+              **function** if every input has **exactly one** output. Think of a vending
+              machine: press B4 and you always get the same snack, never two different ones.
+          - type: graph
+            x: [-3, 3]
+            y: [-1, 9]
+            curves:
+              - { expr: x^2, label: y = x² }
+            points:
+              - { at: [-2, 4], label: '(−2, 4)' }
+              - { at: [2, 4], label: '(2, 4)' }
+            caption: '$y = x^2$ is a function: every $x$ gives one $y$. Two inputs *can* share an output.'
+          - type: callout
+            tone: key
+            md: >-
+              Function: each $x$ is paired with **only one** $y$. It's fine for different
+              $x$-values to give the same $y$-value.
+
+      - id: which-set-is-function
+        type: multiple_choice
+        prompt: Which set of ordered pairs is a function?
+        choices:
+          - '$\{(1, 2),\ (2, 3),\ (1, 4)\}$'
+          - '$\{(1, 2),\ (2, 2),\ (3, 2)\}$'
+          - '$\{(0, 1),\ (0, -1),\ (2, 5)\}$'
+          - '$\{(3, 1),\ (4, 2),\ (3, 1),\ (3, 5)\}$'
+        answer: 1
+        hint: Look for an $x$-value that appears with two different $y$-values.
+        explanation: >-
+          In $\{(1, 2), (2, 2), (3, 2)\}$ every $x$ appears once. Sharing the output $2$ is
+          allowed. The others each repeat an $x$ with a different $y$: $x = 1$, $x = 0$ and
+          $x = 3$.
+
+      - type: teach
+        id: vertical-line-test
+        title: The vertical line test
+        blocks:
+          - type: text
+            md: >-
+              On a graph, you can spot a non-function instantly. Imagine sliding a vertical
+              line across it. If the line ever hits the graph **more than once**, some $x$ has
+              two $y$-values, so it's **not** a function.
+          - type: graph
+            x: [-3, 3]
+            y: [-3, 3]
+            aspect: 0.8
+            curves:
+              - { expr: sqrt(4 - x^2), domain: [-2, 2] }
+              - { expr: -sqrt(4 - x^2), domain: [-2, 2] }
+            segments:
+              - { from: [1, -3], to: [1, 3], color: error, dashed: true, label: x = 1 }
+            points:
+              - { at: [1, 1.732], color: error }
+              - { at: [1, -1.732], color: error }
+            caption: The line $x = 1$ hits this circle twice, so a circle is not a function.
+          - type: callout
+            tone: key
+            md: Any vertical line crosses the graph **at most once** → it's a function.
+
+      - id: not-a-function-graph
+        type: multiple_choice
+        prompt: Which graph is **not** a function?
+        choices:
+          - { type: graph, x: [-3, 3], y: [-3, 5], curves: [{ expr: x^2 - 1 }] }
+          - { type: graph, x: [-1, 5], y: [-3, 3], curves: [{ expr: sqrt(x), domain: [0, 5] }, { expr: -sqrt(x), domain: [0, 5] }] }
+          - { type: graph, x: [-3, 3], y: [-3, 3], curves: [{ expr: x/2 + 1 }] }
+          - { type: graph, x: [-3, 3], y: [-1, 4], curves: [{ expr: abs(x) }] }
+        answer: 1
+        hint: Picture a vertical line sliding across each graph.
+        explanation: >-
+          The sideways parabola (graph B) is hit twice by vertical lines like $x = 1$, at
+          $y = 1$ and $y = -1$. The other three pass the vertical line test.
+
+      - type: teach
+        id: function-notation
+        title: Function notation
+        blocks:
+          - type: text
+            md: |-
+              Instead of $y = 2x + 3$, we write $f(x) = 2x + 3$. The notation $f(4)$ means
+              "the output when the input is $4$":
+
+              $$f(4) = 2(4) + 3 = 11$$
+          - type: graph
+            x: [0, 6]
+            y: [0, 16]
+            curves:
+              - { expr: 2x + 3, label: f(x) = 2x + 3 }
+            segments:
+              - { from: [4, 0], to: [4, 11], color: accent, dashed: true }
+              - { from: [0, 11], to: [4, 11], color: accent, dashed: true }
+            points:
+              - { at: [4, 11], label: '(4, 11)' }
+          - type: callout
+            tone: warning
+            title: Common mistake
+            md: '$f(4)$ does **not** mean $f \times 4$. It means: substitute $4$ for $x$.'
+
+      - id: evaluate-notation
+        type: math_input
+        prompt: 'If $f(x) = x^2 - 1$, what is $f(3)$?'
+        answer: '8'
+        placeholder: Enter a number
+        explanation: '$f(3) = 3^2 - 1 = 9 - 1 = 8$'
+
+      - type: teach
+        id: domain-and-range
+        title: Domain and range
+        blocks:
+          - type: text
+            md: >-
+              The **domain** is every $x$-value the function accepts. The **range** is every
+              $y$-value it produces. Read them off a graph by looking left-to-right (domain) and
+              bottom-to-top (range).
+          - type: graph
+            x: [-1, 8]
+            y: [-1, 6]
+            curves:
+              - { expr: sqrt(x - 1) + 2, domain: [1, 8], label: f(x) = √(x − 1) + 2 }
+            points:
+              - { at: [1, 2], label: 'starts at (1, 2)' }
+          - type: text
+            md: |-
+              This graph starts at $x = 1$ and goes right forever, and it starts at height $2$
+              and goes up:
+
+              - Domain: $\{x \in \mathbb{R} \mid x \ge 1\}$
+              - Range: $\{y \in \mathbb{R} \mid y \ge 2\}$
+          - type: callout
+            tone: tip
+            md: >-
+              From an equation, watch for two restrictions: what's under a **square root**
+              must be $\ge 0$, and a **denominator** can't be $0$.
+
+      - id: domain-of-reciprocal
+        type: multiple_choice
+        prompt: 'What is the domain of $f(x) = \dfrac{1}{x - 3}$?'
+        choices:
+          - '$\{x \in \mathbb{R} \mid x > 3\}$'
+          - '$\{x \in \mathbb{R} \mid x \ge 3\}$'
+          - '$\{x \in \mathbb{R} \mid x \ne 3\}$'
+          - 'All real numbers'
+        answer: 2
+        explanation: >-
+          The only problem is dividing by zero, which happens when $x - 3 = 0$, so $x = 3$.
+          Every other real number works.
+
+  - id: mcr3u-u1-t1-practice
+    kind: practice
+    topic: What Is a Function?
+    title: 'Practice: What Is a Function?'
+    description: Notation, the vertical line test, and reading domain and range.
+    xp: 10
+    items:
+      - id: evaluate-linear
+        type: math_input
+        prompt: 'If $f(x) = 3x - 5$, what is $f(2)$?'
+        answer: '1'
+        placeholder: Enter a number
+        explanation: '$f(2) = 3(2) - 5 = 6 - 5 = 1$'
+
+      - id: evaluate-negative-input
+        type: math_input
+        prompt: 'If $g(x) = x^2 + 1$, what is $g(-3)$?'
+        answer: '10'
+        placeholder: Enter a number
+        hint: '$(-3)^2$ is positive.'
+        explanation: '$g(-3) = (-3)^2 + 1 = 9 + 1 = 10$'
+
+      - id: same-output-is-fine
+        type: multiple_choice
+        prompt: 'Is $\{(2, 5),\ (3, 5),\ (4, 5)\}$ a function?'
+        choices:
+          - 'Yes'
+          - 'No, because every output is the same'
+          - 'No, because there are only three points'
+          - 'There is not enough information'
+        answer: 0
+        explanation: >-
+          Each input ($2$, $3$, $4$) has exactly one output. Several inputs sharing the output
+          $5$ is allowed. This is a constant function.
+
+      - id: range-from-graph
+        type: multiple_choice
+        prompt: What is the range of this function?
+        figure:
+          type: graph
+          x: [-3, 3]
+          y: [-5, 6]
+          curves: [{ expr: x^2 - 4 }]
+          points:
+            - { at: [0, -4], label: '(0, −4)' }
+        choices:
+          - 'All real numbers'
+          - '$\{y \in \mathbb{R} \mid y \le -4\}$'
+          - '$\{y \in \mathbb{R} \mid y \ge -4\}$'
+          - '$\{y \in \mathbb{R} \mid y \ge 0\}$'
+        answer: 2
+        explanation: >-
+          The lowest point is $(0, -4)$ and the graph rises forever on both sides, so every
+          $y$-value from $-4$ upward is reached.
+
+      - id: domain-of-sqrt
+        type: multiple_choice
+        prompt: 'What is the domain of $f(x) = \sqrt{x}$?'
+        choices:
+          - 'All real numbers'
+          - '$\{x \in \mathbb{R} \mid x \ge 0\}$'
+          - '$\{x \in \mathbb{R} \mid x > 0\}$'
+          - '$\{x \in \mathbb{R} \mid x \ne 0\}$'
+        answer: 1
+        explanation: >-
+          You can't take the square root of a negative number (in the reals), but
+          $\sqrt{0} = 0$ is fine. So $x \ge 0$.
+
+      - id: read-value-from-graph
+        type: math_input
+        prompt: Use the graph to find $f(3)$.
+        figure:
+          type: graph
+          x: [-1, 6]
+          y: [-1, 6]
+          curves: [{ expr: -x + 4, label: y = f(x) }]
+          points:
+            - { at: [3, 1] }
+        answer: '1'
+        placeholder: Enter a number
+        hint: Go to $x = 3$ on the horizontal axis, then up or down to the line.
+        explanation: At $x = 3$ the line is at height $1$, so $f(3) = 1$.
+
+      - id: passes-vertical-line-test
+        type: multiple_choice
+        prompt: Which graph passes the vertical line test?
+        choices:
+          - { type: graph, x: [-3, 3], y: [-3, 3], curves: [{ expr: sqrt(4 - x^2), domain: [-2, 2] }, { expr: -sqrt(4 - x^2), domain: [-2, 2] }] }
+          - { type: graph, x: [-1, 5], y: [-3, 3], curves: [{ expr: sqrt(x), domain: [0, 5] }, { expr: -sqrt(x), domain: [0, 5] }] }
+          - { type: graph, x: [-3, 3], y: [-3, 3], segments: [{ from: [1, -2.5], to: [1, 2.5], color: primary }] }
+          - { type: graph, x: [-2, 2], y: [-4, 4], curves: [{ expr: x^3 - x }] }
+        answer: 3
+        explanation: >-
+          The cubic (graph D) wiggles, but any vertical line still crosses it only once. The
+          circle, the sideways parabola and the vertical line all fail.
+
+      - id: substitute-expression
+        type: multiple_choice
+        prompt: 'If $f(x) = 2x$, what is $f(a + 1)$?'
+        choices: ['$2a + 1$', '$2a + 2$', '$a + 2$', '$2a$']
+        answer: 1
+        explanation: 'Replace $x$ with $(a + 1)$: $f(a + 1) = 2(a + 1) = 2a + 2$.'
+
+  - id: mcr3u-u1-t1-destroyer
+    kind: destroyer
+    topic: What Is a Function?
+    title: 'Destroyer: What Is a Function?'
+    description: Harder notation, combined restrictions and reading graphs carefully.
+    xp: 30
+    items:
+      - id: evaluate-quadratic-negative
+        type: math_input
+        prompt: 'If $f(x) = 2x^2 - 3x + 1$, find $f(-2)$.'
+        answer: '15'
+        placeholder: Enter a number
+        hint: Be careful with the signs. $(-2)^2 = 4$ and $-3(-2) = +6$.
+        explanation: '$f(-2) = 2(4) - 3(-2) + 1 = 8 + 6 + 1 = 15$'
+
+      - id: difference-of-outputs
+        type: math_input
+        prompt: |-
+          Let $f(x) = x^2 - 2x$. Simplify
+
+          $$f(a + 1) - f(a)$$
+
+          Give your answer in terms of $a$.
+        answer: 2a - 1
+        display_answer: '$2a - 1$'
+        variables: [a]
+        placeholder: e.g. 3a + 2
+        hint: 'First find $f(a + 1) = (a + 1)^2 - 2(a + 1)$ and expand.'
+        explanation: |-
+          $$\begin{aligned}
+          f(a + 1) &= (a + 1)^2 - 2(a + 1) = a^2 + 2a + 1 - 2a - 2 = a^2 - 1 \\
+          f(a + 1) - f(a) &= (a^2 - 1) - (a^2 - 2a) = 2a - 1
+          \end{aligned}$$
+
+      - id: combined-domain
+        type: multiple_choice
+        prompt: 'What is the domain of $f(x) = \dfrac{\sqrt{5 - x}}{x + 2}$?'
+        choices:
+          - '$\{x \in \mathbb{R} \mid x \le 5\}$'
+          - '$\{x \in \mathbb{R} \mid x \ge 5,\ x \ne -2\}$'
+          - '$\{x \in \mathbb{R} \mid x \ne -2\}$'
+          - '$\{x \in \mathbb{R} \mid x \le 5,\ x \ne -2\}$'
+        answer: 3
+        hint: There are two restrictions. Handle the square root and the denominator separately.
+        explanation: |-
+          - Square root: $5 - x \ge 0$, so $x \le 5$.
+          - Denominator: $x + 2 \ne 0$, so $x \ne -2$.
+
+          Both must hold: $\{x \in \mathbb{R} \mid x \le 5,\ x \ne -2\}$.
+
+      - id: range-of-vertex-form
+        type: multiple_choice
+        prompt: 'What is the range of $f(x) = -2(x - 3)^2 + 7$?'
+        choices:
+          - '$\{y \in \mathbb{R} \mid y \le 7\}$'
+          - '$\{y \in \mathbb{R} \mid y \ge 7\}$'
+          - '$\{y \in \mathbb{R} \mid y \le 3\}$'
+          - 'All real numbers'
+        answer: 0
+        hint: The $-2$ means the parabola opens downward. Where is its vertex?
+        explanation: >-
+          The vertex is $(3, 7)$ and the parabola opens **down** (because of the $-2$), so $7$
+          is the maximum height. Every $y \le 7$ is reached.
+
+      - id: solve-for-input
+        type: math_input
+        prompt: 'If $f(x) = 4x - 7$ and $f(k) = 9$, find $k$.'
+        answer: '4'
+        placeholder: Enter a number
+        hint: 'Set $4k - 7 = 9$ and solve.'
+        explanation: '$4k - 7 = 9 \Rightarrow 4k = 16 \Rightarrow k = 4$'
+
+      - id: count-solutions-from-graph
+        type: multiple_choice
+        prompt: 'For $f(x) = |x - 2| + 1$, how many $x$-values give $f(x) = 3$?'
+        figure:
+          type: graph
+          x: [-2, 6]
+          y: [0, 6]
+          curves: [{ expr: abs(x - 2) + 1, label: y = f(x) }]
+          segments:
+            - { from: [-2, 3], to: [6, 3], color: accent, dashed: true, label: y = 3 }
+        choices: ['$0$', '$1$', '$2$', 'Infinitely many']
+        answer: 2
+        explanation: >-
+          The line $y = 3$ crosses the V-shaped graph twice, at $x = 0$ and $x = 4$. Check:
+          $|0 - 2| + 1 = 3$ and $|4 - 2| + 1 = 3$.

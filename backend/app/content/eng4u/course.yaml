@@ -1,0 +1,16 @@
+id: eng4u
+code: 'ENG4U'
+title: English
+subject: english
+level: high_school
+group: english
+category: english
+grade: 12
+grade_label: 'Grade 12 · University prep'
+order: 13
+status: available
+description: 'Essay structure, literary analysis, close reading and exam preparation.'
+prerequisites:
+  - ENG3U
+units:
+  - unit-01-literary-analysis.yaml

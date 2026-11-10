@@ -1,0 +1,187 @@
+# SBI4U — Strand B: Biochemistry
+
+id: sbi4u-u1
+title: Biochemistry
+description: >-
+  The molecules of life: carbohydrates, lipids, proteins and nucleic acids, and how they are
+  built and broken down.
+
+lessons:
+  - id: sbi4u-u1-t1-learn
+    kind: learn
+    topic: Biological Molecules
+    title: 'Learn: Biological Molecules'
+    description: The four macromolecule families, and building and breaking polymers.
+    xp: 10
+    items:
+      - type: teach
+        id: four-families
+        title: The four families of macromolecules
+        blocks:
+          - type: text
+            md: |-
+              | Macromolecule | Monomer (building block) | Example | Main job |
+              |---|---|---|---|
+              | Carbohydrates | monosaccharides (e.g. glucose) | starch, cellulose | energy, structure |
+              | Lipids | glycerol + fatty acids | triglycerides | long-term energy, membranes |
+              | Proteins | amino acids | enzymes, hemoglobin | almost everything |
+              | Nucleic acids | nucleotides | DNA, RNA | store and use genetic information |
+          - type: callout
+            tone: tip
+            md: Lipids aren't true polymers. A triglyceride is one glycerol joined to three fatty acids, not a long chain of repeats.
+
+      - id: protein-monomer
+        type: multiple_choice
+        prompt: What are the monomers of proteins?
+        choices: [nucleotides, monosaccharides, fatty acids, amino acids]
+        answer: 3
+        explanation: Proteins are chains of amino acids joined by peptide bonds.
+
+      - type: teach
+        id: dehydration-hydrolysis
+        title: Building up and breaking down
+        blocks:
+          - type: text
+            md: |-
+              - **Dehydration synthesis** joins two monomers and **releases a water molecule**.
+              - **Hydrolysis** breaks a bond by **adding a water molecule**.
+
+              Joining $n$ monomers into a chain makes $n - 1$ bonds, so it releases $n - 1$
+              water molecules.
+          - type: callout
+            tone: key
+            md: 'Dehydration = water *out* (building). Hydrolysis = water *in* (breaking).'
+
+      - id: building-releases
+        type: multiple_choice
+        prompt: Linking glucose molecules into starch by dehydration synthesis releases...
+        choices: [oxygen, water, carbon dioxide, ATP]
+        answer: 1
+        explanation: Each new bond formed by dehydration synthesis releases one water molecule.
+
+      - type: teach
+        id: protein-structure
+        title: Protein structure is function
+        blocks:
+          - type: text
+            md: |-
+              A protein's shape decides its job. Biologists describe four levels:
+
+              1. **Primary**: the sequence of amino acids
+              2. **Secondary**: local folding into α-helices and β-pleated sheets
+              3. **Tertiary**: the overall 3D shape of one chain
+              4. **Quaternary**: several chains working together (e.g. hemoglobin)
+          - type: callout
+            tone: warning
+            title: Denaturation
+            md: Heat or extreme pH can unfold a protein. It loses its shape, and with it, its function.
+
+      - id: primary-structure
+        type: multiple_choice
+        prompt: What is a protein's primary structure?
+        choices:
+          - its 3D shape
+          - its sequence of amino acids
+          - its α-helices and β-sheets
+          - the number of chains it has
+        answer: 1
+        explanation: The primary structure is simply the order of amino acids, coded for by the gene.
+
+  - id: sbi4u-u1-t1-practice
+    kind: practice
+    topic: Biological Molecules
+    title: 'Practice: Biological Molecules'
+    description: Monomers, bonds and functions.
+    xp: 10
+    items:
+      - id: glucose-type
+        type: multiple_choice
+        prompt: Glucose is a...
+        choices: [disaccharide, monosaccharide, polysaccharide, fatty acid]
+        answer: 1
+        explanation: Glucose is a single sugar unit (a monosaccharide), the monomer of starch and cellulose.
+
+      - id: triglyceride-parts
+        type: multiple_choice
+        prompt: A triglyceride is made of...
+        choices:
+          - three glycerols and one fatty acid
+          - one glycerol and three fatty acids
+          - three amino acids
+          - three nucleotides
+        answer: 1
+        explanation: '"Tri" refers to the three fatty acids attached to one glycerol.'
+
+      - id: dna-monomer
+        type: multiple_choice
+        prompt: What is the monomer of DNA?
+        choices: [amino acid, nucleotide, glucose, glycerol]
+        answer: 1
+        explanation: Each nucleotide has a sugar, a phosphate group and a nitrogenous base.
+
+      - id: enzymes-are
+        type: multiple_choice
+        prompt: Most enzymes are which type of macromolecule?
+        choices: [carbohydrates, lipids, nucleic acids, proteins]
+        answer: 3
+        explanation: Enzymes are proteins whose shape lets them speed up specific reactions.
+
+      - id: saturated-fats
+        type: multiple_choice
+        prompt: Saturated fatty acids have...
+        choices:
+          - no carbon–carbon double bonds
+          - at least one carbon–carbon double bond
+          - a ring structure
+          - a phosphate group
+        answer: 0
+        explanation: '"Saturated" means every carbon holds as many hydrogens as possible, so there are no C=C double bonds.'
+
+      - id: cellulose-role
+        type: multiple_choice
+        prompt: What does cellulose do in plants?
+        choices: [stores energy, carries genetic information, gives cell walls their strength, speeds up reactions]
+        answer: 2
+        explanation: Cellulose is a structural polysaccharide that makes plant cell walls rigid.
+
+  - id: sbi4u-u1-t1-destroyer
+    kind: destroyer
+    topic: Biological Molecules
+    title: 'Destroyer: Biological Molecules'
+    description: Counting reactions and explaining structure.
+    xp: 30
+    items:
+      - id: polypeptide-water
+        type: math_input
+        prompt: How many water molecules are released when $10$ amino acids join to form one polypeptide chain?
+        answer: '9'
+        placeholder: Enter a number
+        hint: How many bonds join 10 units in a single chain?
+        explanation: 'A chain of $10$ amino acids has $9$ peptide bonds, and each releases one water molecule.'
+
+      - id: fever-enzymes
+        type: multiple_choice
+        prompt: Why can a very high fever stop enzymes from working?
+        choices:
+          - Heat breaks the peptide bonds between amino acids
+          - Heat denatures the enzyme, changing the shape of its active site
+          - Heat turns enzymes into carbohydrates
+          - Heat makes enzymes bind too tightly to water
+        answer: 1
+        explanation: >-
+          High temperatures disrupt the weaker bonds that hold the 3D shape. The active site
+          changes shape, so the substrate no longer fits. Peptide bonds stay intact.
+
+      - id: triglyceride-water
+        type: math_input
+        prompt: How many water molecules are released when one triglyceride is formed?
+        answer: '3'
+        placeholder: Enter a number
+        explanation: Each of the three fatty acids is attached to glycerol by dehydration synthesis, releasing one water each.
+
+      - id: amino-acid-bond
+        type: multiple_choice
+        prompt: Which bond joins one amino acid to the next in a protein?
+        choices: [glycosidic bond, ester bond, peptide bond, hydrogen bond]
+        answer: 2
+        explanation: Peptide bonds link amino acids. Glycosidic bonds join sugars, and ester bonds join fatty acids to glycerol.

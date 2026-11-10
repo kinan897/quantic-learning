@@ -1,0 +1,16 @@
+id: sbi3u
+code: 'SBI3U'
+title: Biology
+subject: science
+level: high_school
+group: biology
+category: science
+grade: 11
+grade_label: 'Grade 11 · University prep'
+order: 9
+status: available
+description: 'Diversity of living things, evolution, genetic processes, animal systems and plants.'
+prerequisites:
+  - SNC2D
+units:
+  - unit-01-diversity.yaml

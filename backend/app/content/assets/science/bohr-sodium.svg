@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-labelledby="title">
+  <title id="title">Bohr–Rutherford diagram of sodium: a nucleus with 11 protons and 12 neutrons, and electron shells holding 2, 8 and 1 electrons</title>
+  <style>
+    .lbl { font-family: Manrope, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; }
+    .note { font-family: Manrope, -apple-system, 'Segoe UI', Roboto, sans-serif; fill: #9BA8C9; font-size: 15px; }
+  </style>
+  <g transform="translate(170 150)">
+    <!-- shells -->
+    <circle r="54" fill="none" stroke="#4FADE8" stroke-width="2"/>
+    <circle r="92" fill="none" stroke="#4FADE8" stroke-width="2"/>
+    <circle r="130" fill="none" stroke="#4FADE8" stroke-width="2"/>
+    <!-- nucleus -->
+    <circle r="32" fill="#0B1A4A" stroke="#4FADE8" stroke-width="2"/>
+    <text y="-3" text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">11 p⁺</text>
+    <text y="15" text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">12 n⁰</text>
+    <!-- shell 1: 2 electrons -->
+    <g fill="#2447F0" stroke="#FFFFFF" stroke-width="2">
+      <circle cx="0" cy="-54" r="7"/>
+      <circle cx="0" cy="54" r="7"/>
+      <!-- shell 2: 8 electrons -->
+      <circle cx="0" cy="-92" r="7"/>
+      <circle cx="65" cy="-65" r="7"/>
+      <circle cx="92" cy="0" r="7"/>
+      <circle cx="65" cy="65" r="7"/>
+      <circle cx="0" cy="92" r="7"/>
+      <circle cx="-65" cy="65" r="7"/>
+      <circle cx="-92" cy="0" r="7"/>
+      <circle cx="-65" cy="-65" r="7"/>
+      <!-- shell 3: 1 electron -->
+      <circle cx="130" cy="0" r="7"/>
+    </g>
+  </g>
+  <!-- legend -->
+  <g transform="translate(360 0)">
+    <text x="0" y="92" class="lbl" font-size="22" fill="#4FADE8">Sodium (Na)</text>
+    <text x="0" y="122" class="note">Atomic number 11 · mass number 23</text>
+    <text x="0" y="170" class="lbl" font-size="18" fill="#9BA8C9">Shell 1: 2 e⁻</text>
+    <text x="0" y="198" class="lbl" font-size="18" fill="#9BA8C9">Shell 2: 8 e⁻</text>
+    <text x="0" y="226" class="lbl" font-size="18" fill="#9BA8C9">Shell 3: 1 e⁻</text>
+  </g>
+</svg>

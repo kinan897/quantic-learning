@@ -1,0 +1,16 @@
+id: sph3u
+code: 'SPH3U'
+title: Physics
+subject: science
+level: high_school
+group: physics
+category: science
+grade: 11
+grade_label: 'Grade 11 · University prep'
+order: 8
+status: available
+description: 'Kinematics, forces, energy and society, waves and sound, electricity and magnetism.'
+prerequisites:
+  - SNC2D
+units:
+  - unit-01-kinematics.yaml

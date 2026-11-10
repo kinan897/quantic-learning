@@ -65,7 +65,7 @@ export function MathAnswerBox({ value, onChange, onSubmit, placeholder, disabled
   const theme = useTheme();
   const boxStyle = [
     styles.box,
-    { borderColor: disabled ? theme.border : theme.primary, backgroundColor: theme.surface },
+    { borderColor: disabled ? theme.border : theme.accent, backgroundColor: disabled ? theme.surface : theme.accentSoft },
   ];
 
   if (Platform.OS === 'web') {

@@ -1,21 +1,52 @@
+import {
+  Manrope_400Regular,
+  Manrope_500Medium,
+  Manrope_600SemiBold,
+  Manrope_700Bold,
+  Manrope_800ExtraBold,
+} from '@expo-google-fonts/manrope';
+import { Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold } from '@expo-google-fonts/sora';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useFonts } from 'expo-font';
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { AuthGate } from '@/components/auth/auth-gate';
-import { Colors } from '@/constants/theme';
+import { Colors, Fonts } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
+// Keep the splash screen up until the website's fonts (Sora + Manrope) have loaded,
+// so text never flashes in the wrong font.
+void SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
-  const scheme = useColorScheme() === 'dark' ? 'dark' : 'light';
+  const scheme = useColorScheme();
   const colors = Colors[scheme];
+  const [fontsLoaded, fontError] = useFonts({
+    Sora_600SemiBold,
+    Sora_700Bold,
+    Sora_800ExtraBold,
+    Manrope_400Regular,
+    Manrope_500Medium,
+    Manrope_600SemiBold,
+    Manrope_700Bold,
+    Manrope_800ExtraBold,
+  });
+  const ready = fontsLoaded || fontError !== null;
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: { queries: { staleTime: 5 * 60_000, retry: 1 } },
       }),
   );
+
+  useEffect(() => {
+    if (ready) void SplashScreen.hideAsync();
+  }, [ready]);
+
+  if (!ready) return null;
 
   const base = scheme === 'dark' ? DarkTheme : DefaultTheme;
   const navigationTheme = {
@@ -27,6 +58,12 @@ export default function RootLayout() {
       primary: colors.primary,
       text: colors.text,
       border: colors.border,
+    },
+    fonts: {
+      regular: { fontFamily: Fonts.body, fontWeight: 'normal' as const },
+      medium: { fontFamily: Fonts.bodySemi, fontWeight: 'normal' as const },
+      bold: { fontFamily: Fonts.bodyBold, fontWeight: 'normal' as const },
+      heavy: { fontFamily: Fonts.bodyHeavy, fontWeight: 'normal' as const },
     },
   };
 

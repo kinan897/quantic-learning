@@ -1,75 +1,100 @@
 /**
- * Quantic Learning design tokens, taken from the company logo:
- *   navy  #06184C (the Q) · electron blue #1A42EF · orbit sky blue #54AFF5 · white
+ * Quantic Learning design tokens, matching the Quantic website's "orbit" design:
+ *   page #060A1A · cards #0D1430 · navy #0B1A4A (the Q) · sky #4FADE8 (orbits)
+ *   electric #2447F0 (electrons) · text #EEF3FF · muted #9BA8C9
+ *   Sora for headings, Manrope for everything else.
  *
- * Light mode is white with navy; dark mode is deep navy with white. Every screen reads colours
- * through `useTheme()`, so light/dark follows the phone.
+ * Dark is the default, like the website. Students can switch to light or "match my phone"
+ * on the Profile tab. Every screen reads colours through `useTheme()`.
  */
 
 import '@/global.css';
 
 export const Brand = {
-  navy: '#06184C',
-  electron: '#1A42EF',
-  orbit: '#54AFF5',
+  page: '#060A1A',
+  card: '#0D1430',
+  navy: '#0B1A4A',
+  sky: '#4FADE8',
+  electric: '#2447F0',
+  text: '#EEF3FF',
+  muted: '#9BA8C9',
+  amber: '#FFB547',
   white: '#FFFFFF',
 } as const;
 
-const light = {
+const dark = {
+  background: Brand.page,
+  surface: Brand.card,
+  surfaceAlt: '#141E44',
+  border: 'rgba(79, 173, 232, 0.18)',
+  text: Brand.text,
+  textSecondary: Brand.muted,
+  primary: Brand.electric,
+  primaryPressed: '#1C3BD6',
+  primarySoft: 'rgba(36, 71, 240, 0.18)',
+  onPrimary: Brand.white,
+  accent: Brand.sky,
+  accentSoft: 'rgba(79, 173, 232, 0.12)',
+  onAccent: Brand.navy,
+  success: '#5BE39A',
+  successSoft: 'rgba(46, 204, 113, 0.12)',
+  onSuccess: '#05230F',
+  error: '#FF7A8A',
+  errorSoft: 'rgba(255, 122, 138, 0.12)',
+  onError: '#2A0611',
+  xp: Brand.sky,
+  streak: Brand.amber,
+  locked: '#2A3560',
+  destroyer: '#FF5A6E',
+  destroyerSoft: 'rgba(255, 90, 110, 0.12)',
+  graphMain: '#CFE6FF',
+  graphAccent: Brand.sky,
+};
+
+export type ThemeColors = Record<keyof typeof dark, string>;
+
+const light: ThemeColors = {
   background: '#F4F7FC',
-  surface: '#FFFFFF',
-  surfaceAlt: '#E9EEF8',
-  border: '#DCE3F0',
+  surface: Brand.white,
+  surfaceAlt: '#EAF0FB',
+  border: '#D8E1F0',
   text: Brand.navy,
   textSecondary: '#4A5878',
-  primary: Brand.navy,
-  primaryPressed: '#0E2A6E',
-  primarySoft: '#E3E9F7',
+  primary: Brand.electric,
+  primaryPressed: '#1C3BD6',
+  primarySoft: '#E2E8FE',
   onPrimary: Brand.white,
-  accent: Brand.electron,
-  accentSoft: '#E1E8FE',
+  accent: '#1F8FD6',
+  accentSoft: '#E1F1FC',
+  onAccent: Brand.white,
   success: '#12A150',
   successSoft: '#DDF5E6',
   onSuccess: Brand.white,
   error: '#D92D47',
   errorSoft: '#FDE6EA',
   onError: Brand.white,
-  xp: '#D97706',
-  streak: '#EA580C',
+  xp: '#1F8FD6',
+  streak: '#D97F00',
   locked: '#B4BED3',
   destroyer: '#C81E1E',
   destroyerSoft: '#FDE4E4',
-};
-
-export type ThemeColors = Record<keyof typeof light, string>;
-
-const dark: ThemeColors = {
-  background: '#040E2B',
-  surface: '#0A1A45',
-  surfaceAlt: '#112456',
-  border: '#1D3268',
-  text: '#F4F7FF',
-  textSecondary: '#9FB0D6',
-  primary: Brand.white,
-  primaryPressed: '#DCE3F0',
-  primarySoft: '#16295E',
-  onPrimary: Brand.navy,
-  accent: Brand.orbit,
-  accentSoft: '#0F2F5A',
-  success: '#34D399',
-  successSoft: '#0C3A2E',
-  onSuccess: '#04241A',
-  error: '#FB7185',
-  errorSoft: '#47152A',
-  onError: '#2A0611',
-  xp: '#FBBF24',
-  streak: '#FB923C',
-  locked: '#2A3B6B',
-  destroyer: '#F87171',
-  destroyerSoft: '#3F1219',
+  graphMain: Brand.navy,
+  graphAccent: Brand.electric,
 };
 
 export const Colors = { light, dark };
+
+/** Font families loaded in app/_layout.tsx (names come from @expo-google-fonts). */
+export const Fonts = {
+  display: 'Sora_800ExtraBold',
+  heading: 'Sora_700Bold',
+  headingSemi: 'Sora_600SemiBold',
+  body: 'Manrope_500Medium',
+  bodyRegular: 'Manrope_400Regular',
+  bodySemi: 'Manrope_600SemiBold',
+  bodyBold: 'Manrope_700Bold',
+  bodyHeavy: 'Manrope_800ExtraBold',
+} as const;
 
 export const Spacing = {
   half: 2,
@@ -86,6 +111,12 @@ export const Radius = {
   md: 14,
   lg: 20,
   pill: 999,
+} as const;
+
+/** The website's glowing primary button. */
+export const Glow = {
+  primary: '0px 8px 30px rgba(36, 71, 240, 0.35)',
+  sky: '0px 6px 24px rgba(79, 173, 232, 0.28)',
 } as const;
 
 /** Content is centred and capped at this width on tablets and desktop web. */

@@ -36,6 +36,7 @@ quantic-learning/
 | Layer | Tech | Why |
 |---|---|---|
 | Client | React Native + Expo (TypeScript) | One codebase ships to iOS, Android and the web |
+| Design | Matches the Quantic website: Sora + Manrope, orbit-dark theme (light optional) | One brand across web and app |
 | Client state | TanStack Query + Zustand | Server data cached and retried; session kept in secure storage |
 | Math display | KaTeX via Expo DOM components | Real LaTeX on every platform |
 | API | FastAPI (Python) | Fast, typed, auto-generated OpenAPI docs |
@@ -112,7 +113,11 @@ Full interactive docs: http://127.0.0.1:8000/docs
 4. **Full MCV4U course** — Learn / Practice / Destroyer format with graphs ✅ (Unit 1);
    next: derivatives, applications, vectors, lines & planes
 5. **AI tutor** — "Why was I wrong?" explanations and adaptive practice (Claude API)
-6. **More courses** — MHF4U, MCR3U, SCH4U, SPH4U, SBI4U, then first-year university
+6. **All 15 Quantic subjects** ✅ — the full catalog from the Quantic website, each with a
+   complete first topic (Learn / Practice / Destroyer): Grades 8–10 math, science and
+   English, MCR3U, MHF4U, MCV4U, SCH3U/SCH4U, SPH3U/SPH4U, SBI3U/SBI4U, ENG4U, and
+   first-year university calculus and sciences. 55 teaching cards and 241 questions so far;
+   next: the remaining units of each course
 7. **Gamification** — leagues, achievements, daily goals, notifications
 8. **Ship it** — PostgreSQL, deploy API, publish to the App Store, Google Play and the web
 

@@ -63,6 +63,7 @@ def get_lesson(
         description=lesson.description,
         xp=lesson.xp,
         course_id=ref.course.id,
+        course_code=ref.course.code,
         unit_id=ref.unit.id,
         items=[public_item(item) for item in lesson.items],
     )

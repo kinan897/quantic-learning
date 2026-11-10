@@ -1,0 +1,194 @@
+# SCH4U — Strand B: Organic Chemistry
+
+id: sch4u-u1
+title: Organic Chemistry
+description: >-
+  The language of carbon compounds: hydrocarbon families, IUPAC prefixes and naming
+  branched chains.
+
+lessons:
+  - id: sch4u-u1-t1-learn
+    kind: learn
+    topic: Naming Hydrocarbons
+    title: 'Learn: Naming Hydrocarbons'
+    description: Alkanes, alkenes, alkynes and the IUPAC naming rules.
+    xp: 10
+    items:
+      - type: teach
+        id: hydrocarbon-families
+        title: Three hydrocarbon families
+        blocks:
+          - type: text
+            md: |-
+              **Hydrocarbons** contain only carbon and hydrogen. They're grouped by their
+              strongest carbon–carbon bond:
+
+              | Family | Bond | General formula | Example |
+              |---|---|---|---|
+              | Alkane | single C–C | $\text{C}_n\text{H}_{2n+2}$ | ethane, $\text{C}_2\text{H}_6$ |
+              | Alkene | one C=C | $\text{C}_n\text{H}_{2n}$ | ethene, $\text{C}_2\text{H}_4$ |
+              | Alkyne | one C≡C | $\text{C}_n\text{H}_{2n-2}$ | ethyne, $\text{C}_2\text{H}_2$ |
+
+      - id: alkane-formula
+        type: multiple_choice
+        prompt: What is the general formula of an alkane?
+        choices:
+          - '$\text{C}_n\text{H}_{2n}$'
+          - '$\text{C}_n\text{H}_{2n-2}$'
+          - '$\text{C}_n\text{H}_{2n+2}$'
+          - '$\text{C}_n\text{H}_{n}$'
+        answer: 2
+        explanation: Alkanes have only single bonds, so every carbon holds as many hydrogens as possible.
+
+      - type: teach
+        id: prefixes
+        title: Prefixes count the carbons
+        blocks:
+          - type: text
+            md: |-
+              The **prefix** gives the number of carbons in the main chain, and the **suffix**
+              gives the family: *-ane*, *-ene* or *-yne*.
+
+              | Carbons | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+              |---|---|---|---|---|---|---|---|---|
+              | Prefix | meth- | eth- | prop- | but- | pent- | hex- | hept- | oct- |
+
+              So $\text{C}_3\text{H}_8$ (3 carbons, alkane) is **propane**.
+          - type: callout
+            tone: tip
+            md: 'For alkenes and alkynes, a number shows where the multiple bond starts: but-**2**-ene has its C=C between carbons 2 and 3.'
+
+      - id: name-butane
+        type: multiple_choice
+        prompt: 'Name $\text{CH}_3\text{–CH}_2\text{–CH}_2\text{–CH}_3$.'
+        choices: [propane, pentane, butene, butane]
+        answer: 3
+        explanation: 'Four carbons with only single bonds: but- + -ane = butane.'
+
+      - type: teach
+        id: branches
+        title: Branches and numbering
+        blocks:
+          - type: text
+            md: |-
+              For a branched alkane:
+
+              1. Find the **longest continuous chain**. It gives the parent name.
+              2. Number the chain from the end that gives the branches the **lowest numbers**.
+              3. Name each branch (*methyl* $= \text{–CH}_3$, *ethyl* $= \text{–CH}_2\text{CH}_3$) with its position.
+
+              $\text{CH}_3\text{–CH(CH}_3\text{)–CH}_3$ has a 3-carbon chain with a methyl on
+              carbon 2: **2-methylpropane**.
+          - type: callout
+            tone: warning
+            title: Common mistake
+            md: Number from the end nearest the first branch. "3-methylbutane" is wrong; it's 2-methylbutane.
+
+      - id: name-methylbutane
+        type: multiple_choice
+        prompt: 'Name $\text{CH}_3\text{–CH(CH}_3\text{)–CH}_2\text{–CH}_3$.'
+        choices: [3-methylbutane, 2-methylbutane, pentane, 2-ethylpropane]
+        answer: 1
+        explanation: 'The longest chain has 4 carbons (butane). Numbering from the left puts the methyl on carbon 2.'
+
+  - id: sch4u-u1-t1-practice
+    kind: practice
+    topic: Naming Hydrocarbons
+    title: 'Practice: Naming Hydrocarbons'
+    description: Prefixes, formulas and families.
+    xp: 10
+    items:
+      - id: hexane-carbons
+        type: math_input
+        prompt: How many carbon atoms are in hexane?
+        answer: '6'
+        placeholder: Enter a number
+        explanation: The prefix hex- means $6$.
+
+      - id: pentane-formula
+        type: multiple_choice
+        prompt: What is the molecular formula of pentane?
+        choices:
+          - '$\text{C}_5\text{H}_{10}$'
+          - '$\text{C}_5\text{H}_{12}$'
+          - '$\text{C}_5\text{H}_{8}$'
+          - '$\text{C}_6\text{H}_{14}$'
+        answer: 1
+        explanation: 'Alkane: $\text{C}_n\text{H}_{2n+2}$ with $n = 5$ gives $\text{C}_5\text{H}_{12}$.'
+
+      - id: name-c2h4
+        type: multiple_choice
+        prompt: 'What is $\text{C}_2\text{H}_4$ called?'
+        choices: [ethane, ethyne, ethene, methene]
+        answer: 2
+        explanation: '$\text{C}_2\text{H}_4$ fits $\text{C}_n\text{H}_{2n}$, so it''s an alkene with 2 carbons: ethene.'
+
+      - id: heptane-hydrogens
+        type: math_input
+        prompt: How many hydrogen atoms are in an alkane with $7$ carbons?
+        answer: '16'
+        placeholder: Enter a number
+        explanation: '$2n + 2 = 2(7) + 2 = 16$'
+
+      - id: which-triple-bond
+        type: multiple_choice
+        prompt: Which compound contains a triple bond?
+        choices: [propane, propene, propyne, cyclopropane]
+        answer: 2
+        explanation: The suffix -yne means a carbon–carbon triple bond.
+
+      - id: meaning-of-2
+        type: multiple_choice
+        prompt: In but-2-ene, what does the "2" tell you?
+        choices:
+          - there are 2 double bonds
+          - the double bond starts at carbon 2
+          - there are 2 carbons
+          - there is a methyl group on carbon 2
+        answer: 1
+        explanation: The number gives the position of the double bond, between carbons 2 and 3.
+
+  - id: sch4u-u1-t1-destroyer
+    kind: destroyer
+    topic: Naming Hydrocarbons
+    title: 'Destroyer: Naming Hydrocarbons'
+    description: Multiple branches and catching naming errors.
+    xp: 30
+    items:
+      - id: two-methyls
+        type: multiple_choice
+        prompt: 'Name $\text{CH}_3\text{–CH(CH}_3\text{)–CH(CH}_3\text{)–CH}_3$.'
+        choices: ['2,3-dimethylbutane', 2-methyl-3-methylbutane, hexane, '2,3-methylbutane']
+        answer: 0
+        explanation: >-
+          The main chain has 4 carbons (butane), with methyl groups on carbons 2 and 3. Two
+          identical branches take the prefix di-: 2,3-dimethylbutane.
+
+      - id: fix-wrong-name
+        type: multiple_choice
+        prompt: Why is the name "3-methylbutane" incorrect?
+        choices:
+          - The main chain should be pentane
+          - Numbering should start from the other end, giving 2-methylbutane
+          - Methyl groups can't be on butane
+          - It should be called 3-ethylpropane
+        answer: 1
+        explanation: Number from the end nearest the branch. Counted correctly, the methyl is on carbon 2.
+
+      - id: methylpentane-formula
+        type: multiple_choice
+        prompt: What is the molecular formula of 2-methylpentane?
+        choices:
+          - '$\text{C}_5\text{H}_{12}$'
+          - '$\text{C}_6\text{H}_{12}$'
+          - '$\text{C}_6\text{H}_{14}$'
+          - '$\text{C}_7\text{H}_{16}$'
+        answer: 2
+        explanation: 'Pentane (5 C) plus a methyl branch (1 C) gives 6 carbons. It''s still an alkane: $\text{C}_6\text{H}_{14}$.'
+
+      - id: alkyne-hydrogens
+        type: math_input
+        prompt: How many hydrogen atoms are in an alkyne with $5$ carbons?
+        answer: '8'
+        placeholder: Enter a number
+        explanation: '$2n - 2 = 2(5) - 2 = 8$, so pentyne is $\text{C}_5\text{H}_8$.'

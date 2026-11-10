@@ -1,0 +1,15 @@
+id: mcr3u
+code: MCR3U
+title: Functions
+subject: math
+level: high_school
+group: math
+category: math
+grade: 11
+grade_label: 'Grade 11 · University prep'
+order: 4
+description: 'Function notation, transformations, exponentials, trigonometry and sequences.'
+prerequisites:
+  - MPM2D
+units:
+  - unit-01-characteristics-of-functions.yaml

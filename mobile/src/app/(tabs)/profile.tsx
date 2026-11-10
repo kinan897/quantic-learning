@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
-import { Alert, Platform, ScrollView, StyleSheet, View } from 'react-native';
+import { Alert, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useProgress, useSignOut } from '@/api/hooks';
@@ -10,7 +10,7 @@ import { Text } from '@/components/ui/text';
 import { MaxContentWidth, Radius, Spacing } from '@/constants/theme';
 import { useTheme } from '@/hooks/use-theme';
 import { useAuth } from '@/store/auth';
-import { usePreferences } from '@/store/preferences';
+import { usePreferences, type ThemeMode } from '@/store/preferences';
 
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -148,6 +148,8 @@ export default function ProfileScreen() {
 
           {stats}
 
+          <AppearancePicker />
+
           {user && !user.is_guest && (
             <Button
               title="Sign out"
@@ -160,6 +162,42 @@ export default function ProfileScreen() {
         </View>
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+const THEME_OPTIONS: { mode: ThemeMode; label: string; icon: keyof typeof Ionicons.glyphMap }[] = [
+  { mode: 'dark', label: 'Dark', icon: 'moon' },
+  { mode: 'light', label: 'Light', icon: 'sunny' },
+  { mode: 'system', label: 'Match phone', icon: 'phone-portrait-outline' },
+];
+
+/** Dark by default (like the website); light or "match my phone" are optional. */
+function AppearancePicker() {
+  const theme = useTheme();
+  const mode = usePreferences((s) => s.themeMode);
+  const setThemeMode = usePreferences((s) => s.setThemeMode);
+  return (
+    <View style={[styles.card, { backgroundColor: theme.surface, borderColor: theme.border }]}>
+      <Text variant="heading">Appearance</Text>
+      <View style={[styles.segment, { backgroundColor: theme.surfaceAlt }]} accessibilityRole="radiogroup">
+        {THEME_OPTIONS.map((option) => {
+          const selected = option.mode === mode;
+          return (
+            <Pressable
+              key={option.mode}
+              accessibilityRole="radio"
+              accessibilityState={{ checked: selected }}
+              onPress={() => setThemeMode(option.mode)}
+              style={[styles.segmentItem, selected && { backgroundColor: theme.accent }]}>
+              <Ionicons name={option.icon} size={16} color={selected ? theme.onAccent : theme.textSecondary} />
+              <Text variant="label" style={[styles.segmentText, { color: selected ? theme.onAccent : theme.text }]}>
+                {option.label}
+              </Text>
+            </Pressable>
+          );
+        })}
+      </View>
+    </View>
   );
 }
 
@@ -216,4 +254,15 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   bar: { width: '100%', borderRadius: Radius.sm },
+  segment: { flexDirection: 'row', borderRadius: Radius.pill, padding: 4, gap: 4 },
+  segmentItem: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: Spacing.one + 2,
+    paddingVertical: Spacing.two + 2,
+    borderRadius: Radius.pill,
+  },
+  segmentText: { fontSize: 13 },
 });

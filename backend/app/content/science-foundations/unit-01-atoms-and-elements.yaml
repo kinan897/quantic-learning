@@ -1,0 +1,181 @@
+# Science Foundations (Grade 8 science, SNC1W, SNC2D) — Atoms and elements
+
+id: science-foundations-u1
+title: Atoms and Elements
+description: >-
+  What atoms are made of, how to read atomic number and mass number, and how electrons are
+  arranged in shells.
+
+lessons:
+  - id: science-foundations-u1-t1-learn
+    kind: learn
+    topic: Inside the Atom
+    title: 'Learn: Inside the Atom'
+    description: Protons, neutrons, electrons and Bohr–Rutherford diagrams.
+    xp: 10
+    items:
+      - type: teach
+        id: three-particles
+        title: Three particles
+        blocks:
+          - type: text
+            md: |-
+              Every atom is built from three kinds of particles:
+
+              | Particle | Charge | Where it is | Relative mass |
+              |---|---|---|---|
+              | Proton | $+1$ | nucleus | $1$ |
+              | Neutron | $0$ | nucleus | $1$ |
+              | Electron | $-1$ | shells around the nucleus | almost $0$ |
+          - type: callout
+            tone: key
+            md: >-
+              Protons and neutrons are packed into the tiny, heavy **nucleus**. Electrons are
+              far lighter and move around it.
+
+      - id: negative-particle
+        type: multiple_choice
+        prompt: Which particle has a negative charge?
+        choices: [proton, neutron, electron, nucleus]
+        answer: 2
+        explanation: Electrons are negative, protons are positive, and neutrons have no charge.
+
+      - type: teach
+        id: atomic-and-mass-number
+        title: Atomic number and mass number
+        blocks:
+          - type: text
+            md: |-
+              - **Atomic number** = number of **protons**. It decides which element an atom is.
+              - **Mass number** = protons + neutrons.
+              - In a neutral atom, **electrons = protons**.
+
+              Carbon-12 has atomic number $6$, so it has $6$ protons, $6$ electrons, and
+              $12 - 6 = 6$ neutrons.
+          - type: callout
+            tone: tip
+            md: 'Neutrons $=$ mass number $-$ atomic number.'
+
+      - id: oxygen-neutrons
+        type: math_input
+        prompt: 'Oxygen has atomic number $8$ and mass number $16$. How many neutrons does it have?'
+        answer: '8'
+        placeholder: Enter a number
+        explanation: '$16 - 8 = 8$ neutrons.'
+
+      - type: teach
+        id: bohr-diagrams
+        title: Bohr–Rutherford diagrams
+        blocks:
+          - type: text
+            md: >-
+              Electrons fill **shells** from the inside out. For the first 20 elements, the
+              shells hold up to $2$, then $8$, then $8$ electrons.
+          - type: image
+            src: science/bohr-sodium.svg
+            alt: >-
+              Bohr–Rutherford diagram of sodium: a nucleus with 11 protons and 12 neutrons,
+              and electron shells holding 2, 8 and 1 electrons.
+            aspect: 0.47
+          - type: callout
+            tone: key
+            md: 'Sodium has $11$ electrons: $2$ in the first shell, $8$ in the second, $1$ in the third.'
+
+      - id: magnesium-shells
+        type: multiple_choice
+        prompt: 'Magnesium has $12$ electrons. How are they arranged in shells?'
+        choices: ['$2,\ 10$', '$2,\ 8,\ 2$', '$4,\ 4,\ 4$', '$8,\ 4$']
+        answer: 1
+        explanation: 'Fill the first shell ($2$), then the second ($8$), and the remaining $2$ go in the third.'
+
+  - id: science-foundations-u1-t1-practice
+    kind: practice
+    topic: Inside the Atom
+    title: 'Practice: Inside the Atom'
+    description: Count particles and arrange electrons.
+    xp: 10
+    items:
+      - id: protons-to-atomic-number
+        type: math_input
+        prompt: An atom has $17$ protons. What is its atomic number?
+        answer: '17'
+        placeholder: Enter a number
+        explanation: The atomic number is the number of protons.
+
+      - id: sodium-electrons
+        type: math_input
+        prompt: 'A neutral sodium atom has atomic number $11$. How many electrons does it have?'
+        answer: '11'
+        placeholder: Enter a number
+        explanation: In a neutral atom, electrons equal protons.
+
+      - id: aluminium-neutrons
+        type: math_input
+        prompt: 'Aluminium has atomic number $13$ and mass number $27$. How many neutrons?'
+        answer: '14'
+        placeholder: Enter a number
+        explanation: '$27 - 13 = 14$'
+
+      - id: where-is-nucleus
+        type: multiple_choice
+        prompt: Where are protons and neutrons found?
+        choices: [in the outer shell, in the nucleus, spread evenly through the atom, outside the atom]
+        answer: 1
+        explanation: Both are packed together in the nucleus at the centre of the atom.
+
+      - id: what-identifies-element
+        type: multiple_choice
+        prompt: What decides which element an atom is?
+        choices: [its number of neutrons, its mass number, its number of protons, its number of shells]
+        answer: 2
+        explanation: Every atom with $6$ protons is carbon, every atom with $8$ is oxygen, and so on.
+
+      - id: chlorine-valence
+        type: multiple_choice
+        prompt: 'Chlorine has $17$ electrons. How many are in its outer shell?'
+        choices: ['$1$', '$8$', '$7$', '$17$']
+        answer: 2
+        explanation: 'Arrangement $2,\ 8,\ 7$: the outer shell holds $7$.'
+
+  - id: science-foundations-u1-t1-destroyer
+    kind: destroyer
+    topic: Inside the Atom
+    title: 'Destroyer: Inside the Atom'
+    description: Ions, isotopes and working backwards.
+    xp: 30
+    items:
+      - id: magnesium-ion
+        type: math_input
+        prompt: 'Magnesium (atomic number $12$) loses $2$ electrons to form $\text{Mg}^{2+}$. How many electrons does the ion have?'
+        answer: '10'
+        placeholder: Enter a number
+        explanation: '$12 - 2 = 10$ electrons. The protons don''t change, so the ion has a $2+$ charge.'
+
+      - id: isotopes-differ
+        type: multiple_choice
+        prompt: Carbon-12 and carbon-14 are isotopes. What is different about them?
+        choices:
+          - the number of protons
+          - the number of neutrons
+          - the number of electrons in a neutral atom
+          - which element they are
+        answer: 1
+        explanation: 'Both have $6$ protons (so both are carbon). Carbon-14 has $8$ neutrons, carbon-12 has $6$.'
+
+      - id: work-backwards-atomic-number
+        type: math_input
+        prompt: 'An atom has $20$ neutrons and mass number $39$. What is its atomic number?'
+        answer: '19'
+        placeholder: Enter a number
+        explanation: '$39 - 20 = 19$ protons, so the atomic number is $19$ (potassium).'
+
+      - id: same-electrons
+        type: multiple_choice
+        prompt: 'Which pair has the same number of electrons? (Na: $11$, Ne: $10$, Cl: $17$, Ar: $18$, Mg: $12$)'
+        choices:
+          - Na and Ne
+          - Cl and Ar
+          - $\text{Na}^{+}$ and Ne
+          - Mg and $\text{Na}^{+}$
+        answer: 2
+        explanation: '$\text{Na}^{+}$ has lost one electron: $11 - 1 = 10$, the same as neon.'
