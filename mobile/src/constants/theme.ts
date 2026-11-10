@@ -1,58 +1,72 @@
 /**
- * Quantic Learning design tokens: deep indigo with teal accents.
- * Every screen reads colours through `useTheme()` so light/dark mode follows the phone.
+ * Quantic Learning design tokens, taken from the company logo:
+ *   navy  #06184C (the Q) · electron blue #1A42EF · orbit sky blue #54AFF5 · white
+ *
+ * Light mode is white with navy; dark mode is deep navy with white. Every screen reads colours
+ * through `useTheme()`, so light/dark follows the phone.
  */
 
 import '@/global.css';
 
+export const Brand = {
+  navy: '#06184C',
+  electron: '#1A42EF',
+  orbit: '#54AFF5',
+  white: '#FFFFFF',
+} as const;
+
 const light = {
-  background: '#F6F6FB',
+  background: '#F4F7FC',
   surface: '#FFFFFF',
-  surfaceAlt: '#ECEEFA',
-  border: '#DFE1F0',
-  text: '#16143D',
-  textSecondary: '#5C5F7E',
-  primary: '#4338CA',
-  primaryPressed: '#3730A3',
-  primarySoft: '#E0E4FF',
-  onPrimary: '#FFFFFF',
-  accent: '#0D9488',
-  accentSoft: '#CDF5EF',
-  success: '#0D9488',
-  successSoft: '#D5F6F0',
-  onSuccess: '#FFFFFF',
-  error: '#E11D48',
-  errorSoft: '#FFE4EA',
-  onError: '#FFFFFF',
+  surfaceAlt: '#E9EEF8',
+  border: '#DCE3F0',
+  text: Brand.navy,
+  textSecondary: '#4A5878',
+  primary: Brand.navy,
+  primaryPressed: '#0E2A6E',
+  primarySoft: '#E3E9F7',
+  onPrimary: Brand.white,
+  accent: Brand.electron,
+  accentSoft: '#E1E8FE',
+  success: '#12A150',
+  successSoft: '#DDF5E6',
+  onSuccess: Brand.white,
+  error: '#D92D47',
+  errorSoft: '#FDE6EA',
+  onError: Brand.white,
   xp: '#D97706',
   streak: '#EA580C',
-  locked: '#B9BCD3',
+  locked: '#B4BED3',
+  destroyer: '#C81E1E',
+  destroyerSoft: '#FDE4E4',
 };
 
-export type ThemeColors = typeof light;
+export type ThemeColors = Record<keyof typeof light, string>;
 
 const dark: ThemeColors = {
-  background: '#0C0B22',
-  surface: '#17163B',
-  surfaceAlt: '#221F4E',
-  border: '#302D63',
-  text: '#F2F2FF',
-  textSecondary: '#A7A9CB',
-  primary: '#8B93FA',
-  primaryPressed: '#6E77F2',
-  primarySoft: '#2A2862',
-  onPrimary: '#0C0B22',
-  accent: '#2DD4BF',
-  accentSoft: '#12403D',
-  success: '#2DD4BF',
-  successSoft: '#123B39',
-  onSuccess: '#06201D',
+  background: '#040E2B',
+  surface: '#0A1A45',
+  surfaceAlt: '#112456',
+  border: '#1D3268',
+  text: '#F4F7FF',
+  textSecondary: '#9FB0D6',
+  primary: Brand.white,
+  primaryPressed: '#DCE3F0',
+  primarySoft: '#16295E',
+  onPrimary: Brand.navy,
+  accent: Brand.orbit,
+  accentSoft: '#0F2F5A',
+  success: '#34D399',
+  successSoft: '#0C3A2E',
+  onSuccess: '#04241A',
   error: '#FB7185',
-  errorSoft: '#45152A',
+  errorSoft: '#47152A',
   onError: '#2A0611',
   xp: '#FBBF24',
   streak: '#FB923C',
-  locked: '#3D3A70',
+  locked: '#2A3B6B',
+  destroyer: '#F87171',
+  destroyerSoft: '#3F1219',
 };
 
 export const Colors = { light, dark };

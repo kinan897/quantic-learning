@@ -13,7 +13,7 @@ from app.schemas import (
     LessonDetail,
     RewardOut,
     SessionOut,
-    public_question,
+    public_item,
 )
 from app.services.progress import (
     LessonLockedError,
@@ -57,12 +57,14 @@ def get_lesson(
     lesson = ref.lesson
     return LessonDetail(
         id=lesson.id,
+        kind=lesson.kind,
+        topic=lesson.topic,
         title=lesson.title,
         description=lesson.description,
         xp=lesson.xp,
         course_id=ref.course.id,
         unit_id=ref.unit.id,
-        questions=[public_question(q) for q in lesson.questions],
+        items=[public_item(item) for item in lesson.items],
     )
 
 
@@ -113,8 +115,12 @@ def check_answer(
 
     if isinstance(question, MultipleChoiceQuestion):
         grade = grade_choice(body.answer, question.answer, len(question.choices))
+        choice = question.choices[question.answer]
         reveal = {
-            "correct_answer": question.choices[question.answer],
+            # Graph choices have no text; the app highlights the correct graph instead.
+            "correct_answer": choice
+            if isinstance(choice, str)
+            else f"Option {'ABCDEF'[question.answer]}",
             "correct_choice": question.answer,
         }
     else:

@@ -1,6 +1,7 @@
 /**
  * The lesson player.
  *
+ * A lesson is a list of items: teaching cards (read, then Continue) and questions.
  * Opening a lesson starts a session on the server. Questions arrive without answers, and
  * every attempt is graded and recorded by the API. A missed question goes to the back of
  * the queue, so the lesson ends only after every question has been answered correctly at
@@ -23,10 +24,12 @@ import {
   useStartLessonSession,
 } from '@/api/hooks';
 import type { CheckResponse, LessonDetail, Reward } from '@/api/types';
+import { BlockView } from '@/components/lesson/blocks';
 import { ChoiceList } from '@/components/lesson/choice-list';
 import { FeedbackPanel } from '@/components/lesson/feedback-panel';
 import { LessonComplete } from '@/components/lesson/lesson-complete';
 import { MathAnswerBox, MathKeypad } from '@/components/lesson/math-input';
+import { TeachCardView } from '@/components/lesson/teach-card';
 import { RichText } from '@/components/math/rich-text';
 import { Button } from '@/components/ui/button';
 import { ProgressBar } from '@/components/ui/progress-bar';
@@ -78,12 +81,14 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
     startSession(lesson.id, { onSuccess: (session) => setSessionId(session.session_id) });
   }, [lesson.id, sessionAttempt, startSession]);
 
-  const questionsById = useMemo(() => new Map(lesson.questions.map((q) => [q.id, q])), [lesson]);
-  const total = lesson.questions.length;
+  const itemsById = useMemo(() => new Map(lesson.items.map((item) => [item.id, item])), [lesson]);
+  const total = lesson.items.length;
+  const isDestroyer = lesson.kind === 'destroyer';
 
-  const [queue, setQueue] = useState(() => lesson.questions.map((q) => q.id));
+  const [queue, setQueue] = useState(() => lesson.items.map((item) => item.id));
   const [position, setPosition] = useState(0);
-  const [solved, setSolved] = useState(0);
+  // Cards read + questions answered correctly. Drives the progress bar.
+  const [done, setDone] = useState(0);
   const [phase, setPhase] = useState<Phase>('answering');
 
   const [choice, setChoice] = useState<number | null>(null);
@@ -96,14 +101,15 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   const [elapsedMs, setElapsedMs] = useState(0);
   const [reward, setReward] = useState<Reward | null>(null);
 
-  const question = questionsById.get(queue[position])!;
+  const item = itemsById.get(queue[position])!;
+  const question = item.type === 'teach' ? null : item;
   const isRetry = position >= total;
   const hasAnswer =
-    question.type === 'multiple_choice' ? choice !== null : mathAnswer.trim().length > 0;
-  const canCheck = hasAnswer && sessionId !== null;
+    question?.type === 'multiple_choice' ? choice !== null : mathAnswer.trim().length > 0;
+  const canCheck = question !== null && hasAnswer && sessionId !== null;
 
   function submit() {
-    if (!canCheck || check.isPending || phase !== 'answering') return;
+    if (!question || !canCheck || check.isPending || phase !== 'answering') return;
     setInputMessage(null);
     const answer = question.type === 'multiple_choice' ? choice! : mathAnswer;
     check.mutate(
@@ -119,7 +125,7 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
           setPhase('feedback');
           if (result.result === 'correct') {
             haptics.success();
-            setSolved((n) => n + 1);
+            setDone((n) => n + 1);
           } else {
             haptics.error();
             setQueue((q) => [...q, question.id]);
@@ -146,6 +152,7 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   }
 
   function next() {
+    if (item.type === 'teach') setDone((n) => n + 1);
     const nextPosition = position + 1;
     if (nextPosition >= queue.length) {
       finish();
@@ -161,7 +168,9 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
   }
 
   if (phase === 'complete' && reward) {
-    return <LessonComplete reward={reward} elapsedMs={elapsedMs} onDone={closeLesson} />;
+    return (
+      <LessonComplete reward={reward} kind={lesson.kind} elapsedMs={elapsedMs} onDone={closeLesson} />
+    );
   }
 
   if (phase === 'finishing' || sessionError) {
@@ -194,13 +203,23 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
     <SafeAreaView edges={['top']} style={[styles.screen, { backgroundColor: theme.background }]}>
       <View style={[styles.header, styles.column]}>
         <CloseButton />
-        <ProgressBar progress={solved / total} />
+        <ProgressBar progress={done / total} />
+        {isDestroyer && (
+          <View style={[styles.destroyerPill, { backgroundColor: theme.destroyer }]}>
+            <Ionicons name="skull" size={14} color={theme.surface} />
+          </View>
+        )}
       </View>
 
       <ScrollView
         style={styles.flex}
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled">
+        {question === null && item.type === 'teach' ? (
+          <Animated.View key={position} entering={FadeInRight.duration(250)} style={styles.column}>
+            <TeachCardView card={item} />
+          </Animated.View>
+        ) : question ? (
         <Animated.View key={position} entering={FadeInRight.duration(250)} style={[styles.column, styles.question]}>
           {isRetry && (
             <View style={[styles.retryBadge, { backgroundColor: theme.primarySoft }]}>
@@ -211,10 +230,18 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
             </View>
           )}
 
-          <Text variant="caption" tone="secondary" style={styles.eyebrow}>
-            {question.type === 'multiple_choice' ? 'CHOOSE THE ANSWER' : 'TYPE YOUR ANSWER'}
+          <Text
+            variant="caption"
+            tone="secondary"
+            style={[styles.eyebrow, isDestroyer && { color: theme.destroyer }]}>
+            {isDestroyer
+              ? 'DESTROYER QUESTION'
+              : question.type === 'multiple_choice'
+                ? 'CHOOSE THE ANSWER'
+                : 'TYPE YOUR ANSWER'}
           </Text>
           <RichText source={question.prompt} size="large" />
+          {question.figure && <BlockView block={question.figure} />}
 
           {question.hint && answering && (
             <Pressable
@@ -258,9 +285,16 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
             )}
           </View>
         </Animated.View>
+        ) : null}
       </ScrollView>
 
-      {answering ? (
+      {item.type === 'teach' ? (
+        <SafeAreaView edges={['bottom']} style={[styles.footer, { borderTopColor: theme.border }]}>
+          <View style={[styles.column, styles.footerInner]}>
+            <Button title="Continue" icon="arrow-forward" onPress={next} disabled={sessionId === null} />
+          </View>
+        </SafeAreaView>
+      ) : answering && question ? (
         <SafeAreaView edges={['bottom']} style={[styles.footer, { borderTopColor: theme.border }]}>
           <View style={[styles.column, styles.footerInner]}>
             {inputMessage && (
@@ -286,7 +320,8 @@ function LessonPlayer({ lesson }: { lesson: LessonDetail }) {
           </View>
         </SafeAreaView>
       ) : (
-        feedback && <FeedbackPanel feedback={feedback} questionType={question.type} onContinue={next} />
+        feedback &&
+        question && <FeedbackPanel feedback={feedback} questionType={question.type} onContinue={next} />
       )}
     </SafeAreaView>
   );
@@ -318,6 +353,13 @@ const styles = StyleSheet.create({
     paddingVertical: Spacing.two,
   },
   close: { padding: Spacing.one },
+  destroyerPill: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   scrollContent: { padding: Spacing.three, paddingBottom: Spacing.five },
   question: { gap: Spacing.three },
   eyebrow: { fontWeight: '800', letterSpacing: 1.2 },

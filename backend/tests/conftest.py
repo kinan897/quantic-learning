@@ -16,7 +16,7 @@ from app.main import app  # noqa: E402
 from app.rate_limit import auth_rate_limit  # noqa: E402
 
 CATALOG = load_catalog()
-FIRST, SECOND = "mcv4u-u1-l1", "mcv4u-u1-l2"
+FIRST, SECOND = "mcv4u-u1-t1-learn", "mcv4u-u1-t1-practice"
 
 
 @pytest.fixture(autouse=True)
